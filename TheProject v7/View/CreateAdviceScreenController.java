@@ -3,6 +3,7 @@ package View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import Controller.AdviseLogic;
@@ -108,16 +109,33 @@ public class CreateAdviceScreenController implements Initializable {
 
 	ArrayList<User> users = new ArrayList<>();
 
-	private class DataForAdTable {
+	public class DataForAdTable {
 
-		Commitment lvl;
-		int id;
+		private Commitment lvl;
+		private int id;
 
 		public DataForAdTable(Commitment lvl, int id) {
 			super();
 			this.lvl = lvl;
 			this.id = id;
 		}
+
+		public Commitment getLvl() {
+			return lvl;
+		}
+
+		public void setLvl(Commitment lvl) {
+			this.lvl = lvl;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+		
 
 	}
 
@@ -168,6 +186,7 @@ public class CreateAdviceScreenController implements Initializable {
 		ArrayList<Advice> ads = UserLogic.getUsersAdvice(user);
 		System.out.println(ads);
 		for (Advice temp : ads) {
+			System.out.println(AdviseLogic.getAdviceCommitement(user, temp).get(0).getCommitmentLvl());
 			DataForAdTable data = new DataForAdTable(
 					AdviseLogic.getAdviceCommitement(user, temp).get(0).getCommitmentLvl(), temp.getAdviceId());
 			adviceTable.getItems().add(data);
