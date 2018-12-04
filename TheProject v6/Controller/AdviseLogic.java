@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import Model.Advice;
+import Model.Commitment;
+import Model.CommitmentPerUser;
+import Model.User;
 import Utils.Consts;
 
 public class AdviseLogic {
@@ -30,7 +33,7 @@ public class AdviseLogic {
 					ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Advice(rs.getString(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
 							rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {
@@ -42,6 +45,15 @@ public class AdviseLogic {
 		return results;
 	}
 
+	/**
+	 * add a new advice to the DB 
+	 * 
+	 * @param adviceId
+	 * @param date
+	 * @param adviceComission
+	 * @param prefPercent
+	 * @return
+	 */
 	public static boolean addAdvice(String adviceId, Calendar date, double adviceComission, double prefPercent) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -64,4 +76,46 @@ public class AdviseLogic {
 		return false;
 	}
 
+	
+	/**
+	 * Get commitment per advice per  User
+	 * @param user
+	 * @return
+	 */
+	public static ArrayList<CommitmentPerUser> getAdviceCommitement(User user,Advice advice) {
+		ArrayList<CommitmentPerUser> results = new ArrayList<>();
+	
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				PreparedStatement stmt = conn
+						.prepareStatement(Consts.SQL_GET_USERSADVICECOMMIT);
+
+				stmt.setInt(1, advice.getAdviceId());
+				stmt.setString(2, user.getPublicAddress());
+				stmt.setString(3, user.getDigitalSignature());
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new CommitmentPerUser(Commitment.valueOf(rs.getString(i))));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

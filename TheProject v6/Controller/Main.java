@@ -19,15 +19,15 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 	
-		User user =new User("E5848D", "XT7");
+		User user =new User("N0909Z", "N9Z");
+		Advice advice =new Advice(2);
 		
-		ArrayList<Wallet> wallets = UserLogic.getUserWallets(user);
-		
-		System.out.println(wallets);
-	
+		/*
+		System.out.println(UserLogic.getPayByStatus(user, Status.irelevant));
+		*/
 
-		
-//		launch(args);
+		System.out.println(AdviseLogic.getAdviceCommitement(user,advice));
+		launch(args);
 	}
 
 	@Override
