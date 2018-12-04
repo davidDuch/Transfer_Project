@@ -15,7 +15,11 @@ public class Consts {
 	public static final String SQL_INS_NEWADVICE = "{ call addAdvice(?,?,?,?) }";
 	public static final String SQL_INS_NEWPAY = "{ call addPay(?,?,?,?,?,?,?,?,?,?,?,?,?) }";
 	public static final String SQL_INS_NEWCONFIRM = "{ call addConfirm(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }";
-	
+	public static final String SQL_DEL_DELETEUSER = "{ call  deleteUser(?,?) }";
+	public static final String SQL_GET_USERPAYBYSTATUES = "{ call userPayByStatus(?,?,?) }";
+	public static final String SQL_GET_USERSADVICE = "{ call getAdvicePerUser(?,?) }";
+	public static final String SQL_GET_USERSADVICECOMMIT = "{ call getCommitmentPerUserPerAdvice(?,?,?) }";
+
 
 	
 	
