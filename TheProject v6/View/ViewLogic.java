@@ -20,7 +20,7 @@ public class ViewLogic {
 	
 	
 	public static void initUI() {
-		newCreateAdviseScreen();
+		newDashBoard();
 		
 		
 		
@@ -28,6 +28,30 @@ public class ViewLogic {
 	
 	
 	
+	/**
+	 * Goes to the report window
+	 */
+	protected static void newReportGenerator() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("GenerateReportScreen.fxml"), stage, false, "Report Window", false);
+		
+	}
+	
+	
+	/**
+	 * Goes to the dash board
+	 */
+	protected static void newDashBoard() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("DashBoard.fxml"), stage, false, "Dash Board", false);
+	
+		
+		
+	}
+	
+	/**
+	 * Go to window Create Advice
+	 */
 	protected static void newCreateAdviseScreen() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("CreateAdviceScreen.fxml"), stage, false, "Create Advise", false);
