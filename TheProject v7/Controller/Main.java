@@ -21,6 +21,7 @@ public class Main extends Application {
 	
 		User user =new User("N0909Z", "N9Z");
 		Advice advice =new Advice(2);
+		System.out.println("yay");
 		
 		/*
 		System.out.println(UserLogic.getPayByStatus(user, Status.irelevant));
