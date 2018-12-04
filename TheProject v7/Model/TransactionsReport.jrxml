@@ -29,16 +29,16 @@ GROUP BY unionTransactions.status;
 		<variableExpression><![CDATA[$F{Precantage for Status}]]></variableExpression>
 	</variable>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="40" splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="50" splitType="Stretch">
+		<band height="86" splitType="Stretch">
 			<rectangle>
 				<reportElement x="-20" y="0" width="595" height="40" forecolor="rgba(6, 15, 15, 0.69803923)" backcolor="rgba(14, 28, 31, 0.7254902)" uuid="b8ddbc67-7cec-43a8-8853-edb0f34cef49"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="6" width="280" height="30" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="d5ef16b8-7de1-4eb3-9835-7745e79ffd65"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="Arial Narrow" size="26" isUnderline="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
@@ -46,7 +46,7 @@ GROUP BY unionTransactions.status;
 			</staticText>
 			<textField pattern="M/d/yy h:mm a">
 				<reportElement x="422" y="6" width="138" height="30" forecolor="#FFFFFF" uuid="ef70b332-4212-467d-bb3a-2fb52efe566a"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="Monospaced" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
@@ -56,63 +56,63 @@ GROUP BY unionTransactions.status;
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="81" y="10" width="128" height="30" uuid="81fd09c4-0e74-4187-bf00-4d749767c6c6"/>
-				<textElement>
-					<font size="13" isUnderline="true"/>
+				<reportElement x="81" y="10" width="134" height="30" uuid="81fd09c4-0e74-4187-bf00-4d749767c6c6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Minimum Commision]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="211" y="10" width="128" height="30" uuid="00bf1f15-6804-4552-9009-614e850f1c0d"/>
-				<textElement>
-					<font size="13" isUnderline="true"/>
+				<reportElement x="214" y="10" width="139" height="30" uuid="00bf1f15-6804-4552-9009-614e850f1c0d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Maximum Commision]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="341" y="10" width="98" height="30" uuid="8071ac8a-cac5-46eb-add6-096e0444e2f3"/>
-				<textElement>
-					<font size="13" isUnderline="true"/>
+				<reportElement x="346" y="10" width="120" height="30" uuid="8071ac8a-cac5-46eb-add6-096e0444e2f3"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Amount Created]]></text>
+				<text><![CDATA[Amount ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="441" y="10" width="120" height="30" uuid="46ddc073-6f66-4b44-a173-b1d1fa3ed780"/>
-				<textElement>
-					<font size="13" isUnderline="true"/>
+				<reportElement x="445" y="10" width="130" height="30" uuid="46ddc073-6f66-4b44-a173-b1d1fa3ed780"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Percentage Created]]></text>
+				<text><![CDATA[Percentage ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="10" width="70" height="30" uuid="a81193ee-fbce-47af-b992-1454eabd34b4"/>
-				<textElement>
-					<font size="13" isUnderline="true"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<textField>
-				<reportElement x="9" y="5" width="100" height="30" uuid="97e806cd-a6ee-41c8-b215-9d4b9587874e"/>
-				<textElement>
-					<font size="15"/>
+				<reportElement x="4" y="6" width="100" height="30" uuid="97e806cd-a6ee-41c8-b215-9d4b9587874e"/>
+				<textElement textAlignment="Center">
+					<font size="13"/>
 					<paragraph tabStopWidth="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="112" y="5" width="100" height="30" uuid="1e7fef6b-9ab2-400e-ae5c-7195acda489a"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="15"/>
 					<paragraph lineSpacingSize="0.0" tabStopWidth="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Minimum Commision}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="215" y="5" width="100" height="30" uuid="37ade3b4-3965-4eab-9468-65bdbbaa02a1"/>
-				<textElement>
+				<reportElement x="232" y="5" width="100" height="30" uuid="37ade3b4-3965-4eab-9468-65bdbbaa02a1"/>
+				<textElement textAlignment="Center">
 					<font size="15"/>
 					<paragraph tabStopWidth="20"/>
 				</textElement>
@@ -120,17 +120,17 @@ GROUP BY unionTransactions.status;
 			</textField>
 			<textField>
 				<reportElement x="350" y="6" width="100" height="30" uuid="02e76183-296c-42c1-88fd-711d82e148af"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="15"/>
 					<paragraph tabStopWidth="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Transactions for Status}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="453" y="6" width="100" height="30" uuid="38d8012c-8d7a-40ff-82cd-2f71e0693567">
+				<reportElement x="456" y="6" width="100" height="30" uuid="38d8012c-8d7a-40ff-82cd-2f71e0693567">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5fd523ed-1ad5-4fbf-885a-b2ce02d329f9"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="15"/>
 					<paragraph tabStopWidth="20"/>
 				</textElement>
@@ -142,11 +142,11 @@ GROUP BY unionTransactions.status;
 		</band>
 	</detail>
 	<summary>
-		<band height="66" splitType="Stretch">
+		<band height="106" splitType="Stretch">
 			<componentElement>
-				<reportElement x="461" y="-22" width="111" height="86" uuid="a56e692e-b2ce-4d02-906b-3eb974c6a925"/>
+				<reportElement key="" x="461" y="-22" width="111" height="86" uuid="a56e692e-b2ce-4d02-906b-3eb974c6a925"/>
 				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA["123456789"]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA["If you tried this give us +10? "]]></jr:codeExpression>
 				</jr:QRCode>
 			</componentElement>
 		</band>
