@@ -18,8 +18,8 @@
             <Label fx:id="header" layoutX="14.0" layoutY="14.0" text="Advice Creation Form:" />
             <ButtonBar layoutX="371.0" layoutY="78.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button fx:id="createAdviceButton" mnemonicParsing="false" text="Create" />
-                  <Button fx:id="resetForm" mnemonicParsing="false" text="Reset Form" />
+                <Button fx:id="createAdviceButton" mnemonicParsing="false" onAction="#createAdvice" text="Create" />
+                  <Button fx:id="resetForm" mnemonicParsing="false" onAction="#clearForm" text="Reset Form" />
               </buttons>
             </ButtonBar>
             <HBox layoutX="31.0" layoutY="38.0" prefHeight="40.0" prefWidth="880.0">
