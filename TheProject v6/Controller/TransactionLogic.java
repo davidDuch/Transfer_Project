@@ -19,7 +19,26 @@ public class TransactionLogic {
 	
 	
 	
-	
+	/**
+	 * 
+	 * Adds a new Confirm Transaction
+	 * 
+	 * @param id
+	 * @param description
+	 * @param size
+	 * @param dateCreated
+	 * @param dateApproved
+	 * @param status
+	 * @param commission
+	 * @param dateOfSupply
+	 * @param approved
+	 * @param buyerAddress
+	 * @param buyerSignature
+	 * @param creatorAddress
+	 * @param creatorSignature
+	 * @param wallet
+	 * @return
+	 */
 	public static boolean addConfirm(String id, String description, double size, Date dateCreated, Date dateApproved, Status status,
 			double commission, Date dateOfSupply, Boolean approved, String buyerAddress, String buyerSignature,
 			String creatorAddress, String creatorSignature, String wallet) {

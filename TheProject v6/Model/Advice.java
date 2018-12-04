@@ -1,22 +1,25 @@
 package Model;
 import java.util.Calendar;
+import java.util.Date;
+
+import Controller.Sys;
 
 public class Advice {
 
 
-	private String adviceId;
+	private int adviceId;
 	private Calendar date;
 	private Double adviceComission;
 	private Double prefPercent;
 
 
-	public Advice(String adviceId) {
+	public Advice(int adviceId) {
 		super();
 		this.adviceId = adviceId;
 
 	}
 
-	public Advice(String adviceId, Calendar date, Double adviceComission, double prefPercent) {
+	public Advice(int adviceId, Calendar date, Double adviceComission, double prefPercent) {
 		super();
 		this.adviceId = adviceId;
 		this.date = date;
@@ -24,10 +27,10 @@ public class Advice {
 		this.prefPercent = prefPercent;
 	}
 
-	public String getAdviceId() {
+	public int getAdviceId() {
 		return adviceId;
 	}
-	public void setAdviceId(String adviceId) {
+	public void setAdviceId(int  adviceId) {
 		this.adviceId = adviceId;
 	}
 	public Calendar getDate() {
@@ -49,12 +52,11 @@ public class Advice {
 		this.prefPercent = prefPercent;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adviceId == null) ? 0 : adviceId.hashCode());
+		result = prime * result + adviceId;
 		return result;
 	}
 
@@ -67,18 +69,13 @@ public class Advice {
 		if (getClass() != obj.getClass())
 			return false;
 		Advice other = (Advice) obj;
-		if (adviceId == null) {
-			if (other.adviceId != null)
-				return false;
-		} else if (!adviceId.equals(other.adviceId))
+		if (adviceId != other.adviceId)
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Advice [adviceId=" + adviceId + ", date=" + date + ", adviceComission=" + adviceComission
-				+ ", prefPercent=" + prefPercent + "]";
-	}
+
+	
+	
 }
 
