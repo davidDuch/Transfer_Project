@@ -83,7 +83,7 @@
                       <TableColumn fx:id="commitmentIdColumn" prefWidth="121.0" text="Commitment" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="usersTable" prefHeight="249.0" prefWidth="732.0">
+                  <TableView fx:id="usersTable" onMouseClicked="#userTbClicked" prefHeight="249.0" prefWidth="732.0">
                     <columns>
                       <TableColumn fx:id="userNameC" prefWidth="156.0" text="User Name" />
                       <TableColumn fx:id="emailC" prefWidth="279.0" text="Email" />

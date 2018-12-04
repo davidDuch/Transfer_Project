@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class CreateAdviceScreenController implements Initializable {
@@ -100,24 +101,23 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableView<DataForAdTable> adviceTable;
 
 	@FXML
-	private TableColumn<?, ?> adIdColumn;
+	private TableColumn<DataForAdTable, Integer> adIdColumn;
 
 	@FXML
-	private TableColumn<?, ?> commitmentIdColumn;
+	private TableColumn<DataForAdTable, String> commitmentIdColumn;
 
 	ArrayList<User> users = new ArrayList<>();
 
 	private class DataForAdTable {
-		
+
 		Commitment lvl;
 		int id;
+
 		public DataForAdTable(Commitment lvl, int id) {
 			super();
 			this.lvl = lvl;
 			this.id = id;
 		}
-		
-		
 
 	}
 
@@ -138,6 +138,9 @@ public class CreateAdviceScreenController implements Initializable {
 		prefPer.setCellValueFactory(new PropertyValueFactory<>("prefPercent"));
 		commisionRate.setCellValueFactory(new PropertyValueFactory<>("adviceComission"));
 
+		adIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		commitmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("lvl"));
+
 		setUsersTable();
 		setAdviceTable();
 
@@ -153,6 +156,32 @@ public class CreateAdviceScreenController implements Initializable {
 		ObservableList<User> tempUsers = FXCollections.observableArrayList();
 		tempUsers.addAll(UserLogic.getUsers());
 		usersTable.setItems(tempUsers);
+
+	}
+
+	private void setAdviceTb(User user) {
+		if (user == null)
+			return;
+
+		adviceTable.getItems().clear();
+
+		ArrayList<Advice> ads = UserLogic.getUsersAdvice(user);
+		System.out.println(ads);
+		for (Advice temp : ads) {
+			DataForAdTable data = new DataForAdTable(
+					AdviseLogic.getAdviceCommitement(user, temp).get(0).getCommitmentLvl(), temp.getAdviceId());
+			adviceTable.getItems().add(data);
+
+		}
+
+	}
+
+	@FXML
+	void userTbClicked(MouseEvent event) {
+
+		User user = users.get(usersTable.getSelectionModel().getSelectedIndex());
+		System.out.println(user);
+		setAdviceTb(user);
 
 	}
 

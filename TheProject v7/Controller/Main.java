@@ -18,16 +18,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static void main(String[] args) {
-	
-		User user =new User("N0909Z", "N9Z");
-		Advice advice =new Advice(2);
-		System.out.println("yay");
-		
-		/*
-		System.out.println(UserLogic.getPayByStatus(user, Status.irelevant));
-		*/
-
-		System.out.println(AdviseLogic.getAdviceCommitement(user,advice));
 		launch(args);
 	}
 
