@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="C:/Users/Gabi Malin/Desktop/Java workSpace/TheProject v2/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabi Malin/Desktop/Java workSpace/TheProject v2/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabi Malin/Desktop/Java workSpace/TheProject v2/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabi Malin/Desktop/Java workSpace/TheProject v2/jackcess-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabi Malin/Desktop/Java workSpace/TheProject v2/ucanaccess-4.0.2.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
