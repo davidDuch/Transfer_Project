@@ -18,8 +18,7 @@ public class User {
 		this.DigitalSignature = DigitalSignature;
 	}
 
-	public User(String userName, String phoneNumber, String email, String password, String publicAddress,
-			String digitalSignature) {
+	public User( String publicAddress,String digitalSignature,String userName, String password, String phoneNumber, String email) {
 		super();
 		this.userName = userName;
 		this.phoneNumber = phoneNumber;
