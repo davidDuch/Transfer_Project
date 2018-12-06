@@ -5,7 +5,7 @@ import java.util.Date;
 import Controller.Sys;
 import Utils.Status;
 
-public class Transaction implements Comparable<Transaction> {
+public abstract class Transaction implements Comparable<Transaction> {
 
 	private String id;
 	private String description;

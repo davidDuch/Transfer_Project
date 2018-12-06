@@ -34,6 +34,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class CreateAdviceScreenController implements Initializable {
 
+	
+	
 	@FXML
 	private AnchorPane framePane;
 
@@ -123,11 +125,15 @@ public class CreateAdviceScreenController implements Initializable {
 
 	@FXML
 	private ComboBox<Commitment> comboLvl;
+	
+
 
 	private ArrayList<User> users = new ArrayList<>();
 
 	private ArrayList<User> userAdded = new ArrayList<>();
 
+	
+	//class used to fill the table that adds the users to the advice
 	public class DataForAdTable {
 
 		private Commitment lvl;
