@@ -1,4 +1,7 @@
 package Model;
+
+import Utils.Commitment;
+
 public class CommitmentPerUser {
 
 	private Commitment commitmentLvl;
