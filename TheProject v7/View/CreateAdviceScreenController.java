@@ -36,11 +36,7 @@ public class CreateAdviceScreenController implements Initializable {
 
 	
 	
-	@FXML
-	private AnchorPane framePane;
 
-	@FXML
-	private AnchorPane adviceCreationPane;
 
 	@FXML
 	private Label header;
@@ -78,8 +74,6 @@ public class CreateAdviceScreenController implements Initializable {
 	@FXML
 	private TableColumn<Advice, Calendar> creationDateC;
 
-	@FXML
-	private AnchorPane usersTablePane;
 
 	@FXML
 	private TableView<User> usersTable;
@@ -216,7 +210,7 @@ public class CreateAdviceScreenController implements Initializable {
 	}
 
 	@FXML
-	void userTbClicked(MouseEvent event) {
+	private void userTbClicked(MouseEvent event) {
 		if (usersTable.getSelectionModel().getSelectedItem() != null) {
 			addUserButton.setDisable(false);
 
@@ -323,7 +317,7 @@ public class CreateAdviceScreenController implements Initializable {
 	}
 
 	@FXML
-	void usersInAdviceClicked(MouseEvent event) {
+	private void usersInAdviceClicked(MouseEvent event) {
 		if (createdAdviceTable.getSelectionModel().getSelectedItem() != null) {
 			removeUserButton.setDisable(false);
 

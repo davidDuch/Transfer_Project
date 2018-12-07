@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="framePane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateAdviceScreenController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateAdviceScreenController">
    <children>
-      <AnchorPane fx:id="adviceCreationPane" layoutX="20.0" layoutY="19.0" prefHeight="151.0" prefWidth="1067.0">
+      <AnchorPane layoutX="20.0" layoutY="19.0" prefHeight="151.0" prefWidth="1067.0">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="1067.0">
                <children>
@@ -77,7 +77,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </AnchorPane>
-      <AnchorPane fx:id="advicesTablePane" layoutX="20.0" layoutY="178.0" prefHeight="249.0" prefWidth="1075.0">
+      <AnchorPane layoutX="20.0" layoutY="178.0" prefHeight="249.0" prefWidth="1075.0">
          <children>
             <VBox>
                <children>
@@ -116,7 +116,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="usersTablePane" layoutX="18.0" layoutY="469.0" prefHeight="225.0" prefWidth="1077.0">
+      <AnchorPane layoutX="18.0" layoutY="469.0" prefHeight="225.0" prefWidth="1077.0">
          <children>
             <VBox prefHeight="236.0" prefWidth="1077.0">
                <children>
