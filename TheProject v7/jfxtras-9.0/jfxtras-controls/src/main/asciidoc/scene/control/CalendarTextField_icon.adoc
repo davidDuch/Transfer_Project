@@ -1,8 +1,0 @@
-To change the icon use:
-
-[source,css,subs="attributes+"]
-----
-    .{control} .icon  {
-        -fx-image: url("AlternateCalendarIcon.jpg");
-    }
-----

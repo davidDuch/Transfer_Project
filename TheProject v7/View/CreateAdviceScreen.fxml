@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,34 +11,36 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane fx:id="framePane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateAdviceScreenController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateAdviceScreenController">
    <children>
-<<<<<<< HEAD
       <AnchorPane layoutX="20.0" layoutY="19.0" prefHeight="151.0" prefWidth="1067.0">
-<AnchorPane  prefHeight="800.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateAdviceScreenController">
-   <children>
-      <AnchorPane  layoutX="20.0" layoutY="40.0" prefHeight="130.0" prefWidth="940.0">
-=======
-      <AnchorPane fx:id="adviceCreationPane" layoutX="20.0" layoutY="19.0" prefHeight="151.0" prefWidth="1067.0">
->>>>>>> parent of 03a7828... just some comments
          <children>
-            <Label fx:id="header" layoutX="14.0" layoutY="14.0" text="Advice Creation Form:" />
-            <ButtonBar layoutX="371.0" layoutY="78.0" prefHeight="40.0" prefWidth="200.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="1067.0">
+               <children>
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="68.0" text="Logout" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="984.0">
+               <children>
+                  <Label fx:id="header" text="Advice Creation Form:" />
+               </children>
+            </HBox>
+            <ButtonBar layoutX="371.0" layoutY="78.0" prefHeight="40.0" prefWidth="339.0">
               <buttons>
-                <Button fx:id="createAdviceButton" mnemonicParsing="false"  text="Create" />
-                  <Button fx:id="resetForm" mnemonicParsing="false"  text="Reset Form" />
+                <Button fx:id="createAdviceButton" mnemonicParsing="false" onAction="#createAdvice" text="Create" />
+                  <Button fx:id="resetForm" mnemonicParsing="false" onAction="#clearForm" prefHeight="25.0" prefWidth="128.0" text="Reset Form" />
               </buttons>
             </ButtonBar>
-            <HBox layoutX="31.0" layoutY="38.0" prefHeight="40.0" prefWidth="880.0">
+            <HBox alignment="CENTER" layoutX="31.0" layoutY="38.0" prefHeight="40.0" prefWidth="1036.0">
                <children>
                   <Label text="Advice Id:">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="idInput" prefHeight="40.0" prefWidth="145.0">
+                  <TextField fx:id="idInput" disable="true" editable="false" prefHeight="40.0" prefWidth="145.0">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -67,63 +70,85 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
+            <Label layoutX="74.0" layoutY="129.0" prefHeight="17.0" prefWidth="100.0" text="Destined users" />
+            <Label fx:id="labelAlert" layoutX="458.0" layoutY="121.0" prefHeight="17.0" prefWidth="183.0" textFill="#eb0404" />
          </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
       </AnchorPane>
-<<<<<<< HEAD
       <AnchorPane layoutX="20.0" layoutY="178.0" prefHeight="249.0" prefWidth="1075.0">
-      <AnchorPane fx:id="advicesTablePane" layoutX="20.0" layoutY="178.0" prefHeight="220.0" prefWidth="940.0">
-=======
-      <AnchorPane fx:id="advicesTablePane" layoutX="20.0" layoutY="178.0" prefHeight="249.0" prefWidth="1075.0">
->>>>>>> parent of 03a7828... just some comments
          <children>
-            <TableView fx:id="advicesTable" layoutX="30.0" layoutY="14.0" prefHeight="193.0" prefWidth="880.0">
-              <columns>
-                <TableColumn fx:id="adviceId" prefWidth="202.0" text="Advice Id" />
-                <TableColumn fx:id="commisionRate" prefWidth="204.0" text="Commision Rate" />
-                  <TableColumn fx:id="prefPer" prefWidth="208.0" text="Preference Percentage" />
-                  <TableColumn fx:id="creationDateC" prefWidth="265.0" text="Creation Date" />
-              </columns>
-            </TableView>
+            <VBox>
+               <children>
+                  <SplitPane dividerPositions="0.20689655172413793" prefHeight="227.0" prefWidth="1075.0">
+                     <items>
+                        <TableView fx:id="createdAdviceTable" onMouseClicked="#usersInAdviceClicked" prefHeight="225.0" prefWidth="219.0">
+                          <columns>
+                            <TableColumn fx:id="addressColumn" prefWidth="64.0" text="Address" />
+                            <TableColumn fx:id="signatureColumn" prefWidth="72.0" text="Signature" />
+                              <TableColumn fx:id="commitmentColumn" prefWidth="83.0" text="Commitment" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="usersTable" onMouseClicked="#userTbClicked" prefHeight="225.0" prefWidth="863.0">
+                          <columns>
+                            <TableColumn fx:id="userNameC" prefWidth="156.0" text="User Name" />
+                            <TableColumn fx:id="emailC" prefWidth="279.0" text="Email" />
+                              <TableColumn fx:id="publicAddressC" prefWidth="267.0" text="Public Address" />
+                              <TableColumn fx:id="publicSignatureC" prefWidth="141.0" text="Public Signature" />
+                          </columns>
+                        </TableView>
+                     </items>
+                  </SplitPane>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1005.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="114.0" text=" Commitment Level:" />
+                        <ComboBox fx:id="comboLvl" prefHeight="25.0" prefWidth="122.0" />
+                        <ButtonBar prefHeight="25.0" prefWidth="307.0">
+                           <buttons>
+                              <Button fx:id="addUserButton" disable="true" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="177.0" text="Add User" />
+                              <Button fx:id="removeUserButton" disable="true" mnemonicParsing="false" onAction="#removeUser" prefHeight="25.0" prefWidth="148.0" text="Remove User" />
+                           </buttons>
+                        </ButtonBar>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
-<<<<<<< HEAD
       <AnchorPane layoutX="18.0" layoutY="469.0" prefHeight="225.0" prefWidth="1077.0">
-      <AnchorPane  layoutX="20.0" layoutY="421.0" prefHeight="310.0" prefWidth="940.0">
-=======
-      <AnchorPane fx:id="usersTablePane" layoutX="18.0" layoutY="469.0" prefHeight="225.0" prefWidth="1077.0">
->>>>>>> parent of 03a7828... just some comments
          <children>
-            <SplitPane dividerPositions="0.21122994652406418" layoutY="-1.0" prefHeight="253.0" prefWidth="1143.0">
-               <items>
-                  <TableView  prefHeight="249.0" prefWidth="216.0">
+            <VBox prefHeight="236.0" prefWidth="1077.0">
+               <children>
+                  <TableView fx:id="advicesTable" prefHeight="281.0" prefWidth="1077.0">
                     <columns>
-                      <TableColumn fx:id="adIdColumn" prefWidth="117.0" text="adviceID" />
-                      <TableColumn fx:id="commitmentIdColumn" prefWidth="121.0" text="Commitment" />
+                      <TableColumn fx:id="adviceId" prefWidth="202.0" text="Advice Id" />
+                      <TableColumn fx:id="commisionRate" prefWidth="204.0" text="Commision Rate" />
+                        <TableColumn fx:id="prefPer" prefWidth="293.0" text="Preference Percentage" />
+                        <TableColumn fx:id="creationDateC" prefWidth="367.0" text="Creation Date" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="usersTable" onMouseClicked="#userTbClicked" prefHeight="249.0" prefWidth="732.0">
-                    <columns>
-                      <TableColumn fx:id="userNameC" prefWidth="156.0" text="User Name" />
-                      <TableColumn fx:id="emailC" prefWidth="279.0" text="Email" />
-                        <TableColumn fx:id="publicAddressC" prefWidth="267.0" text="Public Address" />
-                        <TableColumn fx:id="publicSignatureC" prefWidth="193.0" text="Public Signature" />
-                    </columns>
-                  </TableView>
-               </items>
-            </SplitPane>
-            <ButtonBar layoutX="358.0" layoutY="256.0" prefHeight="40.0" prefWidth="225.0">
-               <buttons>
-                  <Button fx:id="addUserButton" mnemonicParsing="false" text="Add User" />
-                  <Button fx:id="removeUserButton" mnemonicParsing="false" prefWidth="112.0" text="Remove User" />
-               </buttons>
-            </ButtonBar>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="1077.0">
+                     <children>
+                        <ButtonBar prefHeight="45.0" prefWidth="132.0">
+                          <buttons>
+                            <Button fx:id="backButton" minWidth="73.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="89.0" text="Back" />
+                          </buttons>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ButtonBar>
+                     </children>
+                     <VBox.margin>
+                        <Insets right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
-      <ButtonBar layoutX="766.0" layoutY="731.0" prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-          <Button fx:id="backButton" mnemonicParsing="false" text="Back" />
-            <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
-        </buttons>
-      </ButtonBar>
    </children>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
 </AnchorPane>

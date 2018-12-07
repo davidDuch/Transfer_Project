@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import Model.Advice;
-import Utils.Commitment;
 import Model.Confirm;
 import Model.Pay;
 import Model.User;
 import Model.Wallet;
+import Utils.Commitment;
 import Utils.Consts;
 import Utils.Status;
 
@@ -95,6 +95,13 @@ public class UserLogic {
 	}
 	
 	/**
+	 * 
+	 * 
+	 * IN PROCESSSSSSS
+	 * 
+	 * 
+	 * 
+	 * 
 	 * Get all advises that are sent to  user 
 	 * @param user
 	 * @return
@@ -131,6 +138,17 @@ public class UserLogic {
 	
 	
 	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * IN PROCESSSSSSS
+	 * 
+	 * 
+	 * 
+	 * 
 	 * Get users wallets
 	 * @param user
 	 * @return users wallets
