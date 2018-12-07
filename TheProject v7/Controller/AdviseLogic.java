@@ -12,49 +12,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import Model.Advice;
+import Utils.Commitment;
 import Model.CommitmentPerUser;
 import Model.User;
-import Utils.Commitment;
 import Utils.Consts;
 
 public class AdviseLogic {
-	
-	/**
-	 * Adds a commitment to the select user and advice
-	 * @param user
-	 * @param ad
-	 * @param commitment
-	 * @return
-	 */
-	public static boolean addCommitment(User user, Advice ad,Commitment commitment) {
-		
-		String address =user.getPublicAddress() , signature = user.getDigitalSignature();
-		int adId = ad.getAdviceId();
-		
-		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_NEWCOMMITMENT)) {
-				int i = 1;
-				stmt.setInt(i++, adId);
-				stmt.setString(i++,address );
-				stmt.setString(i++, signature);
-				stmt.setString(i++, commitment.toString());
-
-				stmt.executeUpdate();
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return false;
-				
-		
-		
-		
-	}
 
 	/**
 	 * get all the advises from the DB
@@ -91,13 +54,13 @@ public class AdviseLogic {
 	 * @param prefPercent
 	 * @return
 	 */
-	public static boolean addAdvice(int adviceId, Calendar date, double adviceComission, double prefPercent) {
+	public static boolean addAdvice(String adviceId, Calendar date, double adviceComission, double prefPercent) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_NEWADVICE)) {
 				int i = 1;
-				stmt.setInt(i++, adviceId);
+				stmt.setString(i++, adviceId);
 				stmt.setDate(i++, new java.sql.Date(date.getTime().getTime()));
 				stmt.setDouble(i++, adviceComission);
 				stmt.setDouble(i++, prefPercent);

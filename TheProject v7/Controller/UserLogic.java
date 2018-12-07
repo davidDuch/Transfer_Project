@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import Model.Advice;
+import Utils.Commitment;
 import Model.Confirm;
 import Model.Pay;
 import Model.User;
 import Model.Wallet;
-import Utils.Commitment;
 import Utils.Consts;
 import Utils.Status;
 
