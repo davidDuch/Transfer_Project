@@ -4,8 +4,9 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="View\DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
-		<![CDATA[SELECT unionTransactions.status, Min(unionTransactions.commission) AS [Minimum Commision], Max(unionTransactions.commission) AS [Maximum Commision], Count(unionTransactions.status) AS [Transactions for Status], Count(unionTransactions.status)*100/(SELECT Count(*) FROM unionTransactions) AS [Precantage for Status]
+		<![CDATA[SELECT unionTransactions.status, Min(unionTransactions.commission) AS [Minimum Commision], Max(unionTransactions.commission) AS [Maximum Commision], Count(unionTransactions.status) AS [Transactions for Status], Count(unionTransactions.status )*100/(SELECT Count(*) FROM unionTransactions WHERE (((unionTransactions.creationDate)=convert(date, getdate())))) AS [Precantage for Status]
 FROM unionTransactions
+WHERE (((unionTransactions.creationDate)=convert(date, getdate())))
 GROUP BY unionTransactions.status;
 ]]>
 	</queryString>
