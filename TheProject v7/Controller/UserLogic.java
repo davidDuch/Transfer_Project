@@ -95,13 +95,6 @@ public class UserLogic {
 	}
 	
 	/**
-	 * 
-	 * 
-	 * IN PROCESSSSSSS
-	 * 
-	 * 
-	 * 
-	 * 
 	 * Get all advises that are sent to  user 
 	 * @param user
 	 * @return
@@ -138,17 +131,6 @@ public class UserLogic {
 	
 	
 	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * IN PROCESSSSSSS
-	 * 
-	 * 
-	 * 
-	 * 
 	 * Get users wallets
 	 * @param user
 	 * @return users wallets
