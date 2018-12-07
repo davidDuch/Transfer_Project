@@ -1,4 +1,9 @@
 package View;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
+
+import Utils.Consts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,6 +47,15 @@ public class GenerateReportController {
 
     @FXML
     void GenerateTransReport(ActionEvent event) {
+    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+    	try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+    	JasperPrint print = JasperFillManager.fillReport(getClass().getResourceAsStream("../boundary/RptCustomerOrders.jasper"),conn);
+    	Stage stage = (Stage) framePane.getScene().getWindow();
+    	frame.getContentPane().add(new JRViewer(print));
+    	frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    	frame.pack();
+    	return frame;
+    	} catch . . .
 
     }
 
