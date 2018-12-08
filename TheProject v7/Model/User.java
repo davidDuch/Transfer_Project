@@ -1,4 +1,5 @@
 package Model;
+
 public class User {
 
 	private String userName;
@@ -8,17 +9,15 @@ public class User {
 	private String PublicAddress;
 	private String DigitalSignature;
 
-
-
-
-	public User(String PublicAddress , String DigitalSignature) {
+	public User(String PublicAddress, String DigitalSignature) {
 		super();
-		
+
 		this.PublicAddress = PublicAddress;
 		this.DigitalSignature = DigitalSignature;
 	}
 
-	public User( String publicAddress,String digitalSignature,String userName, String password, String phoneNumber, String email) {
+	public User(String publicAddress, String digitalSignature, String userName, String password, String phoneNumber,
+			String email) {
 		super();
 		this.userName = userName;
 		this.phoneNumber = phoneNumber;
@@ -27,9 +26,6 @@ public class User {
 		PublicAddress = publicAddress;
 		DigitalSignature = digitalSignature;
 	}
-
-
-
 
 	public String getUserName() {
 		return userName;
@@ -106,7 +102,7 @@ public class User {
 		String identifier1 = other.PublicAddress + other.DigitalSignature;
 		String identifier2 = PublicAddress + DigitalSignature;
 
-		if(!identifier2.equals(identifier1))
+		if (!identifier2.equals(identifier1))
 			return false;
 
 		return true;
@@ -117,8 +113,5 @@ public class User {
 		return "User [userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password="
 				+ password + ", PublicAddress=" + PublicAddress + ", DigitalSignature=" + DigitalSignature + "]";
 	}
-
-
-
 
 }

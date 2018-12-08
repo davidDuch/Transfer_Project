@@ -3,11 +3,6 @@ package View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import Controller.AdviseLogic;
@@ -15,10 +10,7 @@ import Controller.UserLogic;
 import Model.Advice;
 import Model.User;
 import Utils.Commitment;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,10 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class CreateAdviceScreenController implements Initializable {
-
-	
-	
-
 
 	@FXML
 	private Label header;
@@ -73,7 +61,6 @@ public class CreateAdviceScreenController implements Initializable {
 
 	@FXML
 	private TableColumn<Advice, Calendar> creationDateC;
-
 
 	@FXML
 	private TableView<User> usersTable;
@@ -115,19 +102,16 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableColumn<DataForAdTable, String> signatureColumn;
 
 	@FXML
-	private TableColumn<DataForAdTable, String> commitmentColumn;
+	private TableColumn<DataForAdTable, Calendar> commitmentColumn;
 
 	@FXML
 	private ComboBox<Commitment> comboLvl;
-	
-
 
 	private ArrayList<User> users = new ArrayList<>();
 
 	private ArrayList<User> userAdded = new ArrayList<>();
 
-	
-	//class used to fill the table that adds the users to the advice
+	// class used to fill the table that adds the users to the advice
 	public class DataForAdTable {
 
 		private Commitment lvl;
@@ -200,7 +184,7 @@ public class CreateAdviceScreenController implements Initializable {
 	private void setAdviceTable() {
 		ArrayList<Advice> temp = AdviseLogic.getAllAdvises();
 		advicesTable.setItems(FXCollections.observableArrayList(temp));
-		idInput.setText(Integer.toString(temp.size()+1));
+		idInput.setText(Integer.toString(temp.size() + 1));
 
 	}
 
@@ -242,58 +226,54 @@ public class CreateAdviceScreenController implements Initializable {
 	private void createAdvice(ActionEvent event) {
 		String strCommision = commisionInput.getText();
 		String strPref = prefInput.getText();
-		
-	if(!userAdded.isEmpty()) {	
-		try {
-			int com = Integer.parseInt(strCommision);
-			try {
-				int pref = Integer.parseInt(strPref);
-				if(com >= 0 ) {
-					if(pref >= 0) {
-						Calendar cal = Calendar.getInstance();
-						int id = Integer.parseInt(idInput.getText());
-						AdviseLogic.addAdvice(id, cal, com, pref);
-						commisionInput.clear();
-						prefInput.clear();
-						labelAlert.setText("");
-						
-						
-						
-						addingUsersAndCommitementsToDB();
-						createdAdviceTable.getItems().clear();
-						usersTable.getItems().addAll(userAdded);
-						userAdded.clear();
-						idInput.setText(Integer.toString(++id));
-						setAdviceTable();
-						
-					}else
-						labelAlert.setText("invalid preference percentage");
-					
-				}else
-					labelAlert.setText("invalid commission");
 
+		if (!userAdded.isEmpty()) {
+			try {
+				int com = Integer.parseInt(strCommision);
+				try {
+					int pref = Integer.parseInt(strPref);
+					if (com >= 0) {
+						if (pref >= 0) {
+							Calendar cal = Calendar.getInstance();
+							int id = Integer.parseInt(idInput.getText());
+							AdviseLogic.addAdvice(id, cal, com, pref);
+							commisionInput.clear();
+							prefInput.clear();
+							labelAlert.setText("");
+
+							addingUsersAndCommitementsToDB();
+							createdAdviceTable.getItems().clear();
+							usersTable.getItems().addAll(userAdded);
+							userAdded.clear();
+							idInput.setText(Integer.toString(++id));
+							setAdviceTable();
+
+						} else
+							labelAlert.setText("invalid preference percentage");
+
+					} else
+						labelAlert.setText("invalid commission");
+
+				} catch (Exception e) {
+					labelAlert.setText("invalid preference percentage");
+
+				}
 			} catch (Exception e) {
-				labelAlert.setText("invalid preference percentage");
+				labelAlert.setText("invalid commission");
 
 			}
-		} catch (Exception e) {
-			labelAlert.setText("invalid commission");
-			
-
-		}
-	}else
-		labelAlert.setText("please add users to the advice");
+		} else
+			labelAlert.setText("please add users to the advice");
 
 	}
 
 	private void addingUsersAndCommitementsToDB() {
-		
+
 		Advice ad = new Advice(Integer.parseInt(idInput.getText()));
-	
-		for(int i =0 ; i < userAdded.size(); i++) 
-			AdviseLogic.addCommitment(userAdded.get(i),ad, createdAdviceTable.getItems().get(i).lvl);
-		
-		
+
+		for (int i = 0; i < userAdded.size(); i++)
+			AdviseLogic.addCommitment(userAdded.get(i), ad, createdAdviceTable.getItems().get(i).lvl);
+
 	}
 
 	@FXML

@@ -1,7 +1,6 @@
 package Utils;
+
 public enum Status {
-	executed, waiting,closed,irelevant;
-
-
+	executed, waiting, closed, irelevant;
 
 }

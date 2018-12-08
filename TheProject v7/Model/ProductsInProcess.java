@@ -1,36 +1,31 @@
 package Model;
+
 public class ProductsInProcess {
 
 	private Double profitFromItems;
 	private int boughtAmount;
 
-	
 	public ProductsInProcess(Double profitFromItems, int boughtAmount) {
 		super();
 		this.profitFromItems = profitFromItems;
 		this.boughtAmount = boughtAmount;
 	}
 
-
 	public Double getProfitFromItems() {
 		return profitFromItems;
 	}
-
 
 	public void setProfitFromItems(Double profitFromItems) {
 		this.profitFromItems = profitFromItems;
 	}
 
-
 	public int getBoughtAmount() {
 		return boughtAmount;
 	}
 
-
 	public void setBoughtAmount(int boughtAmount) {
 		this.boughtAmount = boughtAmount;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -40,7 +35,6 @@ public class ProductsInProcess {
 		result = prime * result + ((profitFromItems == null) ? 0 : profitFromItems.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -61,7 +55,4 @@ public class ProductsInProcess {
 		return true;
 	}
 
-	
-	
-	
 }

@@ -1,5 +1,5 @@
 package Utils;
 
 public enum Congestion {
-	high , low;
+	high, low;
 }

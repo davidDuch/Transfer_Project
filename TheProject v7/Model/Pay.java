@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import Utils.Status;
@@ -16,12 +15,13 @@ public class Pay extends Transaction {
 
 	}
 
-	public Pay(String id, String description, double size, Date dateCreated, Date dateApproved,
-			 Status status,double btcAmount,double commission, String sellerAddress,
-			 String sellerSignature,String creatorAddress,String creatorSignature,String wallet) {
-		
-		super(id,description,size, dateCreated, dateApproved, commission, status,creatorAddress,creatorSignature,wallet);
-		
+	public Pay(String id, String description, double size, Date dateCreated, Date dateApproved, Status status,
+			double btcAmount, double commission, String sellerAddress, String sellerSignature, String creatorAddress,
+			String creatorSignature, String wallet) {
+
+		super(id, description, size, dateCreated, dateApproved, commission, status, creatorAddress, creatorSignature,
+				wallet);
+
 		this.sellerSignature = sellerSignature;
 		this.sellerAddress = sellerAddress;
 		this.BtcAmount = btcAmount;

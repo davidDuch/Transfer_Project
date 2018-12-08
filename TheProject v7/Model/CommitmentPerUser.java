@@ -6,22 +6,18 @@ public class CommitmentPerUser {
 
 	private Commitment commitmentLvl;
 
-
 	public CommitmentPerUser(Commitment commitmentLvl) {
 		super();
 		this.commitmentLvl = commitmentLvl;
 	}
 
-
 	public Commitment getCommitmentLvl() {
 		return commitmentLvl;
 	}
 
-
 	public void setCommitmentLvl(Commitment commitmentLvl) {
 		this.commitmentLvl = commitmentLvl;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -30,7 +26,6 @@ public class CommitmentPerUser {
 		result = prime * result + ((commitmentLvl == null) ? 0 : commitmentLvl.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -46,13 +41,9 @@ public class CommitmentPerUser {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "CommitmentPerUser [commitmentLvl=" + commitmentLvl + "]";
 	}
-	
-	
-	
 
 }

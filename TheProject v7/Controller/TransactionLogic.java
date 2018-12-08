@@ -8,17 +8,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.jar.JarException;
+
+import javax.swing.JFrame;
 
 import Model.Confirm;
 import Model.Pay;
 import Utils.Consts;
 import Utils.Status;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class TransactionLogic {
 
-	
-	
-	
+	private static TransactionLogic instance;
+
+	public static TransactionLogic getInstance() {
+		if (instance == null)
+			instance = new TransactionLogic();
+		return instance;
+	}
+
 	/**
 	 * 
 	 * Adds a new Confirm Transaction
@@ -39,16 +51,16 @@ public class TransactionLogic {
 	 * @param wallet
 	 * @return
 	 */
-	public static boolean addConfirm(String id, String description, double size, Date dateCreated, Date dateApproved, Status status,
-			double commission, Date dateOfSupply, Boolean approved, String buyerAddress, String buyerSignature,
-			String creatorAddress, String creatorSignature, String wallet) {
-		
+	public static boolean addConfirm(String id, String description, double size, Date dateCreated, Date dateApproved,
+			Status status, double commission, Date dateOfSupply, Boolean approved, String buyerAddress,
+			String buyerSignature, String creatorAddress, String creatorSignature, String wallet) {
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_NEWCONFIRM)) {
 				int i = 1;
-				
+
 				stmt.setString(i++, id);
 				stmt.setString(i++, description);
 				stmt.setDouble(i++, size);
@@ -63,7 +75,7 @@ public class TransactionLogic {
 				stmt.setString(i++, creatorAddress);
 				stmt.setString(i++, creatorSignature);
 				stmt.setString(i++, wallet);
-			
+
 				stmt.executeUpdate();
 				return true;
 			} catch (SQLException e) {
@@ -73,17 +85,25 @@ public class TransactionLogic {
 			e.printStackTrace();
 		}
 		return false;
-		
-		
-		
-		
-		
-		
+
 	}
-	
-	
+
+	public JFrame createReport() throws SQLException, JarException, ClassNotFoundException, JRException {
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+			JasperPrint print = JasperFillManager
+					.fillReport(getClass().getResourceAsStream("/Model/TransactionsReport.jasper"), null, conn);
+			JFrame frame = new JFrame("Customer Orders Report");
+			frame.getContentPane().add(new JRViewer(print));
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.pack();
+			return frame;
+		}
+	}
+
 	/**
 	 * add Pay Transaction to DB
+	 * 
 	 * @param id
 	 * @param description
 	 * @param size
@@ -100,15 +120,14 @@ public class TransactionLogic {
 	 * @return
 	 */
 	public static boolean addPay(String id, String description, double size, Date dateCreated, Date dateApproved,
-			 Status status,double btcAmount,double commission, String sellerAddress,
-			 String sellerSignature,String creatorAddress,String creatorSignature,String wallet)
-	{
+			Status status, double btcAmount, double commission, String sellerAddress, String sellerSignature,
+			String creatorAddress, String creatorSignature, String wallet) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_NEWPAY)) {
 				int i = 1;
-				
+
 				stmt.setString(i++, id);
 				stmt.setString(i++, description);
 				stmt.setDouble(i++, size);
@@ -122,7 +141,7 @@ public class TransactionLogic {
 				stmt.setString(i++, creatorAddress);
 				stmt.setString(i++, creatorSignature);
 				stmt.setString(i++, wallet);
-			
+
 				stmt.executeUpdate();
 				return true;
 			} catch (SQLException e) {
@@ -133,8 +152,10 @@ public class TransactionLogic {
 		}
 		return false;
 	}
+
 	/**
 	 * A method to get all Confirm transactions from the DB
+	 * 
 	 * @return ArrayList of ConfirmTransactions
 	 */
 	public static ArrayList<Confirm> getConfirmTransactions() {
@@ -147,9 +168,10 @@ public class TransactionLogic {
 
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Confirm(rs.getString(i++), rs.getString(i++), rs.getDouble(i++), rs.getDate(i++), rs.getDate(i++),
-							Status.valueOf(rs.getString(i++)),rs.getDouble(i++), rs.getDate(i++), rs.getBoolean(i++), rs.getString(i++),
-							rs.getString(i++), rs.getString(i++),rs.getString(i++), rs.getString(i++)));
+					results.add(new Confirm(rs.getString(i++), rs.getString(i++), rs.getDouble(i++), rs.getDate(i++),
+							rs.getDate(i++), Status.valueOf(rs.getString(i++)), rs.getDouble(i++), rs.getDate(i++),
+							rs.getBoolean(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
+							rs.getString(i++), rs.getString(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -159,8 +181,10 @@ public class TransactionLogic {
 		}
 		return results;
 	}
+
 	/**
-	 * A method to get all  Pay transactions from the DB
+	 * A method to get all Pay transactions from the DB
+	 * 
 	 * @return ArrayList of PayTransactions
 	 */
 	public static ArrayList<Pay> getPayTransactions() {

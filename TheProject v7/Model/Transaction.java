@@ -1,4 +1,5 @@
 package Model;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,17 +18,15 @@ public abstract class Transaction implements Comparable<Transaction> {
 	private String creatorAddress;
 	private String creatorSignature;
 	private String wallet;
-	
-	
-	
+
 	public Transaction(String id) {
 		super();
 		this.id = id;
 	}
+
 	public Transaction(String id, String description, double size, Date dateCreated, Date dateApproved,
-			double commission, Status status,String creatorAddress,String creatorSignature,String Wallet) {
-	
-		
+			double commission, Status status, String creatorAddress, String creatorSignature, String Wallet) {
+
 		super();
 		this.id = id;
 		this.description = description;
@@ -38,81 +37,94 @@ public abstract class Transaction implements Comparable<Transaction> {
 		this.creatorSignature = creatorSignature;
 		this.dateCreated = Sys.toCalendar(dateCreated);
 		this.dateApproved = (dateApproved != null ? Sys.toCalendar(dateApproved) : null);
-		
+
 	}
-	
+
 	public String getCreatorAddress() {
 		return creatorAddress;
 	}
+
 	public void setCreatorAddress(String creatorAddress) {
 		this.creatorAddress = creatorAddress;
 	}
+
 	public String getCreatorSignature() {
 		return creatorSignature;
 	}
+
 	public void setCreatorSignature(String creatorSignature) {
 		this.creatorSignature = creatorSignature;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public double getSize() {
 		return size;
 	}
+
 	public void setSize(double size) {
 		this.size = size;
 	}
+
 	public Calendar getDateCreated() {
 		return dateCreated;
 	}
+
 	public void setDateCreated(Calendar dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+
 	public Calendar getDateApproved() {
 		return dateApproved;
 	}
+
 	public void setDateApproved(Calendar dateApproved) {
 		this.dateApproved = dateApproved;
 	}
+
 	public double getCommission() {
 		return commission;
 	}
+
 	public void setCommission(double commission) {
 		this.commission = commission;
 	}
+
 	public Status getStatus() {
 		return status;
 	}
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
+
 	@Override
 	public int compareTo(Transaction o) {
-		
-		if(dateCreated.before(o.dateCreated))
-			return -1; 
-		else if(!dateCreated.before(o.dateCreated))
+
+		if (dateCreated.before(o.dateCreated))
+			return -1;
+		else if (!dateCreated.before(o.dateCreated))
 			return 1;
-		
-		else if(!this.equals(o))
+
+		else if (!this.equals(o))
 			return 1;
 		return 0;
 	}
-	
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -121,7 +133,6 @@ public abstract class Transaction implements Comparable<Transaction> {
 		return result;
 	}
 
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -138,10 +149,5 @@ public abstract class Transaction implements Comparable<Transaction> {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 
 }

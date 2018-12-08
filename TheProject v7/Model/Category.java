@@ -1,9 +1,10 @@
 package Model;
+
 public class Category {
 
 	private String Id;
 	private String Name;
-	
+
 	public Category(String id, String name) {
 		super();
 		Id = id;
@@ -55,9 +56,5 @@ public class Category {
 	public String toString() {
 		return "Category [Id=" + Id + ", Name=" + Name + "]";
 	}
-	
-	
-	
-	
 
 }

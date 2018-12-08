@@ -1,9 +1,7 @@
 package Controller;
 
-import java.sql.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,26 +16,27 @@ import Utils.Commitment;
 import Utils.Consts;
 
 public class AdviseLogic {
-	
+
 	/**
 	 * Adds a commitment to the select user and advice
+	 * 
 	 * @param user
 	 * @param ad
 	 * @param commitment
 	 * @return
 	 */
-	public static boolean addCommitment(User user, Advice ad,Commitment commitment) {
-		
-		String address =user.getPublicAddress() , signature = user.getDigitalSignature();
+	public static boolean addCommitment(User user, Advice ad, Commitment commitment) {
+
+		String address = user.getPublicAddress(), signature = user.getDigitalSignature();
 		int adId = ad.getAdviceId();
-		
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_NEWCOMMITMENT)) {
 				int i = 1;
 				stmt.setInt(i++, adId);
-				stmt.setString(i++,address );
+				stmt.setString(i++, address);
 				stmt.setString(i++, signature);
 				stmt.setString(i++, commitment.toString());
 
@@ -50,10 +49,7 @@ public class AdviseLogic {
 			e.printStackTrace();
 		}
 		return false;
-				
-		
-		
-		
+
 	}
 
 	/**
@@ -83,7 +79,7 @@ public class AdviseLogic {
 	}
 
 	/**
-	 * add a new advice to the DB 
+	 * add a new advice to the DB
 	 * 
 	 * @param adviceId
 	 * @param date
@@ -113,20 +109,19 @@ public class AdviseLogic {
 		return false;
 	}
 
-	
 	/**
-	 * Get commitment per advice per  User
+	 * Get commitment per advice per User
+	 * 
 	 * @param user
 	 * @return
 	 */
-	public static ArrayList<CommitmentPerUser> getAdviceCommitement(User user,Advice advice) {
+	public static ArrayList<CommitmentPerUser> getAdviceCommitement(User user, Advice advice) {
 		ArrayList<CommitmentPerUser> results = new ArrayList<>();
-	
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-				PreparedStatement stmt = conn
-						.prepareStatement(Consts.SQL_GET_USERSADVICECOMMIT);
+				PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_USERSADVICECOMMIT);
 
 				stmt.setInt(1, advice.getAdviceId());
 				stmt.setString(2, user.getPublicAddress());
@@ -144,15 +139,7 @@ public class AdviseLogic {
 			e.printStackTrace();
 		}
 		return results;
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

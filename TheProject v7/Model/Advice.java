@@ -1,17 +1,13 @@
 package Model;
-import java.util.Calendar;
-import java.util.Date;
 
-import Controller.Sys;
+import java.util.Calendar;
 
 public class Advice {
-
 
 	private int adviceId;
 	private Calendar date;
 	private Double adviceComission;
 	private Double prefPercent;
-
 
 	public Advice(int adviceId) {
 		super();
@@ -30,24 +26,31 @@ public class Advice {
 	public int getAdviceId() {
 		return adviceId;
 	}
-	public void setAdviceId(int  adviceId) {
+
+	public void setAdviceId(int adviceId) {
 		this.adviceId = adviceId;
 	}
+
 	public Calendar getDate() {
 		return date;
 	}
+
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
+
 	public Double getAdviceComission() {
 		return adviceComission;
 	}
+
 	public void setAdviceComission(Double adviceComission) {
 		this.adviceComission = adviceComission;
 	}
+
 	public double getPrefPercent() {
 		return prefPercent;
 	}
+
 	public void setPrefPercent(double prefPercent) {
 		this.prefPercent = prefPercent;
 	}
@@ -74,8 +77,4 @@ public class Advice {
 		return true;
 	}
 
-
-	
-	
 }
-

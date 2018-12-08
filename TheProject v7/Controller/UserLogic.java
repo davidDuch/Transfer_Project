@@ -7,52 +7,45 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import Model.Advice;
-import Model.Confirm;
 import Model.Pay;
 import Model.User;
 import Model.Wallet;
-import Utils.Commitment;
 import Utils.Consts;
 import Utils.Status;
 
 public class UserLogic {
 
 	/**
-	 * 
-	 * IN PROCESSSSSSS
-	 * 
-	 * 
-	 * 
 	 * get Transactions by status
+	 * 
 	 * @param user
 	 * @param status
 	 * @return
 	 */
-	public static ArrayList<Pay> getPayByStatus(User user , Status status) {
-			ArrayList<Pay> results = new ArrayList<>();
-		
+	public static ArrayList<Pay> getPayByStatus(User user, Status status) {
+		ArrayList<Pay> results = new ArrayList<>();
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERPAYBYSTATUES)) {
-				
+
 				stmt.setString(1, status.toString());
 				stmt.setString(2, user.getPublicAddress());
 				stmt.setString(3, user.getDigitalSignature());
 				ResultSet rs = stmt.executeQuery();
-				
+
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Pay(rs.getString(i++), rs.getString(i++), rs.getDouble(i++), rs.getDate(i++), rs.getDate(i++),
-							status, rs.getDouble(i++), rs.getDouble(i++), rs.getString(i++), rs.getString(i++),
-							rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+					results.add(new Pay(rs.getString(i++), rs.getString(i++), rs.getDouble(i++), rs.getDate(i++),
+							rs.getDate(i++), status, rs.getDouble(i++), rs.getDouble(i++), rs.getString(i++),
+							rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 				}
-				
+
 				return results;
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -61,8 +54,7 @@ public class UserLogic {
 		}
 		return null;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 
@@ -70,21 +62,22 @@ public class UserLogic {
 	 * 
 	 * 
 	 * 
-	 * deletes user from the DB 
+	 * deletes user from the DB
+	 * 
 	 * @param user
 	 * @return
 	 */
-	public static boolean deleteUser(User user)  {
+	public static boolean deleteUser(User user) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)){
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_DELETEUSER); 
-				
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_DELETEUSER);
+
 				stmt.setString(1, "Y0005I");
 				stmt.setString(2, "P1C");
 				stmt.executeUpdate();
 				return true;
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -93,7 +86,7 @@ public class UserLogic {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -102,18 +95,18 @@ public class UserLogic {
 	 * 
 	 * 
 	 * 
-	 * Get all advises that are sent to  user 
+	 * Get all advises that are sent to user
+	 * 
 	 * @param user
 	 * @return
 	 */
 	public static ArrayList<Advice> getUsersAdvice(User user) {
 		ArrayList<Advice> results = new ArrayList<>();
-	
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-				PreparedStatement stmt = conn
-						.prepareStatement(Consts.SQL_GET_USERSADVICE);
+				PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_USERSADVICE);
 
 				stmt.setString(1, user.getPublicAddress());
 				stmt.setString(2, user.getDigitalSignature());
@@ -121,7 +114,8 @@ public class UserLogic {
 
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++), rs.getDouble(i++)));
+					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+							rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -130,13 +124,9 @@ public class UserLogic {
 			e.printStackTrace();
 		}
 		return results;
-		
+
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * 
 	 * 
@@ -150,10 +140,11 @@ public class UserLogic {
 	 * 
 	 * 
 	 * Get users wallets
+	 * 
 	 * @param user
 	 * @return users wallets
 	 */
- 	public static ArrayList<Wallet> getUserWallets(User user) {
+	public static ArrayList<Wallet> getUserWallets(User user) {
 
 		ArrayList<Wallet> results = new ArrayList<>();
 		try {
@@ -181,10 +172,9 @@ public class UserLogic {
 
 	}
 
-	
-	
 	/**
-	 * A method that gets all users from DB 
+	 * A method that gets all users from DB
+	 * 
 	 * @return
 	 */
 	public static ArrayList<User> getUsers() {

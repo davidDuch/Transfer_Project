@@ -1,4 +1,5 @@
 package Controller;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,8 +35,6 @@ public class Sys {
 		this.expendDiscountSize = expendDiscountSize;
 		this.maxPossibleExpansionSize = maxPossibleExpansionSize;
 	}
-	
-	
 
 	public Calendar getCurrentTime() {
 		return currentTime;
@@ -102,12 +101,12 @@ public class Sys {
 		// TODO - implement System.sendEmail
 		throw new UnsupportedOperationException();
 	}
-	
-	public static Calendar toCalendar(Date date){ 
-		  Calendar cal = Calendar.getInstance();
-		  cal.setTime(date);
-		  return cal;
-		}
+
+	public static Calendar toCalendar(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal;
+	}
 
 	@Override
 	public int hashCode() {
@@ -159,7 +158,5 @@ public class Sys {
 			return false;
 		return true;
 	}
-	
-	
 
 }

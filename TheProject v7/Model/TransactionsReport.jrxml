@@ -6,8 +6,7 @@
 	<queryString>
 		<![CDATA[SELECT unionTransactions.status, Min(unionTransactions.commission) AS [Minimum Commision], Max(unionTransactions.commission) AS [Maximum Commision], Count(unionTransactions.status) AS [Transactions for Status], Count(unionTransactions.status)*100/(SELECT Count(*) FROM unionTransactions) AS [Precantage for Status]
 FROM unionTransactions
-GROUP BY unionTransactions.status;
-]]>
+GROUP BY unionTransactions.status;]]>
 	</queryString>
 	<field name="STATUS" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="STATUS"/>
@@ -142,13 +141,6 @@ GROUP BY unionTransactions.status;
 		</band>
 	</detail>
 	<summary>
-		<band height="106" splitType="Stretch">
-			<componentElement>
-				<reportElement key="" x="461" y="-22" width="111" height="86" uuid="a56e692e-b2ce-4d02-906b-3eb974c6a925"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA["If you tried this give us +10? "]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-		</band>
+		<band height="106" splitType="Stretch"/>
 	</summary>
 </jasperReport>

@@ -2,10 +2,13 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="UCanAccess-4.0.2-bin/lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="UCanAccess-4.0.2-bin/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="UCanAccess-4.0.2-bin/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="UCanAccess-4.0.2-bin/lib/jackcess-2.1.6.jar"/>
 	<classpathentry kind="lib" path="UCanAccess-4.0.2-bin/ucanaccess-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/david/Desktop/Transfer_Project/Transfer_Project/TheProject v7/UCanAccess-4.0.2-bin/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/david/Desktop/Transfer_Project/Transfer_Project/TheProject v7/UCanAccess-4.0.2-bin/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/david/Desktop/Transfer_Project/Transfer_Project/TheProject v7/UCanAccess-4.0.2-bin/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/david/Desktop/Transfer_Project/Transfer_Project/TheProject v7/UCanAccess-4.0.2-bin/jackcess-2.1.6.jar"/>
+	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
+	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
+	<classpathentry kind="con" path="com.jaspersoft.server.JRS_CONTAINER"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

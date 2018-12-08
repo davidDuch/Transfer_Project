@@ -4,7 +4,6 @@ import Utils.Status;
 
 public class Worker extends User {
 
-	
 	public Worker(String userName, String phoneNumber, String email, String password, String publicAddress,
 			String digitalSignature) {
 

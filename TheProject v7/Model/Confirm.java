@@ -16,8 +16,8 @@ public class Confirm extends Transaction {
 			double commission, Date dateOfSupply, Boolean approved, String buyerAddress, String buyerSignature,
 			String creatorAddress, String creatorSignature, String wallet) {
 
-		super(id, description, size, dateCreated, dateApproved, commission, status,
-				creatorAddress, creatorSignature,wallet);
+		super(id, description, size, dateCreated, dateApproved, commission, status, creatorAddress, creatorSignature,
+				wallet);
 		this.buyer = buyer;
 		this.approved = approved;
 		this.DateOfSupply = (dateOfSupply != null ? Sys.toCalendar(dateOfSupply) : null);
