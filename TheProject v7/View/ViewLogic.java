@@ -11,6 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewLogic {
+	
+	
+	
+	protected static GenerateReportController GenerateReportController ;
 
 	public static void initUI() {
 		newDashBoard();
@@ -23,7 +27,6 @@ public class ViewLogic {
 	protected static void newReportGenerator() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("GenerateReportScreen.fxml"), stage, false, "Report Window", false);
-
 	}
 
 	/**

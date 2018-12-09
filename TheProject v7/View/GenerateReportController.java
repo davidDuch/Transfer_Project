@@ -62,6 +62,8 @@ public class GenerateReportController {
 
 	@FXML
 	void createAdvice(ActionEvent event) {
+		
+		ViewLogic.GenerateReportController = this;
 		Stage stage = (Stage) logoutButton.getScene().getWindow();
 		stage.close();
 		ViewLogic.newCreateAdviseScreen();
@@ -70,6 +72,7 @@ public class GenerateReportController {
 
 	@FXML
 	void goBack(ActionEvent event) {
+		ViewLogic.GenerateReportController = null;
 		Stage stage = (Stage) logoutButton.getScene().getWindow();
 		stage.close();
 		ViewLogic.newDashBoard();

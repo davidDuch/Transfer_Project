@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class CreateAdviceScreenController implements Initializable {
 
@@ -278,6 +279,16 @@ public class CreateAdviceScreenController implements Initializable {
 
 	@FXML
 	private void goBack(ActionEvent event) {
+		Stage stage = (Stage) backButton.getScene().getWindow();
+		stage.close();
+		
+		if(ViewLogic.GenerateReportController!=null) {
+			ViewLogic.newReportGenerator();
+		}else {
+			ViewLogic.newDashBoard();
+			
+		}
+		
 
 	}
 
