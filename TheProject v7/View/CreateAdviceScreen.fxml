@@ -19,7 +19,6 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="1067.0">
                <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="68.0" text="Logout" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="984.0">
@@ -83,14 +82,14 @@
                <children>
                   <SplitPane dividerPositions="0.20689655172413793" prefHeight="227.0" prefWidth="1075.0">
                      <items>
-                        <TableView fx:id="createdAdviceTable" onMouseClicked="#usersInAdviceClicked" prefHeight="225.0" prefWidth="219.0">
+                        <TableView fx:id="createdAdviceTable" prefHeight="225.0" prefWidth="219.0">
                           <columns>
                             <TableColumn fx:id="addressColumn" prefWidth="64.0" text="Address" />
                             <TableColumn fx:id="signatureColumn" prefWidth="72.0" text="Signature" />
                               <TableColumn fx:id="commitmentColumn" prefWidth="83.0" text="Commitment" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="usersTable" onMouseClicked="#userTbClicked" prefHeight="225.0" prefWidth="863.0">
+                        <TableView fx:id="usersTable" prefHeight="225.0" prefWidth="863.0">
                           <columns>
                             <TableColumn fx:id="userNameC" prefWidth="156.0" text="User Name" />
                             <TableColumn fx:id="emailC" prefWidth="279.0" text="Email" />
@@ -103,11 +102,11 @@
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1005.0">
                      <children>
                         <Label prefHeight="23.0" prefWidth="114.0" text=" Commitment Level:" />
-                        <ComboBox fx:id="comboLvl" prefHeight="25.0" prefWidth="122.0" />
+                        <ComboBox fx:id="comboLvl" disable="true" prefHeight="25.0" prefWidth="122.0" />
                         <ButtonBar prefHeight="25.0" prefWidth="307.0">
                            <buttons>
                               <Button fx:id="addUserButton" disable="true" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="177.0" text="Add User" />
-                              <Button fx:id="removeUserButton" disable="true" mnemonicParsing="false" onAction="#removeUser" prefHeight="25.0" prefWidth="148.0" text="Remove User" />
+                              <Button fx:id="sendButton" disable="true" mnemonicParsing="false" onAction="#sendAdvice" prefHeight="25.0" prefWidth="105.0" text="Send" />
                            </buttons>
                         </ButtonBar>
                      </children>

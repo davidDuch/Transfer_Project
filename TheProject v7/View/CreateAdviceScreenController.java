@@ -82,13 +82,10 @@ public class CreateAdviceScreenController implements Initializable {
 	private Button addUserButton;
 
 	@FXML
-	private Button removeUserButton;
-
-	@FXML
 	private Button backButton;
 
 	@FXML
-	private Button logoutButton;
+	private Button sendButton;
 
 	@FXML
 	private Label labelAlert;
@@ -103,17 +100,15 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableColumn<DataForAdTable, String> signatureColumn;
 
 	@FXML
-	private TableColumn<DataForAdTable, Calendar> commitmentColumn;
+	private TableColumn<DataForAdTable, Commitment> commitmentColumn;
 
 	@FXML
 	private ComboBox<Commitment> comboLvl;
 
-	private ArrayList<User> users = new ArrayList<>();
-
 	private ArrayList<User> userAdded = new ArrayList<>();
 
 	// class used to fill the table that adds the users to the advice
-	public class DataForAdTable {
+	protected class DataForAdTable {
 
 		private Commitment lvl;
 		private String address;
@@ -155,8 +150,6 @@ public class CreateAdviceScreenController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		users.addAll(UserLogic.getUsers());
-
 		userNameC.setCellValueFactory(new PropertyValueFactory<>("userName"));
 		emailC.setCellValueFactory(new PropertyValueFactory<>("email"));
 		publicAddressC.setCellValueFactory(new PropertyValueFactory<>("PublicAddress"));
@@ -171,35 +164,13 @@ public class CreateAdviceScreenController implements Initializable {
 		signatureColumn.setCellValueFactory(new PropertyValueFactory<>("signature"));
 		commitmentColumn.setCellValueFactory(new PropertyValueFactory<>("lvl"));
 
-		setUsersTable();
-		setAdviceTable();
-		setComboBox();
-
-	}
-
-	private void setComboBox() {
-		comboLvl.setItems(FXCollections.observableArrayList(Commitment.values()));
-		comboLvl.getSelectionModel().select(0);
-	}
-
-	private void setAdviceTable() {
+		usersTable.setItems(FXCollections.observableArrayList(UserLogic.getUsers()));
 		ArrayList<Advice> temp = AdviseLogic.getAllAdvises();
 		advicesTable.setItems(FXCollections.observableArrayList(temp));
 		idInput.setText(Integer.toString(temp.size() + 1));
 
-	}
-
-	private void setUsersTable() {
-		usersTable.setItems(FXCollections.observableArrayList(UserLogic.getUsers()));
-
-	}
-
-	@FXML
-	private void userTbClicked(MouseEvent event) {
-		if (usersTable.getSelectionModel().getSelectedItem() != null) {
-			addUserButton.setDisable(false);
-
-		}
+		comboLvl.setItems(FXCollections.observableArrayList(Commitment.values()));
+		comboLvl.getSelectionModel().select(0);
 
 	}
 
@@ -207,10 +178,14 @@ public class CreateAdviceScreenController implements Initializable {
 	private void addUser(ActionEvent event) {
 
 		User user = usersTable.getSelectionModel().getSelectedItem();
-		usersTable.getItems().remove(user);
-		Commitment com = comboLvl.getSelectionModel().getSelectedItem();
-		createdAdviceTable.getItems().add(new DataForAdTable(com, user.getPublicAddress(), user.getDigitalSignature()));
-		userAdded.add(user);
+		if (user != null) {
+			usersTable.getItems().remove(user);
+			Commitment com = comboLvl.getSelectionModel().getSelectedItem();
+			createdAdviceTable.getItems()
+					.add(new DataForAdTable(com, user.getPublicAddress(), user.getDigitalSignature()));
+			userAdded.add(user);
+		}
+
 	}
 
 	@FXML
@@ -221,6 +196,7 @@ public class CreateAdviceScreenController implements Initializable {
 		createdAdviceTable.getItems().clear();
 		usersTable.getItems().addAll(userAdded);
 		userAdded.clear();
+
 	}
 
 	@FXML
@@ -228,91 +204,74 @@ public class CreateAdviceScreenController implements Initializable {
 		String strCommision = commisionInput.getText();
 		String strPref = prefInput.getText();
 
-		if (!userAdded.isEmpty()) {
+		try {
+			int com = Integer.parseInt(strCommision);
 			try {
-				int com = Integer.parseInt(strCommision);
-				try {
-					int pref = Integer.parseInt(strPref);
-					if (com >= 0) {
-						if (pref >= 0) {
-							Calendar cal = Calendar.getInstance();
-							int id = Integer.parseInt(idInput.getText());
-							AdviseLogic.addAdvice(id, cal, com, pref);
-							commisionInput.clear();
-							prefInput.clear();
-							labelAlert.setText("");
+				int pref = Integer.parseInt(strPref);
+				if (com >= 0) {
+					if (pref >= 0) {
+						addUserButton.setDisable(false);
+						comboLvl.setDisable(false);
+						createAdviceButton.setVisible(false);
+						resetForm.setVisible(false);
+						sendButton.setDisable(false);
 
-							addingUsersAndCommitementsToDB();
-							createdAdviceTable.getItems().clear();
-							usersTable.getItems().addAll(userAdded);
-							userAdded.clear();
-							idInput.setText(Integer.toString(++id));
-							setAdviceTable();
-
-						} else
-							labelAlert.setText("invalid preference percentage");
 
 					} else
-						labelAlert.setText("invalid commission");
+						labelAlert.setText("invalid preference percentage");
 
-				} catch (Exception e) {
-					labelAlert.setText("invalid preference percentage");
+				} else
+					labelAlert.setText("invalid commission");
 
-				}
 			} catch (Exception e) {
-				labelAlert.setText("invalid commission");
+				labelAlert.setText("invalid preference percentage");
 
 			}
-		} else
-			labelAlert.setText("please add users to the advice");
+		} catch (Exception e) {
+			labelAlert.setText("invalid commission");
+
+		}
 
 	}
 
-	private void addingUsersAndCommitementsToDB() {
+	@FXML
+	void sendAdvice(ActionEvent event) {
+
+		Calendar cal = Calendar.getInstance();
+		int id = Integer.parseInt(idInput.getText());
+		AdviseLogic.addAdvice(id, cal, Integer.parseInt(commisionInput.getText()),
+				Integer.parseInt(prefInput.getText()));
+		commisionInput.clear();
+		prefInput.clear();
+		labelAlert.setText("");
 
 		Advice ad = new Advice(Integer.parseInt(idInput.getText()));
 
-		for (int i = 0; i < userAdded.size(); i++)
-			AdviseLogic.addCommitment(userAdded.get(i), ad, createdAdviceTable.getItems().get(i).lvl);
+		if (!userAdded.isEmpty())
+			for (int i = 0; i < userAdded.size(); i++)
+				AdviseLogic.addCommitment(userAdded.get(i), ad, createdAdviceTable.getItems().get(i).lvl);
 
+		createdAdviceTable.getItems().clear();
+		usersTable.getItems().addAll(userAdded);
+		userAdded.clear();
+		idInput.setText(Integer.toString(++id));
+		ArrayList<Advice> temp = AdviseLogic.getAllAdvises();
+		advicesTable.setItems(FXCollections.observableArrayList(temp));
+		idInput.setText(Integer.toString(temp.size() + 1));
 	}
 
 	@FXML
 	private void goBack(ActionEvent event) {
 		Stage stage = (Stage) backButton.getScene().getWindow();
 		stage.close();
-		
-		if(ViewLogic.GenerateReportController!=null) {
+
+		if (ViewLogic.GenerateReportController != null) {
 			ViewLogic.newReportGenerator();
-		}else {
+		} else {
 			ViewLogic.newDashBoard();
-			
-		}
-		
-
-	}
-
-	@FXML
-	private void logOut(ActionEvent event) {
-
-	}
-
-	@FXML
-	private void removeUser(ActionEvent event) {
-		DataForAdTable data = createdAdviceTable.getSelectionModel().getSelectedItem();
-		createdAdviceTable.getItems().remove(data);
-		User user = new User(data.address, data.signature);
-		usersTable.getItems().add(users.get(users.indexOf(user)));
-		userAdded.remove(user);
-
-	}
-
-	@FXML
-	private void usersInAdviceClicked(MouseEvent event) {
-		if (createdAdviceTable.getSelectionModel().getSelectedItem() != null) {
-			removeUserButton.setDisable(false);
 
 		}
+
 	}
 
 }
