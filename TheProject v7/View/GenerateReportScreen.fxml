@@ -4,16 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="framePane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GenerateReportController">
+<AnchorPane fx:id="framePane" prefHeight="206.0" prefWidth="911.0" stylesheets="@menuStyles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GenerateReportController">
    <children>
-      <VBox alignment="CENTER" layoutX="-69.0" layoutY="6.0" prefHeight="717.0" prefWidth="911.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutY="-8.0" prefHeight="214.0" prefWidth="911.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
          <children>
             <HBox>
                <children>
@@ -63,26 +61,17 @@
                </padding>
             </HBox>
             <Separator prefHeight="10.0" prefWidth="950.0" />
-            <TabPane fx:id="reportsTabPane" prefHeight="526.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab fx:id="transTab" text="Current Transaction Report">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="950.0" />
-                  </content>
-                </Tab>
-                <Tab fx:id="usersTab" text="Current Users Report">
-                     <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                </Tab>
-              </tabs>
-            </TabPane>
             <Separator prefHeight="3.0" prefWidth="950.0" />
             <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="911.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
+                  <Label text="You can Create Advice from this screen ! -&gt;">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
                   <Button fx:id="createAdviceButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createAdvice" prefHeight="29.0" prefWidth="100.0" text="Create Advice" />
                   <Region prefHeight="54.0" prefWidth="298.0" />
                 <Button fx:id="backButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="79.0" text="Back">
