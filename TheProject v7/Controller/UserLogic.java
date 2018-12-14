@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Model.Advice;
-import Model.Pay;
-import Model.User;
-import Model.Wallet;
+import Entity.Advice;
+import Entity.Pay;
+import Entity.User;
+import Entity.Wallet;
 import Utils.Consts;
 import Utils.Status;
 

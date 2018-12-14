@@ -1,6 +1,6 @@
 package Controller;
 
-import View.ViewLogic;
+import Boundry.ViewLogic;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import Model.Advice;
-import Model.CommitmentPerUser;
-import Model.User;
+import Entity.Advice;
+import Entity.CommitmentPerUser;
+import Entity.User;
 import Utils.Commitment;
 import Utils.Consts;
 

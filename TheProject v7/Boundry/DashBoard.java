@@ -1,4 +1,4 @@
-package View;
+package Boundry;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

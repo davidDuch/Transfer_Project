@@ -1,4 +1,4 @@
-package View;
+package Boundry;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 
 import Controller.AdviseLogic;
 import Controller.UserLogic;
-import Model.Advice;
-import Model.User;
+import Entity.Advice;
+import Entity.User;
 import Utils.Commitment;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

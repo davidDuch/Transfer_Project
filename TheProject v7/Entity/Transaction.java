@@ -1,4 +1,4 @@
-package Model;
+package Entity;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +19,7 @@ public abstract class Transaction implements Comparable<Transaction> {
 	private String creatorSignature;
 	private String wallet;
 
+	
 	public Transaction(String id) {
 		super();
 		this.id = id;
@@ -38,6 +39,13 @@ public abstract class Transaction implements Comparable<Transaction> {
 		this.dateCreated = Sys.toCalendar(dateCreated);
 		this.dateApproved = (dateApproved != null ? Sys.toCalendar(dateApproved) : null);
 
+	}
+	public String getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(String wallet) {
+		this.wallet = wallet;
 	}
 
 	public String getCreatorAddress() {
