@@ -6,7 +6,7 @@
 	<queryString>
 		<![CDATA[SELECT unionTransactions.status, Min(unionTransactions.commission) AS [Minimum Commision], Max(unionTransactions.commission) AS [Maximum Commision], Count(unionTransactions.status) AS [Transactions for Status], Count(unionTransactions.status)*100/(SELECT Count(*) FROM unionTransactions) AS [Precantage for Status]
 FROM unionTransactions
-GROUP BY unionTransactions.status;]]>
+GROUP BY unionTransactions.status]]>
 	</queryString>
 	<field name="STATUS" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="STATUS"/>

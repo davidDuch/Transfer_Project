@@ -1,4 +1,4 @@
-package Entity;
+package Model;
 
 public class BitcoinKnots extends Wallet {
 

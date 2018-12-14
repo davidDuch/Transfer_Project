@@ -12,8 +12,8 @@ import java.util.jar.JarException;
 
 import javax.swing.JFrame;
 
-import Entity.Confirm;
-import Entity.Pay;
+import Model.Confirm;
+import Model.Pay;
 import Utils.Consts;
 import Utils.Status;
 import net.sf.jasperreports.engine.JRException;
@@ -119,7 +119,6 @@ public class TransactionLogic {
 	 * @param wallet
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
 	public static boolean addPay(String id, String description, double size, Date dateCreated, Date dateApproved,
 			Status status, double btcAmount, double commission, String sellerAddress, String sellerSignature,
 			String creatorAddress, String creatorSignature, String wallet) {

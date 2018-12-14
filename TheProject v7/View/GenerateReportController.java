@@ -1,4 +1,4 @@
-package Boundry;
+package View;
 
 import java.sql.SQLException;
 import java.util.jar.JarException;

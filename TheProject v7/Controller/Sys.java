@@ -3,7 +3,7 @@ package Controller;
 import java.util.Calendar;
 import java.util.Date;
 
-import Entity.Transaction;
+import Model.Transaction;
 
 public class Sys {
 
