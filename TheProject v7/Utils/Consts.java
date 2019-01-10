@@ -17,6 +17,11 @@ public class Consts {
 	public static final String SQL_GET_USERPAYBYSTATUES = "{ call userPayByStatus(?,?,?) }";
 	public static final String SQL_SEL_PAYTRANSACTIONS = "SELECT * FROM tblTransactionPay";
 	public static final String SQL_SEL_CONFIRMTRANSACTIONS = "SELECT * FROM tblTransactionConfirm";
+	public static final String SQL_GET_ALLWAITING = "SELECT unionTransactions.transactionId, unionTransactions.size, unionTransactions.type, unionTransactions.commission\r\n" + 
+			"FROM unionTransactions\r\n" + 
+			"WHERE (((unionTransactions.status)=\"Waiting\"));\r\n" + 
+			"";
+
 
 //==================================== User logic ==============================	
 	public static final String SQL_SEL_USERS = "SELECT * FROM tblUser";
@@ -34,6 +39,7 @@ public class Consts {
 			String path = Consts.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 			String decoded = URLDecoder.decode(path, "UTF-8");
 			if (decoded.contains(".jar")) {
+
 				decoded = decoded.substring(0, decoded.lastIndexOf('/'));
 				return decoded + "/Model/DataBase_Hw1_319412094_312181605.accdb";
 			} else {

@@ -7,7 +7,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static void main(String[] args) {
-		launch(args);
+	Sys sys = new Sys();
+	sys.SendTransactions(TransactionLogic.getAllWaitingTrans());
+		//launch(args);
 	}
 
 	@Override

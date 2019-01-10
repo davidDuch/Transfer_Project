@@ -6,7 +6,7 @@ import java.util.Date;
 import Controller.Sys;
 import Utils.Status;
 
-public abstract class Transaction implements Comparable<Transaction> {
+public  class Transaction implements Comparable<Transaction> {
 
 	private String id;
 	private String description;
@@ -18,10 +18,18 @@ public abstract class Transaction implements Comparable<Transaction> {
 	private String creatorAddress;
 	private String creatorSignature;
 	private String wallet;
+	private String sendType;
 
 	public Transaction(String id) {
 		super();
 		this.id = id;
+	}
+	
+	public Transaction(String id, double size ,String sendType, double commission ) {
+		this.id = id;
+		this.size=size;
+		this.sendType=sendType ;
+		this.commission= commission ;
 	}
 
 	public Transaction(String id, String description, double size, Date dateCreated, Date dateApproved,
@@ -148,6 +156,14 @@ public abstract class Transaction implements Comparable<Transaction> {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getSendType() {
+		return sendType;
+	}
+
+	public void setSendType(String sendType) {
+		this.sendType = sendType;
 	}
 
 }

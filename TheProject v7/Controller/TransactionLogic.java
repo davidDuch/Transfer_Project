@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import Model.Confirm;
 import Model.Pay;
+import Model.Transaction;
 import Utils.Consts;
 import Utils.Status;
 import net.sf.jasperreports.engine.JRException;
@@ -202,6 +203,30 @@ public class TransactionLogic {
 							rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
 							rs.getString(i++)));
 				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	
+	
+	public static ArrayList<Transaction> getAllWaitingTrans(){
+		
+		ArrayList<Transaction> results = new ArrayList<Transaction>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_GET_ALLWAITING);
+					ResultSet rs = stmt.executeQuery()) {
+
+				while (rs.next()) {
+					results.add(new Transaction(rs.getString(1),rs.getDouble(2), rs.getString(3),rs.getDouble(4)));
+					}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

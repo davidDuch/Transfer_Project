@@ -1,7 +1,14 @@
 package Controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import org.apache.poi.ss.formula.functions.T;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import Model.Transaction;
 
@@ -19,9 +26,32 @@ public class Sys {
 	 * 
 	 * @param transaction
 	 */
-	public boolean SendTransactions(int[] transaction) {
-		// TODO - implement System.SendTransactions
-		throw new UnsupportedOperationException();
+	@SuppressWarnings("unchecked")
+	public void SendTransactions(ArrayList<Transaction> transactions) {
+
+		JSONArray transcationsToSend = new JSONArray();
+
+		for (Transaction temp : transactions) {
+			JSONObject trans = new JSONObject();
+			trans.put("ID", temp.getId());
+			trans.put("Size", temp.getSize());
+			trans.put("Type", temp.getSendType());
+			trans.put("Comission", temp.getCommission());
+			transcationsToSend.add(trans);
+		}
+
+		// try-with-resources statement based on post comment below :)
+		try (FileWriter file = new FileWriter(
+				"C:\\Users\\Gabi Malin\\Desktop\\Transfer_Project\\TheProject v7\\JSON.txt")) {
+			file.write(transcationsToSend.toJSONString());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Sys() {
+
 	}
 
 	public Sys(Calendar currentTime, double discountExpandPrice, double sizeExpandPrice, double defualtWalletSize,
