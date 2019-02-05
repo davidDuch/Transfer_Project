@@ -17,7 +17,7 @@ public class ViewLogic {
 	protected static GenerateReportController GenerateReportController ;
 
 	public static void initUI() {
-		newDashBoard();
+		newLogin();
 
 	}
 
@@ -29,9 +29,16 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("GenerateReportScreen.fxml"), stage, false, "Report Window", false);
 	}
 
+	protected static void newLogin() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("SignUpLogin.fxml"), stage, false, "Dash Board", false);
+
+	}
+
 	/**
 	 * Goes to the dash board
 	 */
+	
 	protected static void newDashBoard() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("DashBoard.fxml"), stage, false, "Dash Board", false);
