@@ -6,7 +6,7 @@ public class BitcoinSpace extends Wallet {
 
 	public BitcoinSpace(String address, double funds, double futureValue, Boolean pC, Boolean tablet, Boolean phone,
 			int maxTransSize) {
-		super(address, funds, futureValue, pC, tablet, phone);
+		super( address,  pC,  tablet,  phone,  funds,  futureValue);
 		this.maxTransSize = maxTransSize;
 	}
 

@@ -8,13 +8,15 @@ public class Wallet {
 	private Boolean PC;
 	private Boolean Tablet;
 	private Boolean Phone;
+	
+	public static int walletsCount = 22;
 
 	public Wallet(String address) {
 		super();
 		this.address = address;
 	}
 
-	public Wallet(String address, double funds, double futureValue, Boolean pC, Boolean tablet, Boolean phone) {
+	public Wallet(String address, Boolean pC, Boolean tablet, Boolean phone, double funds, double futureValue) {
 		super();
 		this.address = address;
 		this.funds = funds;

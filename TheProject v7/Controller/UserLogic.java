@@ -16,7 +16,115 @@ import Utils.Consts;
 import Utils.Status;
 
 public class UserLogic {
+	
+	
+	
+	
+	
+	
+	public static boolean 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param address
+	 * @param pC
+	 * @param tablet
+	 * @param phone
+	 * @param funds
+	 * @param futureValue
+	 * @param publicAddress
+	 * @param digitalSignature
+	 * @return
+	 */
+	public static boolean add_wallet(Boolean pC, Boolean tablet, Boolean phone,
+			double funds, double futureValue , String publicAddress, String digitalSignature ) {
+		
+		
 
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_WALLET)) {
+
+				stmt.setString(1, "W"+Wallet.walletsCount);
+				stmt.setBoolean(2, pC);
+				stmt.setBoolean(3, tablet);
+				stmt.setBoolean(4, phone);
+				stmt.setDouble(5, funds);
+				stmt.setDouble(6, futureValue);
+				stmt.setString(7, publicAddress);
+				stmt.setString(8, digitalSignature);
+				stmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * add new user to the system
+	 * 
+	 * @param publicAddress
+	 * @param digitalSignature
+	 * @param userName
+	 * @param password
+	 * @param phoneNumber
+	 * @param email
+	 * @return
+	 */
+	public static boolean addNewUser(String publicAddress, String digitalSignature, String userName, String password, String phoneNumber,
+			String email) {
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_USER)) {
+
+				stmt.setString(1, publicAddress);
+				stmt.setString(2, digitalSignature);
+				stmt.setString(3, userName);
+				stmt.setString(4, password);
+				stmt.setString(5, phoneNumber);
+				stmt.setString(6, email);
+				stmt.executeUpdate();
+				add_wallet( false, false, false, 0, 0, publicAddress, digitalSignature);
+
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 	/**
 	 * get Transactions by status
 	 * 
@@ -128,16 +236,7 @@ public class UserLogic {
 	}
 
 	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * IN PROCESSSSSSS
-	 * 
-	 * 
-	 * 
+
 	 * 
 	 * Get users wallets
 	 * 
@@ -158,9 +257,9 @@ public class UserLogic {
 				ResultSet rs = stmt.executeQuery();
 
 				while (rs.next()) {
-					int i = 1;
-					results.add(new Wallet(rs.getString(i++), rs.getDouble(i++), rs.getDouble(i++), rs.getBoolean(i++),
-							rs.getBoolean(i++), rs.getBoolean(i++)));
+					int i = 1 ;
+					results.add(new Wallet(rs.getString(i++), rs.getBoolean(i++) , 
+							rs.getBoolean(i++),rs.getBoolean(i++), rs.getDouble(i++), rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -197,5 +296,37 @@ public class UserLogic {
 		}
 		return results;
 	}
+	
+	
+	
+	public static Number counts_All_Wallets() {
+		
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_COUNT_WALLETS)) {
+
+				ResultSet rs = stmt.executeQuery();
+				rs.next();
+				return ((Number) rs.getObject(1)).intValue();
+				
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }

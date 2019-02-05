@@ -11,16 +11,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Model.Transaction;
+import Model.Wallet;
 
 public class Sys {
 
-	private Calendar currentTime;
-	private double discountExpandPrice;
-	private double sizeExpandPrice;
-	private double defualtWalletSize;
-	private double expendWalletSize;
-	private double expendDiscountSize;
-	private double maxPossibleExpansionSize;
+	public Calendar currentTime;
+	public double discountExpandPrice;
+	public double sizeExpandPrice;
+	public double defualtWalletSize;
+	public double expendWalletSize;
+	public double expendDiscountSize;
+	public double maxPossibleExpansionSize;
 
 	/**
 	 * 
@@ -51,6 +52,7 @@ public class Sys {
 	}
 
 	public Sys() {
+		Wallet.walletsCount =(int) UserLogic.counts_All_Wallets() + 15;
 
 	}
 

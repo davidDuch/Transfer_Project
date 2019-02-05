@@ -10,6 +10,12 @@ public class Consts {
 //==================================== Wallet logic ==============================	
 	public static final String SQL_SEL_KNOTSWALLRT = "SELECT * FROM tblWalletKnots";
 	public static final String SQL_SEL_SPACEWALLRT = "SELECT * FROM tblWalletSpace";
+	public static final String SQL_ADD_WALLET = "{ call addWallet(?,?,?,?,?,?,?,?) };";
+	public static final String SQL_COUNT_WALLETS = "SELECT Count(tblWallet.address) AS CountOfaddress\r\n" + 
+			"FROM tblWallet;\r\n" + 
+			"";
+
+
 
 //==================================== Transactions logic ==============================	
 	public static final String SQL_INS_NEWPAY = "{ call addPay(?,?,?,?,?,?,?,?,?,?,?,?,?) }";
@@ -27,6 +33,7 @@ public class Consts {
 	public static final String SQL_SEL_USERS = "SELECT * FROM tblUser";
 	public static final String SQL_DEL_DELETEUSER = "{ call  deleteUser(?,?) }";
 	public static final String SQL_GET_USERSADVICE = "{ call getAdvicePerUser(?,?) }";
+	public static final String SQL_ADD_USER = "{ call addUser(?,?,?,?,?,?) }";
 
 //==================================== Advise logic ==============================	
 	public static final String SQL_SEL_ADVICE = "SELECT * FROM tblAdvice";

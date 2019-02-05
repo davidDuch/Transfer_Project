@@ -6,7 +6,7 @@ public class BitcoinKnots extends Wallet {
 
 	public BitcoinKnots(String address, double funds, double futureValue, Boolean pC, Boolean tablet, Boolean phone,
 			double discount) {
-		super(address, funds, futureValue, pC, tablet, phone);
+		super( address,  pC,  tablet,  phone,  funds,  futureValue);
 		this.discount = discount;
 	}
 
