@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Category;
 import Model.User;
 import View.ViewLogic;
 import javafx.application.Application;
@@ -11,9 +12,7 @@ public class Main extends Application {
 	Sys sys = new Sys();
 	
 	
-	UserLogic.addNewUser("XX", "CCC", "XXX", "XXX", "XXX", "XXXX");
-//	sys.SendTransactions(TransactionLogic.getAllWaitingTrans());
-		//launch(args);
+	System.out.println(UserLogic.getProducts(new Category("2", "Sports")));
 	}
 
 	@Override

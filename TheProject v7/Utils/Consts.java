@@ -32,14 +32,18 @@ public class Consts {
 //==================================== User logic ==============================	
 	public static final String SQL_SEL_USERS = "SELECT * FROM tblUser";
 	public static final String SQL_DEL_DELETEUSER = "{ call  deleteUser(?,?) }";
-	public static final String SQL_GET_USERSADVICE = "{ call getAdvicePerUser(?,?) }";
 	public static final String SQL_ADD_USER = "{ call addUser(?,?,?,?,?,?) }";
+	public static final String SQL_GET_USERSADVICE = "{ call getUsersAdvice(?,?) };";
+	public static final String SQL_GET_PRODUCTS_PRICE = "{ call getProductsByPrice(?,?) };";
+	
+
 
 //==================================== Advise logic ==============================	
 	public static final String SQL_SEL_ADVICE = "SELECT * FROM tblAdvice";
 	public static final String SQL_INS_NEWCOMMITMENT = "{ call addCommitment(?,?,?,?) }";
 	public static final String SQL_INS_NEWADVICE = "{ call addAdvice(?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICECOMMIT = "{ call getCommitmentPerUserPerAdvice(?,?,?) }";
+
 
 	private static String getDBPath() {
 		try {
