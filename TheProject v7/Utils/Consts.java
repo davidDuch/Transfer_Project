@@ -6,6 +6,11 @@ public class Consts {
 
 	protected static final String DB_FILEPATH = getDBPath();
 	public static final String CONN_STR = "jdbc:ucanaccess://" + DB_FILEPATH + ";COLUMNORDER=DISPLAY";
+	public static final String SQL_PARAMETERS = "SELECT tblSystem.discountExpandPrice, tblSystem.sizeExpendPrice, tblSystem.defaultWalletSize, tblSystem.expandWalletSize, tblSystem.expandDiscountSize, tblSystem.maxPossibleExpansionSize\r\n" + 
+			"FROM tblSystem\r\n" + 
+			"WHERE (((tblSystem.id)=111));\r\n" + 
+			"";
+
 
 //==================================== Wallet logic ==============================	
 	public static final String SQL_SEL_KNOTSWALLRT = "SELECT * FROM tblWalletKnots";
@@ -43,6 +48,32 @@ public class Consts {
 	public static final String SQL_INS_NEWCOMMITMENT = "{ call addCommitment(?,?,?,?) }";
 	public static final String SQL_INS_NEWADVICE = "{ call addAdvice(?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICECOMMIT = "{ call getCommitmentPerUserPerAdvice(?,?,?) }";
+	
+	
+	
+	
+	
+	
+//	+++++++++++++++++++++++++++++++ Worker Logic =====================================================
+	public static final String WORKER_UPDATE_discountExpandPrice = "UPDATE tblSystem SET tblSystem.discountExpandPrice = ?\r\n" + 
+			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_sizeExpendPrice = "UPDATE tblSystem SET tblSystem.sizeExpendPrice = ?\r\n" + 
+			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_defaultWalletSize = "UPDATE tblSystem SET tblSystem.defaultWalletSize = ?\r\n" + 
+			"WHERE (((tblSystem.id)= '111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_expandWalletSize = "UPDATE tblSystem SET tblSystem.expandWalletSize = ?\r\n" + 
+			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_expandDiscountSize = "UPDATE tblSystem SET tblSystem.expandDiscountSize = ?\r\n" + 
+			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_maxPossibleExpansionSize = "UPDATE tblSystem SET tblSystem.maxPossibleExpansionSize = ?\r\n" + 
+			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+
 
 
 	private static String getDBPath() {

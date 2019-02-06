@@ -15,6 +15,8 @@ import Model.Wallet;
 
 public class Sys {
 
+	public static Sys system;
+	
 	public Calendar currentTime;
 	public double discountExpandPrice;
 	public double sizeExpandPrice;
@@ -53,6 +55,13 @@ public class Sys {
 
 	public Sys() {
 		Wallet.walletsCount =(int) UserLogic.counts_All_Wallets() + 15;
+		ArrayList<Double> parameters = WorkerLogic.getParameters();
+		discountExpandPrice = parameters.get(0);
+		sizeExpandPrice = parameters.get(1);
+		defualtWalletSize = parameters.get(2);
+		expendWalletSize = parameters.get(3);
+		expendDiscountSize = parameters.get(4);
+		maxPossibleExpansionSize = parameters.get(5);
 
 	}
 
