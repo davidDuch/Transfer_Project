@@ -31,7 +31,7 @@ public class ViewLogic {
 
 	protected static void newLogin() {
 		Stage stage = new Stage();
-		newWindow(ViewLogic.class.getResource("SignUpLogin.fxml"), stage, false, "Dash Board", false);
+		newWindow(ViewLogic.class.getResource("SignUpLogin.fxml"), stage, false, "Welcome !", false);
 
 	}
 
@@ -81,7 +81,7 @@ public class ViewLogic {
 					Parent root = loader.load();
 					Scene scene;
 					scene = new Scene(root);
-					scene.getStylesheets().add("menuStyles.css");
+					//scene.getStylesheets().add("menuStyles.css");
 					stage.setScene(scene);
 					stage.setResizable(resizable);
 

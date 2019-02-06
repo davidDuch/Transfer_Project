@@ -19,8 +19,6 @@ import Utils.Consts;
 import Utils.Status;
 
 public class UserLogic {
-
-
 	/**
 	 * 
 	 * @param address
