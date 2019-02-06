@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.commons.lang.RandomStringUtils;
+
 import Model.Advice;
 import Model.BitcoinKnots;
 import Model.Category;
@@ -20,6 +22,7 @@ import Utils.Consts;
 import Utils.Status;
 
 public class UserLogic {
+
 	
 	
 	
@@ -77,6 +80,7 @@ public class UserLogic {
 		
 		
 	}
+
 	/**
 	 * 
 	 * @param address
@@ -115,7 +119,10 @@ public class UserLogic {
 		}
 		return false;
 	}
-
+	public static String generateRandoms() {
+		String generatedString = RandomStringUtils.randomAlphanumeric(7);
+		return generatedString;
+		}
 	/**
 	 * 
 	 * add new user to the system

@@ -32,9 +32,11 @@
           <TableColumn prefWidth="114.0" text="Product Name" />
           <TableColumn prefWidth="95.0" text="Price" />
             <TableColumn prefWidth="91.0" text="Quantity" />
-            <TableColumn prefWidth="75.0" text="Category" />
-            <TableColumn minWidth="0.0" prefWidth="119.0" text="Description" />
-            <TableColumn prefWidth="180.0" text="Picture" />
+
+            <TableColumn prefWidth="101.0" text="Category" />
+            <TableColumn minWidth="0.0" prefWidth="174.0" text="Description" />
+            <TableColumn prefWidth="143.0" text="Picture" />
+
         </columns>
       </TableView>
    </center>
