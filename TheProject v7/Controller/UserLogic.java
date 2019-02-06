@@ -119,6 +119,7 @@ public class UserLogic {
 		}
 		return false;
 	}
+
 	public static String generateRandoms() {
 		String generatedString = RandomStringUtils.randomAlphanumeric(7);
 		return generatedString;

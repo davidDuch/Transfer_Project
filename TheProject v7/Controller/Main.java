@@ -14,14 +14,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		Sys.system = new Sys();
-	
-		UserLogic.upgradeWalletToSpace(new Wallet("W14"));
-		
-		//launch(args);
-	
-	
-	//UserLogic.addNewUser("XX", "CCC", "XXX", "XXX", "XXX", "XXXX");
-//	sys.SendTransactions(TransactionLogic.getAllWaitingTrans());
+		Sys.system.RecieveTransactions();
 		launch(args);
 	}
 

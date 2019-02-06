@@ -89,18 +89,20 @@ public class TransactionLogic {
 
 	}
 
-//	public JFrame createReport() throws SQLException, JarException, ClassNotFoundException, JRException {
-////		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-////		try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-////			JasperPrint print = JasperFillManager
-////					.fillReport(getClass().getResourceAsStream("/Model/TransactionsReport.jasper"), null, conn);
-//			JFrame frame = new JFrame("Customer Orders Report");
-////			frame.getContentPane().add(new JRViewer(print));
-////			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-////			frame.pack();
-//			return frame;
-//		}
-//	}
+	// public JFrame createReport() throws SQLException, JarException,
+	// ClassNotFoundException, JRException {
+	//// Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+	//// try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+	//// JasperPrint print = JasperFillManager
+	//// .fillReport(getClass().getResourceAsStream("/Model/TransactionsReport.jasper"),
+	// null, conn);
+	// JFrame frame = new JFrame("Customer Orders Report");
+	//// frame.getContentPane().add(new JRViewer(print));
+	//// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	//// frame.pack();
+	// return frame;
+	// }
+	// }
 
 	/**
 	 * add Pay Transaction to DB
@@ -211,11 +213,9 @@ public class TransactionLogic {
 		}
 		return results;
 	}
-	
-	
-	
-	public static ArrayList<Transaction> getAllWaitingTrans(){
-		
+
+	public static ArrayList<Transaction> getAllWaitingTrans() {
+
 		ArrayList<Transaction> results = new ArrayList<Transaction>();
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -224,9 +224,9 @@ public class TransactionLogic {
 					ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {
-					results.add(new Transaction(rs.getString(1),rs.getDouble(2), rs.getString(3),rs.getDouble(4)));
-					}
-				
+					results.add(new Transaction(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getDouble(4)));
+				}
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -234,6 +234,47 @@ public class TransactionLogic {
 			e.printStackTrace();
 		}
 		return results;
+	}
+
+	public static void updateTransaction(String id, String type) {
+
+		if (type.equals("Confirm")) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try {
+					Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall("{ call updateConfirm(?) };");
+
+					stmt.setString(1, id);
+					stmt.executeUpdate();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		} else if(type.equals("Pay")){
+
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try {
+					Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall("{ call updatePay(?) };");
+
+					stmt.setString(1, id);
+					stmt.executeUpdate();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 }

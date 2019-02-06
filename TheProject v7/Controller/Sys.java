@@ -1,5 +1,13 @@
 package Controller;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.File;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +23,7 @@ import Model.Wallet;
 public class Sys {
 
 	public static Sys system;
-	
+
 	public Calendar currentTime;
 	public double discountExpandPrice;
 	public double sizeExpandPrice;
@@ -53,7 +61,7 @@ public class Sys {
 	}
 
 	public Sys() {
-		Wallet.walletsCount =(int) UserLogic.counts_All_Wallets() + 15;
+		Wallet.walletsCount = (int) UserLogic.counts_All_Wallets() + 15;
 		ArrayList<Double> parameters = WorkerLogic.getParameters();
 		discountExpandPrice = parameters.get(0);
 		sizeExpandPrice = parameters.get(1);
@@ -132,9 +140,41 @@ public class Sys {
 		this.maxPossibleExpansionSize = maxPossibleExpansionSize;
 	}
 
-	public Transaction[] RecieveTransactions() {
-		// TODO - implement System.RecieveTransactions
-		throw new UnsupportedOperationException();
+	public void RecieveTransactions() {
+
+		try {
+
+			File fXmlFile = new File("file.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			// optional, but recommended
+			// read this -
+			// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+		doc.getDocumentElement().normalize();
+
+
+			NodeList nList = doc.getDocumentElement().getChildNodes();
+
+			
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+				
+//				System.out.println("k");
+				
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					TransactionLogic.updateTransaction(eElement.getElementsByTagName("transId").item(0).getTextContent(), eElement.getElementsByTagName("type").item(0).getTextContent());
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public void sendEmail() {
