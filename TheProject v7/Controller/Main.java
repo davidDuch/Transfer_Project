@@ -11,9 +11,9 @@ public class Main extends Application {
 	Sys sys = new Sys();
 	
 	
-	UserLogic.addNewUser("XX", "CCC", "XXX", "XXX", "XXX", "XXXX");
+	//UserLogic.addNewUser("XX", "CCC", "XXX", "XXX", "XXX", "XXXX");
 //	sys.SendTransactions(TransactionLogic.getAllWaitingTrans());
-		//launch(args);
+		launch(args);
 	}
 
 	@Override

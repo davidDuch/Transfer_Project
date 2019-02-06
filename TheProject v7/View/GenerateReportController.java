@@ -14,7 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JRException;
 
 public class GenerateReportController {
 
@@ -49,10 +49,10 @@ public class GenerateReportController {
 	private Button backButton;
 
 	@FXML
-	private void GenerateTransReport() throws JarException, ClassNotFoundException, SQLException, JRException {
-		JFrame report = new JFrame();
-		report = TransactionLogic.getInstance().createReport();
-		report.setVisible(true);
+	private void GenerateTransReport() {//throws JarException, ClassNotFoundException, SQLException, JRException {
+//		JFrame report = new JFrame();
+//		report = TransactionLogic.getInstance().createReport();
+//		report.setVisible(true);
 	}
 
 	@FXML

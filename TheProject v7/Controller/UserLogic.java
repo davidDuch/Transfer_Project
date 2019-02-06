@@ -22,7 +22,7 @@ public class UserLogic {
 	
 	
 	
-	public static boolean 
+	//public static boolean 
 	
 	
 	
