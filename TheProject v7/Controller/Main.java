@@ -14,7 +14,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 	Sys.system = new Sys();
 	
-	
+System.out.println(UserLogic.getProducts(new User("N0909Z", "N9Z")));	
 	//launch(args);
 	
 	

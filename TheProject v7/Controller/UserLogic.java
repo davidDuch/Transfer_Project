@@ -366,6 +366,29 @@ public class UserLogic {
 
 	}
 
+	public static ArrayList<Product> getProducts(User user){
+	ArrayList<Product> results = new ArrayList<>();
+		
+		try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblProduct WHERE tblProduct.sellerAddress  =  '"+user.getPublicAddress() +"' AND tblProduct.sellerSignature = '"+ user.getDigitalSignature()+"' ;");
+					ResultSet rs = stmt.executeQuery();
+
+					while (rs.next()) {
+						results.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), new Category(rs.getString(6), null), rs.getInt(7)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+	}
+	
+	
+	
 	public static ArrayList<Pay> getAllUsersPay(User user){
 		
 	ArrayList<Pay> results = new ArrayList<>();
