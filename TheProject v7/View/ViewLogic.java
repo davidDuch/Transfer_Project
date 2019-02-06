@@ -3,6 +3,8 @@ package View;
 import java.io.IOException;
 import java.net.URL;
 
+import com.guigarage.flatterfx.FlatterFX;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,7 +43,7 @@ public class ViewLogic {
 	
 	protected static void newDashBoard() {
 		Stage stage = new Stage();
-		newWindow(ViewLogic.class.getResource("DashBoard.fxml"), stage, false, "Dash Board", false);
+		newWindow(ViewLogic.class.getResource("newDash.fxml"), stage, false, "Dash Board", false);
 
 	}
 
@@ -81,10 +83,9 @@ public class ViewLogic {
 					Parent root = loader.load();
 					Scene scene;
 					scene = new Scene(root);
-					//scene.getStylesheets().add("menuStyles.css");
 					stage.setScene(scene);
 					stage.setResizable(resizable);
-
+					
 					if (title != null && !title.isEmpty() && !title.trim().isEmpty())
 						stage.setTitle(title);
 

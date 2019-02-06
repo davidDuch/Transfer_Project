@@ -18,6 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Model.Transaction;
+import Model.User;
 import Model.Wallet;
 
 public class Sys {
@@ -31,11 +32,17 @@ public class Sys {
 	public double expendWalletSize;
 	public double expendDiscountSize;
 	public double maxPossibleExpansionSize;
-
+	public static User currentUser; 
 	/**
 	 * 
 	 * @param transaction
 	 */
+	public void setUser(User user) {
+	Sys.currentUser = user;
+	}
+	public User getUser() {
+		return Sys.currentUser;
+	}
 	@SuppressWarnings("unchecked")
 	public void SendTransactions(ArrayList<Transaction> transactions) {
 

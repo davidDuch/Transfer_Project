@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox id="HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SignUpLoginController">
    <children>
       <VBox fx:id="LoginBox" alignment="CENTER" prefHeight="300.0" prefWidth="241.0" spacing="5.0">
@@ -19,7 +18,7 @@
             <JFXTextField fx:id="inputUser" promptText="Username" />
             <JFXPasswordField fx:id="inputPass" promptText="Password" />
             <JFXRadioButton text="As Worker" />
-            <JFXButton fx:id="loginBtn" text="Login" />
+            <JFXButton fx:id="loginBtn" onAction="#Login" text="Login" />
             <Label fx:id="loginError" prefHeight="17.0" prefWidth="200.0" />
          </children>
          <padding>
