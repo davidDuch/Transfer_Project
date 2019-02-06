@@ -8,12 +8,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import Controller.Sys;
 import Controller.UserLogic;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class SignUpLoginController {
 
@@ -67,7 +69,8 @@ public class SignUpLoginController {
 			signUpError.setText("No UserName");
 			return false;
 		}
-		if(UserLogic.getUsers().contains(new User(newUser.getText()))) {
+		for(User userNameCheck : UserLogic.getUsers()) {
+			userNameCheck.getUserName().equals(newUser.getText());
 			signUpError.setText("Please Choose a different Username");
 			return false;
 		}
@@ -96,6 +99,12 @@ public class SignUpLoginController {
 			String publicAddress = UserLogic.generateRandoms();
 			String digitalSignature = UserLogic.generateRandoms();
 			UserLogic.addNewUser(publicAddress, digitalSignature, newUser.getText(), pass1.getText(), newPhone.getText(), newEmail.getText());
+			newUser.clear();
+			pass1.clear();
+			pass2.clear();
+			newEmail.clear();
+			newPhone.clear();
+			signUpError.setText("Sign Up Successful");
 			return true;
 		}
 		return false;
@@ -125,4 +134,27 @@ public class SignUpLoginController {
 		return matcher.find();
     
 }
+	
+	public boolean Login(ActionEvent event) throws IOException {
+		if (inputUser.getText() == null || inputUser.getText().equals("")) {
+			loginError.setText("No UserName");
+			return false;
+		}
+		if (inputPass.getText() == null || inputPass.getText().equals("")) {
+			loginError.setText("No Password");
+			return false;
+		}
+		for(User fromDB :UserLogic.getUsers()){
+			if(fromDB.getUserName().equals(inputUser.getText()) && fromDB.getPassword().equals(inputPass.getText())) {
+			loginError.setText("Successful Login");
+			Sys.currentUser = fromDB;
+		    Stage stage = (Stage) loginError.getScene().getWindow();
+		    stage.close();
+			ViewLogic.newDashBoard();
+			return true;
+		}
+		}
+		loginError.setText("Wrong Details");
+		return false;
+	}
 }

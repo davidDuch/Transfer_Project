@@ -15,6 +15,12 @@ public class User {
 		this.PublicAddress = PublicAddress;
 		this.DigitalSignature = DigitalSignature;
 	}
+//	public User(String userName, String password) {
+//		super();
+//
+//		this.userName = userName;
+//		this.password =  password;
+//	}
 
 	public User(String publicAddress, String digitalSignature, String userName, String password, String phoneNumber,
 			String email) {

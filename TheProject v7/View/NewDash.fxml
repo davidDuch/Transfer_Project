@@ -1,72 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="600.0" stylesheets="@menuStyles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DashBoard">
-   <children>
-      <BorderPane prefHeight="402.0" prefWidth="600.0">
-         <left>
-            <VBox prefHeight="420.0" prefWidth="242.0" BorderPane.alignment="CENTER">
-               <children>
-                  <FlowPane hgap="10.0" prefHeight="300.0" prefWidth="182.0">
-                     <children>
-                        <Button disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="110.0" text="Button">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                        <Button disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="110.0" text="Button">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                        <Button disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="110.0" text="Button">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                        <Button disable="true" mnemonicParsing="false" prefHeight="65.0" prefWidth="110.0" text="Button">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                        <Button fx:id="ReportButton" mnemonicParsing="false" onAction="#goToReport" prefHeight="65.0" prefWidth="110.0" text="Generate Report">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                        <Button fx:id="createAfviceButton" mnemonicParsing="false" onAction="#goToCreateAdvice" prefHeight="65.0" prefWidth="110.0" text="Create Advice">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </FlowPane>
-               </children>
-            </VBox>
-         </left>
-         <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="81.0" prefWidth="590.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="73.0" text="Log  Out">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets right="10.0" />
-               </BorderPane.margin>
-            </HBox>
-         </top>
-      </BorderPane>
-   </children>
-</VBox>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DashController">
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <buttons>
+            <JFXButton fx:id="pBtn" text="Buy Products" />
+            <JFXButton fx:id="myPBtn" text="My Products" />
+            <JFXButton fx:id="transBtn" text="Transactions" />
+            <JFXButton fx:id="walletBtn" text="My Wallets" />
+            <JFXButton fx:id="Logout" text="Logout" />
+         </buttons>
+      </ButtonBar>
+   </top>
+   <left>
+      <TableView fx:id="adviceTbl" prefHeight="360.0" prefWidth="455.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="adviceIdCol" prefWidth="85.0" text="Advice Id" />
+          <TableColumn fx:id="dateCol" prefWidth="143.0" text="Date" />
+            <TableColumn fx:id="commisionCol" prefWidth="119.0" text="Commision" />
+            <TableColumn fx:id="prefCol" prefWidth="107.0" text="Preference " />
+        </columns>
+      </TableView>
+   </left>
+   <right>
+      <StackPane fx:id="stackPane" prefHeight="360.0" prefWidth="110.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="dialog" onAction="#getDetails" text="My Details" />
+         </children>
+      </StackPane>
+   </right>
+</BorderPane>
