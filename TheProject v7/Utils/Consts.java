@@ -75,7 +75,7 @@ public class Consts {
 	public static final String WORKER_UPDATE_maxPossibleExpansionSize = "UPDATE tblSystem SET tblSystem.maxPossibleExpansionSize = ?\r\n" + 
 			"WHERE (((tblSystem.id)='111'));\r\n" + 
 			"";
-
+	public static final String SQL_ADD_CATEGORY = "{ call  addCategory(?,?) }";
 
 
 	private static String getDBPath() {

@@ -14,7 +14,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 	Sys.system = new Sys();
 	
-System.out.println(UserLogic.getAllUsersConfirm(new User("Y0005I", "P1C")));
+	
 	//launch(args);
 	
 	

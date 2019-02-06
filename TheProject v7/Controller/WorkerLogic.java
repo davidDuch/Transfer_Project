@@ -44,6 +44,37 @@ public class WorkerLogic {
 		
 	}
 	
+	public static boolean addCategory(String id , String name) {
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_CATEGORY)) {
+				int i = 1;
+
+				stmt.setString(i++, id);
+				stmt.setString(i++, name);
+			
+
+				stmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 	
 
 	
