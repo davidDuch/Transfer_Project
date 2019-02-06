@@ -27,6 +27,10 @@ public class User {
 		DigitalSignature = digitalSignature;
 	}
 
+	public User(String username) {
+		this.userName = username;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
