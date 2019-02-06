@@ -40,7 +40,9 @@ public class Consts {
 	public static final String SQL_ADD_USER = "{ call addUser(?,?,?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICE = "{ call getUsersAdvice(?,?) };";
 	public static final String SQL_GET_PRODUCTS_PRICE = "{ call getProductsByPrice(?,?) };";
-	
+	public static final String SQL_GET_USERS_PAY = "{ call getUsersPay(?,?) };";
+	public static final String SQL_GET_USERS_CONFIRM = "{ call getUsersConfirm(?,?) };";
+
 
 
 //==================================== Advise logic ==============================	

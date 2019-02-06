@@ -9,16 +9,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+	
+	
 	public static void main(String[] args) {
 	Sys.system = new Sys();
 	
-	WorkerLogic.setDefaultWalletSize(20);
-	WorkerLogic.setDiscountExpandPrice(0);
-	WorkerLogic.setExpandDiscountSize(0);
-	WorkerLogic.setExpandPrice(20);
-	WorkerLogic.setExpandWalletSize(0);
-	WorkerLogic.setMaxPossibleExpansionSize(0);
+System.out.println(UserLogic.getAllUsersConfirm(new User("Y0005I", "P1C")));
 	//launch(args);
 	
 	
