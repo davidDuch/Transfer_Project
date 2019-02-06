@@ -19,6 +19,7 @@ public class Consts {
 	public static final String SQL_COUNT_WALLETS = "SELECT Count(tblWallet.address) AS CountOfaddress\r\n" + 
 			"FROM tblWallet;\r\n" + 
 			"";
+	public static final String SQL_ADD_WALLETKNOTS = "{ call addKnots(?,?) };";
 
 
 
@@ -42,6 +43,8 @@ public class Consts {
 	public static final String SQL_GET_PRODUCTS_PRICE = "{ call getProductsByPrice(?,?) };";
 	public static final String SQL_GET_USERS_PAY = "{ call getUsersPay(?,?) };";
 	public static final String SQL_GET_USERS_CONFIRM = "{ call getUsersConfirm(?,?) };";
+	public static final String SQL_UPDATE_QUANTITY = "{ call updateProduct(?,?) };";
+
 
 
 

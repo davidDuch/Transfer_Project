@@ -71,18 +71,7 @@ public class WorkerLogic {
 		
 	}
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
+		
 	public static boolean setDiscountExpandPrice(int set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -213,4 +202,5 @@ public class WorkerLogic {
 		
 	}
 
+	
 }
