@@ -84,6 +84,11 @@ public class Product {
 	}
 
 	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

@@ -8,6 +8,12 @@ import Utils.Status;
 
 public  class Transaction implements Comparable<Transaction> {
 
+	@Override
+	public String toString() {
+		return "Transaction [id=" + id + ", creatorAddress=" + creatorAddress + ", creatorSignature=" + creatorSignature
+				+ "]";
+	}
+
 	private String id;
 	private String description;
 	private double size;

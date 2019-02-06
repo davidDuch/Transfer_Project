@@ -8,7 +8,8 @@ import Utils.Status;
 
 public class Confirm extends Transaction {
 
-	private String buyer;
+	private String buyerAddress;
+	private String buyerSignature;
 	private Boolean approved;
 	private Calendar DateOfSupply;
 
@@ -18,18 +19,25 @@ public class Confirm extends Transaction {
 
 		super(id, description, size, dateCreated, dateApproved, commission, status, creatorAddress, creatorSignature,
 				wallet);
-		this.buyer = buyer;
+		this.buyerAddress = buyerAddress;
+		this.buyerSignature = buyerSignature;
 		this.approved = approved;
 		this.DateOfSupply = (dateOfSupply != null ? Sys.toCalendar(dateOfSupply) : null);
 	}
 
-	public String getBuyer() {
-		return buyer;
+
+
+	public String getBuyerAddress() {
+		return buyerAddress;
 	}
 
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
+
+
+	public String getBuyerSignature() {
+		return buyerSignature;
 	}
+
+
 
 	public Boolean getApproved() {
 		return approved;
@@ -47,9 +55,6 @@ public class Confirm extends Transaction {
 		DateOfSupply = dateOfSupply;
 	}
 
-	@Override
-	public String toString() {
-		return "Confirm [buyer=" + buyer + ", approved=" + approved + ", DateOfSupply=" + DateOfSupply + "]";
-	}
+	
 
 }

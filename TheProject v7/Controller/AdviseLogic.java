@@ -17,6 +17,12 @@ import Utils.Consts;
 
 public class AdviseLogic {
 
+	
+	
+
+	
+	
+	
 	/**
 	 * Adds a commitment to the select user and advice
 	 * 

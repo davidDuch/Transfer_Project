@@ -43,10 +43,7 @@ public class Pay extends Transaction {
 		BtcAmount = btcAmount;
 	}
 
-	@Override
-	public String toString() {
-		return "Pay [seller=" + sellerAddress + ", BtcAmount=" + BtcAmount + "]";
-	}
+	
 
 	public String getSellerSignature() {
 		return sellerSignature;

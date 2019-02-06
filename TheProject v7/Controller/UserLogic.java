@@ -9,32 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Advice;
+import Model.Category;
+import Model.Confirm;
 import Model.Pay;
+import Model.Product;
 import Model.User;
 import Model.Wallet;
 import Utils.Consts;
 import Utils.Status;
 
 public class UserLogic {
-	
-	
-	
-	
-	
-	
-	//public static boolean 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * 
 	 * @param address
@@ -47,17 +31,15 @@ public class UserLogic {
 	 * @param digitalSignature
 	 * @return
 	 */
-	public static boolean add_wallet(Boolean pC, Boolean tablet, Boolean phone,
-			double funds, double futureValue , String publicAddress, String digitalSignature ) {
-		
-		
+	public static boolean add_wallet(Boolean pC, Boolean tablet, Boolean phone, double funds, double futureValue,
+			String publicAddress, String digitalSignature) {
 
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_WALLET)) {
 
-				stmt.setString(1, "W"+Wallet.walletsCount);
+				stmt.setString(1, "W" + Wallet.walletsCount);
 				stmt.setBoolean(2, pC);
 				stmt.setBoolean(3, tablet);
 				stmt.setBoolean(4, phone);
@@ -75,9 +57,7 @@ public class UserLogic {
 		}
 		return false;
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * add new user to the system
@@ -90,8 +70,8 @@ public class UserLogic {
 	 * @param email
 	 * @return
 	 */
-	public static boolean addNewUser(String publicAddress, String digitalSignature, String userName, String password, String phoneNumber,
-			String email) {
+	public static boolean addNewUser(String publicAddress, String digitalSignature, String userName, String password,
+			String phoneNumber, String email) {
 
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -105,7 +85,7 @@ public class UserLogic {
 				stmt.setString(5, phoneNumber);
 				stmt.setString(6, email);
 				stmt.executeUpdate();
-				add_wallet( false, false, false, 0, 0, publicAddress, digitalSignature);
+				add_wallet(false, false, false, 0, 0, publicAddress, digitalSignature);
 
 				return true;
 			} catch (SQLException e) {
@@ -115,16 +95,9 @@ public class UserLogic {
 			e.printStackTrace();
 		}
 		return false;
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
-	
+
 	/**
 	 * get Transactions by status
 	 * 
@@ -236,7 +209,7 @@ public class UserLogic {
 	}
 
 	/**
-
+	 * 
 	 * 
 	 * Get users wallets
 	 * 
@@ -257,9 +230,9 @@ public class UserLogic {
 				ResultSet rs = stmt.executeQuery();
 
 				while (rs.next()) {
-					int i = 1 ;
-					results.add(new Wallet(rs.getString(i++), rs.getBoolean(i++) , 
-							rs.getBoolean(i++),rs.getBoolean(i++), rs.getDouble(i++), rs.getDouble(i++)));
+					int i = 1;
+					results.add(new Wallet(rs.getString(i++), rs.getBoolean(i++), rs.getBoolean(i++),
+							rs.getBoolean(i++), rs.getDouble(i++), rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -296,11 +269,9 @@ public class UserLogic {
 		}
 		return results;
 	}
-	
-	
-	
+
 	public static Number counts_All_Wallets() {
-		
+
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
@@ -309,7 +280,6 @@ public class UserLogic {
 				ResultSet rs = stmt.executeQuery();
 				rs.next();
 				return ((Number) rs.getObject(1)).intValue();
-				
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -317,8 +287,160 @@ public class UserLogic {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
+
+	}
+
+	public static ArrayList<Product> getProducts(int from, int to) {
+		ArrayList<Product> results = new ArrayList<>();
+		
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_PRODUCTS_PRICE);
+
+				stmt.setDouble(1,from);
+				stmt.setDouble(2, to);
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Product(rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getDouble(i++), new Model.Category(rs.getString(i++) , null), rs.getInt(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+
+	}
+
+	public static ArrayList<Product> getProducts(String name) {
+	ArrayList<Product> results = new ArrayList<>();
+		
+	try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblProduct WHERE tblProduct.name  =  " +"'" +name+"'"+";");
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Product(rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getDouble(i++), new Model.Category( rs.getString(i++) , null), rs.getInt(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	public static ArrayList<Product> getProducts(Category  category) {
+		ArrayList<Product> results = new ArrayList<>();
+		
+		try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblProduct WHERE tblProduct.categoryId  =  "+category.getId() +";");
+					ResultSet rs = stmt.executeQuery();
+
+					while (rs.next()) {
+						results.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), category, rs.getInt(7)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		
+
+	}
+
+	public static ArrayList<Product> getProducts(User user){
+	ArrayList<Product> results = new ArrayList<>();
+		
+		try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblProduct WHERE tblProduct.sellerAddress  =  '"+user.getPublicAddress() +"' AND tblProduct.sellerSignature = '"+ user.getDigitalSignature()+"' ;");
+					ResultSet rs = stmt.executeQuery();
+
+					while (rs.next()) {
+						results.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), new Category(rs.getString(6), null), rs.getInt(7)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+	}
+	
+	
+	
+	public static ArrayList<Pay> getAllUsersPay(User user){
+		
+	ArrayList<Pay> results = new ArrayList<>();
+		
+		try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_PAY);
+					
+					stmt.setString(1,user.getPublicAddress());
+					stmt.setString(2, user.getDigitalSignature());
+					
+					ResultSet rs = stmt.executeQuery();
+
+					while (rs.next()) {
+						results.add(new Pay(rs.getString(1), rs.getString(2),rs.getDouble(3), rs.getDate(4),rs.getDate(5) ,Status.valueOf(rs.getString(6)) , rs.getDouble(7) ,rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		
+		
+		
+	}
+	
+	public static ArrayList<Confirm> getAllUsersConfirm(User user){
+		ArrayList<Confirm> results = new ArrayList<>();
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_CONFIRM);
+				
+				stmt.setString(1,user.getPublicAddress());
+				stmt.setString(2, user.getDigitalSignature());
+				
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					results.add(new Confirm(rs.getString(1), rs.getString(2),rs.getDouble(3), rs.getDate(4),rs.getDate(5) ,Status.valueOf(rs.getString(6)) , rs.getDouble(7) , rs.getDate(8), rs.getBoolean(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+		
+		
 		
 		
 	}
@@ -328,5 +450,32 @@ public class UserLogic {
 	
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

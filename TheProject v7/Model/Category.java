@@ -1,14 +1,73 @@
 package Model;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Utils.Consts;
+
 public class Category {
 
 	private String Id;
 	private String Name;
 
+	
+	
+	
+	
 	public Category(String id, String name) {
 		super();
-		Id = id;
-		Name = name;
+		
+		if(id != null && name != null) {
+			Id = id;
+			Name = name;
+		}
+		else if(id != null && name == null ) {
+			
+			this.Id = id;
+			
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					PreparedStatement stmt = conn.prepareStatement("SELECT tblCategory.categoryName FROM tblCategory WHERE tblCategory.categoryId = "+id);
+
+					ResultSet rs = stmt.executeQuery();
+					rs.next();
+					Name =  rs.getObject(1).toString();
+
+					 
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(id == null && name != null ) {
+			
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+					PreparedStatement stmt = conn.prepareStatement("SELECT tblCategory.categoryName FROM tblCategory WHERE tblCategory.categoryName = "+name);
+
+					ResultSet rs = stmt.executeQuery();
+					rs.next();
+					id =  rs.getObject(1).toString();
+
+					 
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
 	}
 
 	public String getId() {
