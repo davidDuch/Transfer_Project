@@ -53,7 +53,8 @@ public class Consts {
 	public static final String SQL_INS_NEWCOMMITMENT = "{ call addCommitment(?,?,?,?) }";
 	public static final String SQL_INS_NEWADVICE = "{ call addAdvice(?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICECOMMIT = "{ call getCommitmentPerUserPerAdvice(?,?,?) }";
-	
+	public static final String SQL_GET_ADVICE_PER_USER = "{ call advicePerUser(?,?) }";
+
 	
 	
 	

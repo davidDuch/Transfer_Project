@@ -17,12 +17,33 @@ import Utils.Consts;
 
 public class AdviseLogic {
 
-	
-	
+	public static ArrayList<Advice> getAllAdvisesPerUser(User user) {
+		ArrayList<Advice> results = new ArrayList<Advice>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try {
+				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_ADVICE_PER_USER);
+				stmt.setString(1, user.getPublicAddress());
+				stmt.setString(2, user.getDigitalSignature());
 
-	
-	
-	
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+							rs.getDouble(i++)));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+
+	}
+
 	/**
 	 * Adds a commitment to the select user and advice
 	 * 
@@ -121,8 +142,8 @@ public class AdviseLogic {
 	 * @param user
 	 * @return
 	 */
-	public static ArrayList<CommitmentPerUser> getAdviceCommitement(User user, Advice advice) {
-		ArrayList<CommitmentPerUser> results = new ArrayList<>();
+	public static CommitmentPerUser getAdviceCommitement(User user, Advice advice) {
+		CommitmentPerUser results = null;
 
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -134,10 +155,10 @@ public class AdviseLogic {
 				stmt.setString(3, user.getDigitalSignature());
 				ResultSet rs = stmt.executeQuery();
 
-				while (rs.next()) {
-					int i = 1;
-					results.add(new CommitmentPerUser(Commitment.valueOf(rs.getString(i))));
-				}
+				rs.next();
+				results = new CommitmentPerUser(Commitment.valueOf(rs.getString(1)));
+
+				System.out.println(results);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
+import Model.Advice;
 import Model.Category;
 import Model.User;
 import Model.Wallet;
@@ -14,7 +15,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		Sys.system = new Sys();
-
+		AdviseLogic.getAdviceCommitement(new User("P5115O","LI1"), new Advice(1));
 		launch(args);
 	}
 
