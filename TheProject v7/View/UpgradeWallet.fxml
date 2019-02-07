@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Choose Wallet to upgrade" />
+      <JFXComboBox />
+      <Label text="Choose Platforms" />
+      <HBox spacing="10.0">
+         <children>
+            <JFXToggleButton fx:id="mobileToggle" text="Mobile" />
+            <JFXToggleButton fx:id="pcToggle" text="PC" />
+            <JFXToggleButton fx:id="tabletToggle" text="Tablet" />
+         </children>
+      </HBox>
+      <HBox spacing="20.0">
+         <children>
+            <Label prefHeight="46.0" prefWidth="108.0" text="BitCoinSpace" wrapText="true" />
+            <JFXSlider />
+         </children>
+      </HBox>
+      <HBox spacing="20.0">
+         <children>
+            <Label prefHeight="46.0" prefWidth="108.0" text="BitCoinKnots" wrapText="true" />
+            <JFXSlider majorTickUnit="5.0" max="50.0" value="25.0" />
+         </children>
+      </HBox>
+      <JFXButton text="Upgrade Wallet" />
+   </children>
+</VBox>

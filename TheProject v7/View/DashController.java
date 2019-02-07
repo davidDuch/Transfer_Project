@@ -1,21 +1,27 @@
 package View;
 
+import java.net.URL;
+import java.sql.Date;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
 import Controller.Sys;
+import Model.Advice;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DashController {
+public class DashController implements Initializable{
 
     @FXML
     private JFXButton pBtn;
@@ -33,25 +39,32 @@ public class DashController {
     private JFXButton Logout;
 
     @FXML
-    private TableView<?> adviceTbl;
+    private TableView<Advice> adviceTbl;
 
     @FXML
-    private TableColumn<?, ?> adviceIdCol;
+    private TableColumn<Advice, String> adviceIdCol;
 
     @FXML
-    private TableColumn<?, ?> dateCol;
+    private TableColumn<Advice, Date> dateCol;
 
     @FXML
-    private TableColumn<?, ?> commisionCol;
+    private TableColumn<Advice, Double> commisionCol;
 
     @FXML
-    private TableColumn<?, ?> prefCol;
+    private TableColumn<Advice, Double> prefCol;
 
     @FXML
     private StackPane stackPane;
 
     @FXML
     private JFXButton dialog;
+
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
+    	
+		
+	}
+
     @FXML
     public void getDetails(ActionEvent event) {
     JFXDialogLayout content = new JFXDialogLayout();
@@ -70,12 +83,11 @@ public class DashController {
     });
     dialog.show();
     }
-    
+   // getUsersAdvice
 	@FXML
 	void myWallets(ActionEvent event) {
 		ViewLogic.walletMenuScreen();
 	}
-
 
 	@FXML
 	void Logout(ActionEvent event) {

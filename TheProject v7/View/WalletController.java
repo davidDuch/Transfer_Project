@@ -9,6 +9,7 @@ import Controller.Sys;
 import Controller.UserLogic;
 import Model.Wallet;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -74,5 +75,11 @@ public class WalletController implements Initializable
 		walletTable.setItems(FXCollections.observableArrayList(UserLogic.getUserWallets(Sys.currentUser)));
 	}
     
+
+	@FXML
+	void buyWallet(ActionEvent event) {
+		ViewLogic.buyWallet();
+	}
+
 
 }

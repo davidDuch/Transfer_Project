@@ -26,12 +26,12 @@ public class Sys {
 	public static Sys system;
 
 	public Calendar currentTime;
-	public double discountExpandPrice;
-	public double sizeExpandPrice;
-	public double defualtWalletSize;
-	public double expendWalletSize;
-	public double expendDiscountSize;
-	public double maxPossibleExpansionSize;
+	public static double discountExpandPrice;
+	public static double sizeExpandPrice;
+	public static double defualtWalletSize;
+	public static double expendWalletSize;
+	public static double expendDiscountSize;
+	public static double maxPossibleExpansionSize;
 	public static User currentUser; 
 	/**
 	 * 

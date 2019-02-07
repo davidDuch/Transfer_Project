@@ -17,7 +17,7 @@
             <Label text="Welcome!" />
             <JFXTextField fx:id="inputUser" promptText="Username" />
             <JFXPasswordField fx:id="inputPass" promptText="Password" />
-            <JFXRadioButton text="As Worker" />
+            <JFXRadioButton fx:id="workerRadio" text="As Worker" />
             <JFXButton fx:id="loginBtn" onAction="#Login" text="Login" />
             <Label fx:id="loginError" prefHeight="17.0" prefWidth="200.0" />
          </children>
