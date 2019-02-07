@@ -15,8 +15,8 @@
             <JFXButton fx:id="pBtn" text="Buy Products" />
             <JFXButton fx:id="myPBtn" text="My Products" />
             <JFXButton fx:id="transBtn" text="Transactions" />
-            <JFXButton fx:id="walletBtn" text="My Wallets" />
-            <JFXButton fx:id="Logout" text="Logout" />
+            <JFXButton fx:id="walletBtn" onAction="#myWallets" text="My Wallets" />
+            <JFXButton fx:id="Logout" onAction="#Logout" text="Logout" />
          </buttons>
       </ButtonBar>
    </top>

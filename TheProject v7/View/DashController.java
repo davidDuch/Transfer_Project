@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DashController {
 
@@ -69,4 +70,19 @@ public class DashController {
     });
     dialog.show();
     }
+    
+	@FXML
+	void myWallets(ActionEvent event) {
+		ViewLogic.walletMenuScreen();
+	}
+
+
+	@FXML
+	void Logout(ActionEvent event) {
+		Stage stage = (Stage) Logout.getScene().getWindow();
+		stage.close();
+
+	}
+
+
 }
