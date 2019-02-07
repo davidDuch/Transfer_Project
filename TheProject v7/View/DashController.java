@@ -9,14 +9,17 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
 import Controller.Sys;
+import Controller.UserLogic;
 import Model.Advice;
 import Model.User;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -61,7 +64,13 @@ public class DashController implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	
+    	adviceIdCol.setCellValueFactory(new PropertyValueFactory<>("adviceId"));
+    	dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+    	commisionCol.setCellValueFactory(new PropertyValueFactory<>("adviceComission"));
+    	prefCol.setCellValueFactory(new PropertyValueFactory<>("prefPercent"));
+    	adviceTbl.setItems(FXCollections.observableArrayList(UserLogic.getUsersAdvice(Sys.currentUser)));
+
+
 		
 	}
 
@@ -88,6 +97,11 @@ public class DashController implements Initializable{
 	void myWallets(ActionEvent event) {
 		ViewLogic.walletMenuScreen();
 	}
+	@FXML
+	void buyProducts(ActionEvent event) {
+		ViewLogic.buyProducts();
+	}
+
 
 	@FXML
 	void Logout(ActionEvent event) {

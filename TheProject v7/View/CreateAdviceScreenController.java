@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+
 import Controller.AdviseLogic;
 import Controller.UserLogic;
 import Model.Advice;
@@ -30,19 +34,19 @@ public class CreateAdviceScreenController implements Initializable {
 	private Label header;
 
 	@FXML
-	private Button createAdviceButton;
+	private JFXButton createAdviceButton;
 
 	@FXML
-	private Button resetForm;
+	private JFXButton resetForm;
 
 	@FXML
-	private TextField idInput;
+	private JFXTextField idInput;
 
 	@FXML
-	private TextField commisionInput;
+	private JFXTextField commisionInput;
 
 	@FXML
-	private TextField prefInput;
+	private JFXTextField prefInput;
 
 	@FXML
 	private AnchorPane advicesTablePane;
@@ -78,13 +82,13 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableColumn<User, String> publicSignatureC;
 
 	@FXML
-	private Button addUserButton;
+	private JFXButton addUserButton;
 
 	@FXML
-	private Button backButton;
+	private JFXButton backButton;
 
 	@FXML
-	private Button sendButton;
+	private JFXButton sendButton;
 
 	@FXML
 	private Label labelAlert;
@@ -102,7 +106,7 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableColumn<DataForAdTable, Commitment> commitmentColumn;
 
 	@FXML
-	private ComboBox<Commitment> comboLvl;
+	private JFXComboBox<Commitment> comboLvl;
 
 	private ArrayList<User> userAdded = new ArrayList<>();
 

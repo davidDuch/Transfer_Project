@@ -113,7 +113,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [Id=" + Id + ", Name=" + Name + "]";
+		return  Name;
 	}
 
 }

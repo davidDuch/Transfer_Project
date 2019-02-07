@@ -8,6 +8,9 @@ public class Wallet {
 	private Boolean PC;
 	private Boolean Tablet;
 	private Boolean Phone;
+	private String type;
+	
+	
 	
 	public static int walletsCount = 22;
 
@@ -25,7 +28,13 @@ public class Wallet {
 		Tablet = tablet;
 		Phone = phone;
 	}
+	public String getType() {
+		return type;
+	}
 
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -117,5 +126,7 @@ public class Wallet {
 		return "Wallet [address=" + address + ", funds=" + funds + ", futureValue=" + futureValue + ", PC=" + PC
 				+ ", Tablet=" + Tablet + ", Phone=" + Phone + "]";
 	}
+
+
 
 }

@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DashController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
-            <JFXButton fx:id="pBtn" text="Buy Products" />
+            <JFXButton fx:id="pBtn" onAction="#buyProducts" text="Buy Products" />
             <JFXButton fx:id="myPBtn" text="My Products" />
             <JFXButton fx:id="transBtn" text="Transactions" />
             <JFXButton fx:id="walletBtn" onAction="#myWallets" text="My Wallets" />

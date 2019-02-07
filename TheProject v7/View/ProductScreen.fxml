@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.productScreenController">
    <top>
       <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +26,7 @@
       </VBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="720.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="productTbl" prefHeight="200.0" prefWidth="720.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nameC" prefWidth="114.0" text="Product Name" />
           <TableColumn fx:id="priceC" prefWidth="95.0" text="Price" />
