@@ -55,6 +55,16 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("CreateAdviceScreen.fxml"), stage, false, "Create Advise", false);
 
 	}
+	protected static void walletMenuScreen() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("walletMenu.fxml"), stage, false, "My Wallets", false);
+
+	}
+	protected static void buyWallet() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("BuyWalletScreen.fxml"), stage, false, "Buy Wallets", false);
+
+	}
 
 	/**
 	 * this method manages the window properties

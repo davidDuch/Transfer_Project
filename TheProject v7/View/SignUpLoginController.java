@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 
 import Controller.Sys;
@@ -33,6 +34,9 @@ public class SignUpLoginController {
 
     @FXML
     private Label loginError;
+
+    @FXML
+    private JFXRadioButton workerRadio;
 
     @FXML
     private JFXTextField newUser;
@@ -135,7 +139,14 @@ public class SignUpLoginController {
 		return matcher.find();
     
 }
-	
+	public boolean workerLogin(User user) {
+		for(User test : UserLogic.getWorkers()) {
+			if(test.getPassword().equals(user.getPassword()) && test.getUserName().equals(user.getUserName())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public boolean Login(ActionEvent event) throws IOException {
 		if (inputUser.getText() == null || inputUser.getText().equals("")) {
 			loginError.setText("No UserName");
@@ -146,6 +157,12 @@ public class SignUpLoginController {
 			return false;
 		}
 		for(User fromDB :UserLogic.getUsers()){
+			if(workerRadio.isSelected()) {
+				if(workerLogin(fromDB)) {
+					loginError.setText("WorkerSignIn!");
+					return true;
+				}
+			}
 			if(fromDB.getUserName().equals(inputUser.getText()) && fromDB.getPassword().equals(inputPass.getText())) {
 			loginError.setText("Successful Login");
 			Sys.currentUser = fromDB;

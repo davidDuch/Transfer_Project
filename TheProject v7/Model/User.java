@@ -32,6 +32,13 @@ public class User {
 		PublicAddress = publicAddress;
 		DigitalSignature = digitalSignature;
 	}
+	public User(String publicAddress, String digitalSignature, String userName, String password){
+		super();
+		this.userName = userName;
+		this.password = password;
+		PublicAddress = publicAddress;
+		DigitalSignature = digitalSignature;
+	}
 
 	public User(String username) {
 		this.userName = username;

@@ -37,6 +37,7 @@ public class Consts {
 
 //==================================== User logic ==============================	
 	public static final String SQL_SEL_USERS = "SELECT * FROM tblUser";
+	public static final String SQL_SEL_WORKERS = "SELECT * FROM tblWorkers";
 	public static final String SQL_DEL_DELETEUSER = "{ call  deleteUser(?,?) }";
 	public static final String SQL_ADD_USER = "{ call addUser(?,?,?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICE = "{ call getUsersAdvice(?,?) };";

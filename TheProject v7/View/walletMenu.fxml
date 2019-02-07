@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.WalletController">
    <top>
       <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
                <buttons>
-                  <JFXButton prefHeight="34.0" prefWidth="134.0" text="Update Funds " />
-                  <JFXButton prefHeight="33.0" text="Buy Wallet" />
-                  <JFXButton text="Back" />
+                  <JFXButton fx:id="update" prefHeight="34.0" prefWidth="134.0" text="Update Funds " />
+                  <JFXButton fx:id="upgrade" prefHeight="33.0" text="Upgrade" />
+                  <JFXButton fx:id="buy" onAction="#buyWallet" prefHeight="33.0" text="Buy Wallet" />
+                  <JFXButton fx:id="back" text="Back" />
                </buttons>
             </ButtonBar>
          </children>
       </VBox>
    </top>
    <center>
-      <JFXTreeTableView BorderPane.alignment="CENTER">
-         <columns>
-            <TreeTableColumn prefWidth="146.0" text="Wallet Address" />
-            <TreeTableColumn prefWidth="145.0" text="Wallet Type" />
-            <TreeTableColumn prefWidth="153.0" text="Funds" />
-            <TreeTableColumn prefWidth="150.0" text="Future Funds" />
-            <TreeTableColumn prefWidth="124.0" text="More Details" />
-         </columns>
-      </JFXTreeTableView>
+      <TableView fx:id="walletTable" prefHeight="200.0" prefWidth="737.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="addressC" prefWidth="107.0" text="Address" />
+          <TableColumn fx:id="typeC" prefWidth="100.0" text="Type" />
+            <TableColumn fx:id="fundsC" prefWidth="86.0" text="Funds" />
+            <TableColumn fx:id="ffundsC" prefWidth="94.0" text="Future Funds" />
+            <TableColumn fx:id="pcC" prefWidth="67.0" text="PC" />
+            <TableColumn fx:id="tabletC" prefWidth="69.0" text="Tablet" />
+            <TableColumn fx:id="mobileC" prefWidth="63.0" text="Mobile" />
+            <TableColumn fx:id="discountC" prefWidth="74.0" text="Discount" />
+            <TableColumn fx:id="spaceC" prefWidth="69.0" text="Space" />
+        </columns>
+      </TableView>
    </center>
 </BorderPane>

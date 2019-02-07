@@ -15,7 +15,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		Sys.system = new Sys();
-		SendEmail.send();
+
 		launch(args);
 	}
 
