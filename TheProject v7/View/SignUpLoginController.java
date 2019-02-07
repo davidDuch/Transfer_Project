@@ -70,9 +70,10 @@ public class SignUpLoginController {
 			return false;
 		}
 		for(User userNameCheck : UserLogic.getUsers()) {
-			userNameCheck.getUserName().equals(newUser.getText());
+			if(userNameCheck.getUserName().equals(newUser.getText())){
 			signUpError.setText("Please Choose a different Username");
 			return false;
+			}
 		}
 		if (pass1.getText().isEmpty() || pass1.getText() == ("")) {
 			signUpError.setText("Input Password");
