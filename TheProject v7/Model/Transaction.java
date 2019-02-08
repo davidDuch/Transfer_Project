@@ -1,18 +1,21 @@
 package Model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import Controller.Sys;
+import Utils.Consts;
 import Utils.Status;
 
 public  class Transaction implements Comparable<Transaction> {
 
-	@Override
-	public String toString() {
-		return "Transaction [id=" + id + ", creatorAddress=" + creatorAddress + ", creatorSignature=" + creatorSignature
-				+ "]";
-	}
+	
 
 	private String id;
 	private String description;
@@ -25,6 +28,8 @@ public  class Transaction implements Comparable<Transaction> {
 	private String creatorSignature;
 	private String wallet;
 	private String sendType;
+
+	
 
 	public Transaction(String id) {
 		super();
@@ -39,7 +44,7 @@ public  class Transaction implements Comparable<Transaction> {
 	}
 
 	public Transaction(String id, String description, double size, Date dateCreated, Date dateApproved,
-			double commission, Status status, String creatorAddress, String creatorSignature, String Wallet) {
+			double commission, Status status, String creatorAddress, String creatorSignature, String wallet) {
 
 		super();
 		this.id = id;
@@ -49,11 +54,47 @@ public  class Transaction implements Comparable<Transaction> {
 		this.status = status;
 		this.creatorAddress = creatorAddress;
 		this.creatorSignature = creatorSignature;
+		this.wallet = wallet;
 		this.dateCreated = Sys.toCalendar(dateCreated);
 		this.dateApproved = (dateApproved != null ? Sys.toCalendar(dateApproved) : null);
 
 	}
 
+	
+	
+	
+	
+	/**
+	 * use it to get the wallet from the DB 
+	 * 
+	 * @return
+	 */
+	public Wallet getWalletObject() {
+		
+		Wallet results = null;
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				PreparedStatement stmt = conn.prepareStatement(
+						"SELECT * FROM tblWallet WHERE tblWallet.address  =  '"  +wallet  + "' ;");
+				ResultSet rs = stmt.executeQuery();
+				rs.next();
+				results = new Wallet(rs.getString(1), rs.getBoolean(2), rs.getBoolean(3), rs.getBoolean(4), rs.getDouble(5), rs.getDouble(6));
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	public String getWallet() {
+		return wallet;
+	}
+	
 	public String getCreatorAddress() {
 		return creatorAddress;
 	}
@@ -170,6 +211,13 @@ public  class Transaction implements Comparable<Transaction> {
 
 	public void setSendType(String sendType) {
 		this.sendType = sendType;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Transaction [id=" + id + ", creatorAddress=" + creatorAddress + ", creatorSignature=" + creatorSignature
+				+ "]";
 	}
 
 }

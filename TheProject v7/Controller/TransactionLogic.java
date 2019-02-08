@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import Model.Confirm;
 import Model.Pay;
 import Model.Transaction;
+import Model.Wallet;
 import Utils.Consts;
 import Utils.Status;
 import net.sf.jasperreports.engine.JRException;
@@ -273,6 +274,38 @@ public class TransactionLogic {
 
 		}
 
+	}
+
+	
+	
+	/**
+	 * use this method only  when confirm and pay are executed 
+	 * @param pay
+	 * @param confirm
+	 */
+	public static void TransferFunds(Pay pay, Confirm confirm) {
+
+		
+		// TODO problems with understanding when this method should be used
+		//the problem is that you cant know which confirm was made for each user
+		double amountToTransfer = pay.getBtcAmount();
+		Wallet buyer = pay.getWalletObject();
+		Wallet seller =  confirm.getWalletObject();
+		
+		buyer.setFutureValue(buyer.getFutureValue()  + amountToTransfer);
+		seller.setFutureValue(buyer.getFutureValue()  - amountToTransfer);
+
+		buyer.setFunds(buyer.getFunds() - amountToTransfer);
+		seller.setFunds(seller.getFunds()  + amountToTransfer);
+		
+		UserLogic.updateWalletFunds(buyer);
+		UserLogic.updateWalletFunds(seller);
+		
+		
+		
+		
+		
+		
 	}
 
 }

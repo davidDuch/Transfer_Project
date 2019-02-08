@@ -6,6 +6,7 @@ import java.util.jar.JarException;
 
 import Model.Advice;
 import Model.Category;
+import Model.Confirm;
 import Model.User;
 import Model.Wallet;
 import View.ViewLogic;
@@ -18,8 +19,8 @@ public class Main extends Application {
 	
 	public static void main(String[] args) throws JarException, ClassNotFoundException, SQLException, JRException {
 		Sys.system = new Sys();
-
-		TransactionLogic.getInstance().createReport().show();;
+		
+		
 	//	launch(args);
 	}
 

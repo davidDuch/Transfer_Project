@@ -4,8 +4,17 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
 	<queryString language="SQL">
-		<![CDATA[]]>
+		<![CDATA[SELECT Address,Count(transactionId) AS Amount  , AVG(commission)  AS Average , ((SELECT Count(*) FROM byDate WHERE status LIKE 'executed' GROUP BY  transactionId )/ Count(transactionId) )AS Percenr
+FROM byDate 
+INNER JOIN  tblUser ON tblUser.publicAddress = byDate.Address AND tblUser.digitalSignature = byDate.Signature
+GROUP BY Address,Percenr]]>
 	</queryString>
+	<field name="Amount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="Amount"/>
+	</field>
+	<field name="Average" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Average"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
