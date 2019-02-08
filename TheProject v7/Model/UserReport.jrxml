@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37532e5a-da20-41a3-9a69-2cd950f42bc4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT Address,Count(transactionId) AS Amount  , AVG(commission)  AS Average , ((SELECT Count(*) FROM byDate WHERE status LIKE 'executed' GROUP BY  transactionId )/ Count(transactionId) )AS Percenr
+FROM byDate 
+INNER JOIN  tblUser ON tblUser.publicAddress = byDate.Address AND tblUser.digitalSignature = byDate.Signature
+GROUP BY Address,Percenr]]>
+	</queryString>
+	<field name="Amount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="Amount"/>
+	</field>
+	<field name="Average" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Average"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

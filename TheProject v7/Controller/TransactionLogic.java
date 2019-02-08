@@ -15,12 +15,13 @@ import javax.swing.JFrame;
 import Model.Confirm;
 import Model.Pay;
 import Model.Transaction;
+import Model.Wallet;
 import Utils.Consts;
 import Utils.Status;
-//import net.sf.jasperreports.engine.JRException;
-//import net.sf.jasperreports.engine.JasperFillManager;
-//import net.sf.jasperreports.engine.JasperPrint;
-//import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class TransactionLogic {
 
@@ -89,20 +90,18 @@ public class TransactionLogic {
 
 	}
 
-	// public JFrame createReport() throws SQLException, JarException,
-	// ClassNotFoundException, JRException {
-	//// Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-	//// try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-	//// JasperPrint print = JasperFillManager
-	//// .fillReport(getClass().getResourceAsStream("/Model/TransactionsReport.jasper"),
-	// null, conn);
-	// JFrame frame = new JFrame("Customer Orders Report");
-	//// frame.getContentPane().add(new JRViewer(print));
-	//// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	//// frame.pack();
-	// return frame;
-	// }
-	// }
+	public JFrame createReport() throws SQLException, JarException, ClassNotFoundException, JRException {
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+			JasperPrint print = JasperFillManager
+					.fillReport(getClass().getResourceAsStream("/Model/TransactionsReport.jasper"), null, conn);
+			JFrame frame = new JFrame("Customer Orders Report");
+			frame.getContentPane().add(new JRViewer(print));
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.pack();
+			return frame;
+		}
+	}
 
 	/**
 	 * add Pay Transaction to DB
@@ -255,7 +254,7 @@ public class TransactionLogic {
 				e.printStackTrace();
 			}
 
-		} else if(type.equals("Pay")){
+		} else if (type.equals("Pay")) {
 
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -275,6 +274,38 @@ public class TransactionLogic {
 
 		}
 
+	}
+
+	
+	
+	/**
+	 * use this method only  when confirm and pay are executed 
+	 * @param pay
+	 * @param confirm
+	 */
+	public static void TransferFunds(Pay pay, Confirm confirm) {
+
+		
+		// TODO problems with understanding when this method should be used
+		//the problem is that you cant know which confirm was made for each user
+		double amountToTransfer = pay.getBtcAmount();
+		Wallet buyer = pay.getWalletObject();
+		Wallet seller =  confirm.getWalletObject();
+		
+		buyer.setFutureValue(buyer.getFutureValue()  + amountToTransfer);
+		seller.setFutureValue(buyer.getFutureValue()  - amountToTransfer);
+
+		buyer.setFunds(buyer.getFunds() - amountToTransfer);
+		seller.setFunds(seller.getFunds()  + amountToTransfer);
+		
+		UserLogic.updateWalletFunds(buyer);
+		UserLogic.updateWalletFunds(seller);
+		
+		
+		
+		
+		
+		
 	}
 
 }
