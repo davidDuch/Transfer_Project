@@ -642,7 +642,7 @@ public class UserLogic {
 			try {
 				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 				CallableStatement stmt = conn.prepareCall("UPDATE tblWallet SET tblWallet.futureValue = ?\r\n"
-						+ "tblWallet.funds = ? WHERE (((tblWallet.address)=?));\r\n" + " ");
+						+ " , tblWallet.funds = ? WHERE (((tblWallet.address)=?));\r\n" + " ");
 
 				stmt.setString(3, wallet.getAddress());
 				stmt.setDouble(1, wallet.getFutureValue());

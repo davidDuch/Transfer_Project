@@ -4,31 +4,138 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT Address,Count(transactionId) AS Amount  , AVG(commission)  AS Average , ((SELECT Count(*) FROM byDate WHERE status LIKE 'executed' GROUP BY  transactionId )/ Count(transactionId) )AS Percenr
-FROM byDate 
-INNER JOIN  tblUser ON tblUser.publicAddress = byDate.Address AND tblUser.digitalSignature = byDate.Signature
-GROUP BY Address,Percenr]]>
+		<![CDATA[SELECT * FROM tblUserReport]]>
 	</queryString>
-	<field name="Amount" class="java.lang.Long">
+	<field name="Address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	</field>
+	<field name="Signature" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Signature"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	</field>
+	<field name="Amount" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="Amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
 	</field>
 	<field name="Average" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="Average"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
 	</field>
+	<field name="Precent" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Precent"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	</field>
+	<variable name="Precent_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Precent}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="115" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="-10" width="595" height="40" forecolor="rgba(6, 15, 15, 0.69803923)" backcolor="rgba(14, 28, 31, 0.7254902)" uuid="32e0a8d0-db80-485e-8b6e-50bbeb240386"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="-9" width="330" height="39" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0ede24a0-bd87-498d-84e2-c18e43ff60aa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="26" isUnderline="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[User Report]]></text>
+			</staticText>
+			<textField pattern="M/d/yy h:mm a">
+				<reportElement x="390" y="0" width="178" height="19" forecolor="#FFFFFF" uuid="7225a418-a096-40a2-bb2b-49c2f062fedd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Monospaced" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-15" y="80" width="70" height="30" uuid="584a9d8c-db3f-45cb-97cd-47a0ec67f3b7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="80" width="134" height="30" uuid="556454e3-48bc-413d-bcc4-afa377549aa6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Digital Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="80" width="85" height="30" uuid="b6ae84da-4fb3-49f0-9d87-9b5d12700ee8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="85" width="100" height="30" uuid="8913eb8c-bc03-4ec4-90d6-80bd979e40f8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Average]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="85" width="100" height="30" uuid="267f9b54-5e8c-419c-a06f-43628a3ee943"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Percent]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="40" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="67" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="-15" y="13" width="80" height="26" uuid="d8719726-34d5-4934-906e-8636a010e83a"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+					<paragraph tabStopWidth="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="11" width="100" height="30" uuid="7598eac8-d272-4649-b210-72342aaec0f8"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+					<paragraph tabStopWidth="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Signature}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="234" y="11" width="100" height="30" uuid="02c2823b-ba84-4dba-9f52-e472ae14cc1f"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+					<paragraph tabStopWidth="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="13" width="100" height="30" uuid="97c211a2-a960-48c1-8aff-7b5eccace6f2"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Average}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="#,##0.00%">
+				<reportElement x="450" y="11" width="100" height="30" uuid="7ab5e473-62cd-4e3c-b3f2-49104506a34b"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precent}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

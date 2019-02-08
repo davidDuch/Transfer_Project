@@ -276,36 +276,97 @@ public class TransactionLogic {
 
 	}
 
-	
-	
 	/**
-	 * use this method only  when confirm and pay are executed 
+	 * use this method only when confirm and pay are executed
+	 * 
 	 * @param pay
 	 * @param confirm
 	 */
 	public static void TransferFunds(Pay pay, Confirm confirm) {
 
-		
 		// TODO problems with understanding when this method should be used
-		//the problem is that you cant know which confirm was made for each user
+		// the problem is that you cant know which confirm was made for each user
 		double amountToTransfer = pay.getBtcAmount();
 		Wallet buyer = pay.getWalletObject();
-		Wallet seller =  confirm.getWalletObject();
-		
-		buyer.setFutureValue(buyer.getFutureValue()  + amountToTransfer);
-		seller.setFutureValue(buyer.getFutureValue()  - amountToTransfer);
+		Wallet seller = confirm.getWalletObject();
+
+		buyer.setFutureValue(buyer.getFutureValue() + amountToTransfer);
+		seller.setFutureValue(buyer.getFutureValue() - amountToTransfer);
 
 		buyer.setFunds(buyer.getFunds() - amountToTransfer);
-		seller.setFunds(seller.getFunds()  + amountToTransfer);
-		
+		seller.setFunds(seller.getFunds() + amountToTransfer);
+
 		UserLogic.updateWalletFunds(buyer);
 		UserLogic.updateWalletFunds(seller);
 		
+		// close the transactions
+		updateTransactionStatus(confirm, Status.closed);
+		updateTransactionStatus(pay, Status.closed);
+
+	}
+
+	
+	
+	
+	/**
+	 * method for closing the transactions
+	 * 
+	 * 
+	 * 
+	 * @param trans
+	 * @param status
+	 */
+	public static void updateTransactionStatus(Transaction trans, Status status) {
+
 		
 		
+	
+		//find first the type of the transaction
 		
 		
-		
+		if (trans instanceof Pay) {
+
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try {
+					Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall("{ call updateStatusPay(?,?) };");
+
+					
+					// close the transaction
+					stmt.setString(1, trans.getId());
+					stmt.setString(2, status.toString());
+					stmt.executeUpdate();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try {
+					Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall("{ call updateStatusConfirm(?,?) };");
+
+					// close the transaction
+					stmt.setString(1, trans.getId());
+					stmt.setString(2, status.toString());
+					stmt.executeUpdate();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 }
