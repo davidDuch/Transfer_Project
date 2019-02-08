@@ -45,7 +45,12 @@ public class UserLogic {
 		return results;
 	}
 
-	public static boolean upgradeWalletToSpace(Wallet wallet) {
+
+	
+	
+	
+	
+	public static boolean upgradeWalletToSpace(Wallet wallet , double increase) {
 
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -53,7 +58,11 @@ public class UserLogic {
 					CallableStatement stmt = conn.prepareCall("{ call addSpace(?,?)  };")) {
 
 				stmt.setString(1, wallet.getAddress());
-				stmt.setDouble(2, Sys.system.maxPossibleExpansionSize);
+
+
+
+				stmt.setDouble(2, increase);
+			
 
 				stmt.executeUpdate();
 				return true;
@@ -67,7 +76,11 @@ public class UserLogic {
 
 	}
 
-	public static boolean upgradeWalletToKnots(Wallet wallet) {
+	
+	
+	
+	public static boolean  upgradeWalletToKnots(Wallet wallet, double increase) {
+		
 
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -75,8 +88,9 @@ public class UserLogic {
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_WALLETKNOTS)) {
 
 				stmt.setString(1, wallet.getAddress());
-				stmt.setDouble(2, Sys.system.discountExpandPrice);
 
+				stmt.setDouble(2, increase);
+			
 				stmt.executeUpdate();
 				return true;
 			} catch (SQLException e) {
@@ -366,6 +380,30 @@ public class UserLogic {
 		return 0;
 
 	}
+	public static ArrayList<Product> getProducts() {
+		ArrayList<Product> results = new ArrayList<>();
+		
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+				CallableStatement stmt = conn.prepareCall(Consts.SQL_SEL_PRODUCTS);
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Product(rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getDouble(i++), new Model.Category(rs.getString(i++) , null), rs.getInt(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+
+	}
 
 	public static ArrayList<Product> getProducts(int from, int to) {
 		ArrayList<Product> results = new ArrayList<>();
@@ -442,87 +480,97 @@ public class UserLogic {
 
 	}
 
-	public static ArrayList<Product> getProducts(User user) {
-		ArrayList<Product> results = new ArrayList<>();
-
-		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-				PreparedStatement stmt = conn.prepareStatement(
-						"SELECT * FROM tblProduct WHERE tblProduct.sellerAddress  =  '" + user.getPublicAddress()
-								+ "' AND tblProduct.sellerSignature = '" + user.getDigitalSignature() + "' ;");
-				ResultSet rs = stmt.executeQuery();
-
-				while (rs.next()) {
-					results.add(new Product(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-							rs.getDouble(5), new Category(rs.getString(6), null), rs.getInt(7)));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return results;
-	}
-
-	public static ArrayList<Pay> getAllUsersPay(User user) {
-
-		ArrayList<Pay> results = new ArrayList<>();
-
-		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_PAY);
-
-				stmt.setString(1, user.getPublicAddress());
-				stmt.setString(2, user.getDigitalSignature());
-
-				ResultSet rs = stmt.executeQuery();
-
-				while (rs.next()) {
-					results.add(new Pay(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getDate(4), rs.getDate(5),
-							Status.valueOf(rs.getString(6)), rs.getDouble(7), rs.getDouble(8), rs.getString(9),
-							rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13)));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return results;
-
-	}
-
-	public static ArrayList<Confirm> getAllUsersConfirm(User user) {
-		ArrayList<Confirm> results = new ArrayList<>();
-
-		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
-				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_CONFIRM);
-
-				stmt.setString(1, user.getPublicAddress());
-				stmt.setString(2, user.getDigitalSignature());
-
-				ResultSet rs = stmt.executeQuery();
-
-				while (rs.next()) {
-					results.add(new Confirm(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getDate(4),
-							rs.getDate(5), Status.valueOf(rs.getString(6)), rs.getDouble(7), rs.getDate(8),
-							rs.getBoolean(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
-							rs.getString(14)));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return results;
-
-	}
+	
+//	
+//	public static ArrayList<Product> getProduct(User user , String name ,Category category){
+//		
+//		ArrayList<Product> results = new ArrayList<>();
+//
+//		try {
+//			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+//				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_CONFIRM);
+//				
+//				stmt.setString(1,user.getPublicAddress());
+//				stmt.setString(2, user.getDigitalSignature());
+//				
+//				ResultSet rs = stmt.executeQuery();
+//
+//				while (rs.next()) {
+//					results.add(new Confirm(rs.getString(1), rs.getString(2),rs.getDouble(3), rs.getDate(4),rs.getDate(5) ,Status.valueOf(rs.getString(6)) , rs.getDouble(7) , rs.getDate(8), rs.getBoolean(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		return results;
+//		
+//		
+//	}
+//
+//	
+//	
+//	
+//	public static ArrayList<Product> getProduct(User user , int from , int to){
+//		
+//		ArrayList<Product> results = new ArrayList<>();
+//
+//		try {
+//			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+//				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_CONFIRM);
+//				
+//				stmt.setString(1,user.getPublicAddress());
+//				stmt.setString(2, user.getDigitalSignature());
+//				
+//				ResultSet rs = stmt.executeQuery();
+//
+//				while (rs.next()) {
+//					results.add(new Confirm(rs.getString(1), rs.getString(2),rs.getDouble(3), rs.getDate(4),rs.getDate(5) ,Status.valueOf(rs.getString(6)) , rs.getDouble(7) , rs.getDate(8), rs.getBoolean(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		return results;
+//		
+//		
+//	}
+//
+//	
+//	public static ArrayList<Product> getProduct(User user , int from , int to , String name ,Category category){
+//		
+//		ArrayList<Product> results = new ArrayList<>();
+//
+//		try {
+//			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+//				CallableStatement stmt = conn.prepareCall(Consts.SQL_GET_USERS_CONFIRM);
+//				
+//				stmt.setString(1,user.getPublicAddress());
+//				stmt.setString(2, user.getDigitalSignature());
+//				
+//				ResultSet rs = stmt.executeQuery();
+//
+//				while (rs.next()) {
+//					results.add(new Confirm(rs.getString(1), rs.getString(2),rs.getDouble(3), rs.getDate(4),rs.getDate(5) ,Status.valueOf(rs.getString(6)) , rs.getDouble(7) , rs.getDate(8), rs.getBoolean(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		return results;
+//		
+//		
+//	}
+	
+	
 
 	public static void updateProductAmount(Product product) {
 		try {

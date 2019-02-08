@@ -8,6 +8,7 @@ public class BitcoinSpace extends Wallet {
 			int maxTransSize) {
 		super( address,  pC,  tablet,  phone,  funds,  futureValue);
 		this.maxTransSize = maxTransSize;
+		
 	}
 
 }
