@@ -72,7 +72,7 @@ public class WorkerLogic {
 	}
 	
 		
-	public static boolean setDiscountExpandPrice(int set) {
+	public static boolean setDiscountExpandPrice(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try {
@@ -92,7 +92,7 @@ public class WorkerLogic {
 		return false;
 	}
 	
-	public static boolean setExpandPrice(int set) {
+	public static boolean setExpandPrice(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try {
@@ -113,7 +113,7 @@ public class WorkerLogic {
 		
 	}
 	
-	public static boolean setDefaultWalletSize(int set) {
+	public static boolean setDefaultWalletSize(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try {
@@ -134,7 +134,7 @@ public class WorkerLogic {
 		
 	}
 	
-	public static boolean setExpandWalletSize(int set) {
+	public static boolean setExpandWalletSize(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try {
@@ -180,7 +180,7 @@ public class WorkerLogic {
 		
 	}
 	
-	public static boolean setMaxPossibleExpansionSize(int set) {
+	public static boolean setMaxPossibleExpansionSize(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try {

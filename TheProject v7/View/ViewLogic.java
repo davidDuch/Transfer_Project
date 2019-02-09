@@ -36,6 +36,11 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("SignUpLogin.fxml"), stage, false, "Welcome !", false);
 
 	}
+	protected static void createCategory() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("CategoryCreateScreen.fxml"), stage, false, "Create Category", false);
+
+	}
 
 	/**
 	 * Goes to the dash board
@@ -43,7 +48,7 @@ public class ViewLogic {
 	
 	protected static void newDashBoard() {
 		Stage stage = new Stage();
-		newWindow(ViewLogic.class.getResource("newDash.fxml"), stage, false, "Dash Board", false);
+		newWindow(ViewLogic.class.getResource("WorkerMenu.fxml"), stage, false, "Dash Board", false);
 
 	}
 

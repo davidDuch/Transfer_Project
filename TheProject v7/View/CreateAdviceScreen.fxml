@@ -28,8 +28,8 @@
             </HBox>
             <ButtonBar layoutX="371.0" layoutY="78.0" prefHeight="40.0" prefWidth="339.0">
               <buttons>
-                  <JFXButton fx:id="createAdviceButton" text="Create Advice" />
-                  <JFXButton fx:id="resetForm" text="Reset Form" />
+                  <JFXButton fx:id="createAdviceButton" onAction="#createAdvice" text="Create Advice" />
+                  <JFXButton fx:id="resetForm" onAction="#clearForm" text="Reset Form" />
               </buttons>
             </ButtonBar>
             <HBox alignment="CENTER" layoutX="31.0" layoutY="38.0" prefHeight="40.0" prefWidth="1036.0">
@@ -93,8 +93,8 @@
                         <JFXComboBox fx:id="comboLvl" prefHeight="28.0" prefWidth="150.0" />
                         <ButtonBar prefHeight="25.0" prefWidth="307.0">
                            <buttons>
-                              <JFXButton fx:id="addUserButton" text="Add User" />
-                              <JFXButton fx:id="sendButton" text="Send Advice" />
+                              <JFXButton fx:id="addUserButton" onAction="#addUser" text="Add User" />
+                              <JFXButton fx:id="sendButton" onAction="#sendAdvice" text="Send Advice" />
                            </buttons>
                         </ButtonBar>
                      </children>
@@ -131,7 +131,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="backButton" layoutX="1046.0" layoutY="6.0" text="Back" />
+      <JFXButton fx:id="backButton" layoutX="1046.0" layoutY="6.0" onAction="#goBack" text="Back" />
    </children>
    <padding>
       <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

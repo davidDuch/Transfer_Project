@@ -21,7 +21,7 @@ public class Main extends Application {
 		Sys.system = new Sys();
 		
 		
-	//	launch(args);
+		launch(args);
 	}
 
 	@Override

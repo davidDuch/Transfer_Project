@@ -8,17 +8,18 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.workerMenuController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-            <JFXButton text="New Worker" />
-            <JFXButton text="Create Advice" />
-            <JFXButton text="Logout" />
+            <JFXButton fx:id="newWorkerBtn" text="New Worker" />
+            <JFXButton fx:id="createAdviceBtn" onAction="#createAdvice" text="Create Advice" />
+            <JFXButton fx:id="categoryBtn" onAction="#createCategory" text="New Category" />
+            <JFXButton fx:id="Logout" text="Logout" />
         </buttons>
       </ButtonBar>
    </top>
@@ -33,40 +34,44 @@
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="Discount Expand Price" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="discountExpandPriceF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="size Expand Price" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="sizeExpandPriceF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="Defualt Wallet Size" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="defaultWalletSizeF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="Expend Wallet Size" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="expandWalletSizeF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="Expend Discount Size" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="expandDiscountSizeF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label prefHeight="18.0" prefWidth="185.0" text="maxPossibleExpansionSize" />
-                  <JFXTextField prefHeight="26.0" prefWidth="90.0" />
+                  <JFXTextField fx:id="maxPossibleExpansionSizeF" prefHeight="26.0" prefWidth="90.0" />
                </children>
             </HBox>
-            <JFXButton text="Update" />
+            <StackPane fx:id="updateStack">
+               <children>
+                  <JFXButton fx:id="updateBtn" onAction="#updateSystemDetails" text="Update" />
+               </children>
+            </StackPane>
          </children>
          <BorderPane.margin>
             <Insets left="10.0" />
@@ -76,8 +81,8 @@
    <right>
       <VBox alignment="CENTER" prefHeight="369.0" prefWidth="154.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton text="Transaction Report" />
-            <JFXButton text="Users Report" />
+            <JFXButton fx:id="transReportBtn" onAction="#generateTransactionReport" text="Transaction Report" />
+            <JFXButton fx:id="userReportBtn" text="Users Report" />
          </children>
       </VBox>
    </right>
