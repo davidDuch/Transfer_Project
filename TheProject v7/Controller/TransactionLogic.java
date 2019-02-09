@@ -369,4 +369,125 @@ public class TransactionLogic {
 
 	}
 
+	public JFrame createReport2() throws SQLException, JarException, ClassNotFoundException, JRException {
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+			JasperPrint print = JasperFillManager
+					.fillReport(getClass().getResourceAsStream("/Model/UserReport.jasper"), null, conn);
+			JFrame frame = new JFrame("Customer Orders Report");
+			frame.getContentPane().add(new JRViewer(print));
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.pack();
+			return frame;
+		}
+	}
+	
+	
+	public void UserReport() throws JarException, ClassNotFoundException, SQLException, JRException {
+		prepareForReport();
+		createReport2().show();
+		
+}
+
+	private void prepareForReport() {
+		
+		/*
+		 * 1) update superUnion
+		 * 
+		 * 2) update  todaysTransactions
+		 * 
+		 * 3) use createUserReport for the tblUserReport
+		 * 
+		 */
+		
+		
+		// 1) updates super union table
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try {
+				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+				PreparedStatement stmt = conn.prepareStatement("SELECT tblTransactionPay.transactionId, tblTransactionPay.buyerAddress AS Address, tblTransactionPay.buyerSignature AS Signature, tblTransactionPay.status, tblTransactionPay.commission , tblTransactionPay.creationDate,tblTransactionPay.size AS size,'Pay' AS type\r\n" + 
+						"FROM tblTransactionPay\r\n" + 
+						"WHERE tblTransactionPay.creationDate<=Date()\r\n" + 
+						"UNION ALL SELECT tblTransactionConfirm.transactionId, tblTransactionConfirm.sellerAddress AS Address, tblTransactionConfirm.sellerSignature AS Signature, tblTransactionConfirm.status,tblTransactionConfirm.commission, tblTransactionConfirm.creationDate,tblTransactionConfirm.size AS size,'Confirm' AS type \r\n" + 
+						"FROM tblTransactionConfirm\r\n" + 
+						"WHERE tblTransactionConfirm.creationDate<=Date();\r\n" + 
+						"");
+				stmt.execute();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		// 2) update  tblTodaysTransactions
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try {
+				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+				PreparedStatement stmt = conn.prepareStatement("SELECT superUnion.transactionId, superUnion.Address, superUnion.Signature, superUnion.status, superUnion.commission, superUnion.creationDate, superUnion.size, superUnion.type FROM superUnion INTO tblTodaysTransactions \r\n" + 
+						"WHERE (((DateDiff(\"d\",[creationDate],Now()))=0));\r\n" + 
+						"");
+				stmt.execute();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		// 3) updated tblUserReport
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try {
+				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+				PreparedStatement stmt = conn.prepareStatement("SELECT tblTodaysTransactions.Address, tblTodaysTransactions.Signature, Count(tblTodaysTransactions.transactionId) AS Amount, Avg(tblTodaysTransactions.commission) AS Average, ((SELECT Count(*) FROM tblTodaysTransactions WHERE status =  'executed')/Count(*)) AS Precent FROM tblTodaysTransactions INTO tblUserReport GROUP BY tblTodaysTransactions.Address, tblTodaysTransactions.Signature;");
+				stmt.execute();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
