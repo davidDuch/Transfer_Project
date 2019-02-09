@@ -7,8 +7,10 @@ import java.util.jar.JarException;
 import Model.Advice;
 import Model.Category;
 import Model.Confirm;
+import Model.Pay;
 import Model.User;
 import Model.Wallet;
+import Utils.Status;
 import View.ViewLogic;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,8 +22,9 @@ public class Main extends Application {
 	public static void main(String[] args) throws JarException, ClassNotFoundException, SQLException, JRException {
 		Sys.system = new Sys();
 		
-		
 		launch(args);
+//		TransactionLogic.getInstance().UserReport();		
+
 	}
 
 	@Override
