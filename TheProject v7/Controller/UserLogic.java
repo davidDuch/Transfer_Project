@@ -146,6 +146,10 @@ public class UserLogic {
 		String generatedString = RandomStringUtils.randomAlphanumeric(7);
 		return generatedString;
 	}
+	public static String generateWallets() {
+		String generatedString = RandomStringUtils.randomAlphanumeric(10);
+		return generatedString;
+	}
 
 	/**
 	 * 

@@ -48,7 +48,12 @@ public class ViewLogic {
 	
 	protected static void newDashBoard() {
 		Stage stage = new Stage();
-		newWindow(ViewLogic.class.getResource("WorkerMenu.fxml"), stage, false, "Dash Board", false);
+		newWindow(ViewLogic.class.getResource("NewDash.fxml"), stage, false, "Dash Board", false);
+
+	}
+	protected static void workerMenu() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("WorkerMenu.fxml"), stage, false, "Worker Menu", false);
 
 	}
 

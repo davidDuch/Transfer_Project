@@ -159,9 +159,11 @@ public class SignUpLoginController {
 		for(User fromDB :UserLogic.getUsers()){
 			if(workerRadio.isSelected()) {
 				if(workerLogin(fromDB)) {
-					loginError.setText("WorkerSignIn!");
+					ViewLogic.workerMenu();
 					return true;
 				}
+				loginError.setText("Wrong Details");
+				return false;
 			}
 			if(fromDB.getUserName().equals(inputUser.getText()) && fromDB.getPassword().equals(inputPass.getText())) {
 			loginError.setText("Successful Login");
