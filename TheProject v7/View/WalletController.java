@@ -1,6 +1,7 @@
 package View;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -80,6 +81,24 @@ public class WalletController implements Initializable
 	void buyWallet(ActionEvent event) {
 		ViewLogic.buyWallet();
 	}
-
+	@FXML
+	void addFunds(ActionEvent event){
+		int first =(int)(Math.random() *15);
+		double random = 0;
+		if(first == 1) {
+		random = Math.random() * 25;
+		}
+		else { 
+		random = 0;
+		}
+		System.out.println(random);
+		ArrayList<Wallet> wallets = UserLogic.getUserWallets(Sys.currentUser);
+		if(wallets!=null) {
+			for(Wallet w : wallets) {
+				w.setFunds(w.getFunds() + random);
+				UserLogic.updateWalletFunds(w);
+			}
+		}
+		}
 
 }

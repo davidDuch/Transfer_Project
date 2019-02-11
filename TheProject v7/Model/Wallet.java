@@ -123,8 +123,7 @@ public class Wallet {
 
 	@Override
 	public String toString() {
-		return "Wallet [address=" + address + ", funds=" + funds + ", futureValue=" + futureValue + ", PC=" + PC
-				+ ", Tablet=" + Tablet + ", Phone=" + Phone + "]";
+		return "Wallet :"+ address + "| Funds :" + funds + "| FutureValue :" + futureValue;
 	}
 
 

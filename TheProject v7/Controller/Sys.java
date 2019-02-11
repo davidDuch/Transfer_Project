@@ -32,6 +32,7 @@ public class Sys {
 	public static double expendWalletSize;
 	public static double expendDiscountSize;
 	public static double maxPossibleExpansionSize;
+	public static double maxPossibleDiscount = 50;
 	public static User currentUser; 
 	/**
 	 * 
@@ -40,6 +41,25 @@ public class Sys {
 	public void setUser(User user) {
 	Sys.currentUser = user;
 	}
+	public static ArrayList<Double> getListSpace(){
+	ArrayList<Double> al = new ArrayList<Double>();
+	double i = defualtWalletSize;
+	while(i < maxPossibleExpansionSize) {
+		al.add(i);
+		i = i+expendWalletSize;
+	}
+	return al;
+	}
+	public static ArrayList<Double> getListKnots(){
+	ArrayList<Double> al = new ArrayList<Double>();
+	double i = 0;
+	while(i < maxPossibleDiscount) {
+		al.add(i);
+		i = i+expendDiscountSize;
+	}
+	return al;
+	}
+
 	public User getUser() {
 		return Sys.currentUser;
 	}
@@ -66,7 +86,6 @@ public class Sys {
 			e.printStackTrace();
 		}
 	}
-
 	public Sys() {
 		Wallet.walletsCount = (int) UserLogic.counts_All_Wallets() + 15;
 		ArrayList<Double> parameters = WorkerLogic.getParameters();

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
@@ -10,8 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import jfxtras.scene.layout.VBox?>
-
+<?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" prefHeight="570.0" prefWidth="330.0" spacing="15.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.buyWalletController">
    <children>
@@ -19,10 +19,11 @@
       <JFXToggleButton fx:id="pcToggle" text="PC" />
       <JFXToggleButton fx:id="tabletToggle" text="Tablet" />
       <JFXToggleButton fx:id="mobileToggle" text="Mobile" />
+      <JFXComboBox fx:id="paymentCombo" promptText="Wallet Used For Payment" />
       <HBox alignment="CENTER" spacing="20.0">
          <children>
             <Label prefHeight="46.0" prefWidth="108.0" text="Auto Generated Wallet Address" wrapText="true" />
-            <JFXTextField fx:id="autoAddress" promptText="Wallet Address" />
+            <JFXTextField fx:id="autoAddress" disable="true" promptText="Wallet Address" />
          </children>
       </HBox>
       <Label text="Wallet Type:" />
@@ -30,13 +31,13 @@
          <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="Untitled Tab">
+                  <Tab text="Knots">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="153.0">
                            <children>
-                              <VBox prefHeight="140.0" prefWidth="200.0">
+                              <VBox prefHeight="140.0" prefWidth="200.0" spacing="15.0">
                                  <children>
-                                    <JFXTextField promptText="Input Discount Size" />
+                                    <JFXComboBox fx:id="knot" promptText="\% Discount" />
                                     <Label fx:id="totalPriceLabelK" prefHeight="18.0" prefWidth="137.0" text="Total Price :" />
                                     <StackPane fx:id="knotsStack">
                                        <children>
@@ -48,6 +49,25 @@
                            </children>
                         </AnchorPane>
                     </content>
+                  </Tab>
+                  <Tab text="Space">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="153.0">
+                           <children>
+                              <VBox prefHeight="140.0" prefWidth="200.0" spacing="15.0">
+                                 <children>
+                                    <JFXComboBox fx:id="space" promptText="Wallet Size" />
+                                    <Label fx:id="totalPriceLabelS" prefHeight="18.0" prefWidth="137.0" text="Total Price :" />
+                                    <StackPane fx:id="spaceStack">
+                                       <children>
+                                          <JFXButton fx:id="buyBtnS" text="Purchase Wallet" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
                   </Tab>
               </tabs>
                <HBox.margin>

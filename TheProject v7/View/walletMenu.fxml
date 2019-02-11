@@ -13,7 +13,7 @@
          <children>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
                <buttons>
-                  <JFXButton fx:id="update" prefHeight="34.0" prefWidth="134.0" text="Update Funds " />
+                  <JFXButton fx:id="update" onAction="#addFunds" prefHeight="34.0" prefWidth="134.0" text="Update Funds " />
                   <JFXButton fx:id="upgrade" prefHeight="33.0" text="Upgrade" />
                   <JFXButton fx:id="buy" onAction="#buyWallet" prefHeight="33.0" text="Buy Wallet" />
                   <JFXButton fx:id="back" text="Back" />
