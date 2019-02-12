@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="570.0" prefWidth="330.0" spacing="15.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.buyWalletController">
+<VBox alignment="CENTER" prefHeight="680.0" prefWidth="330.0" spacing="15.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.buyWalletController">
    <children>
       <Label text="Choose Platforms" />
       <JFXToggleButton fx:id="pcToggle" text="PC" />
@@ -29,19 +29,18 @@
       <Label text="Wallet Type:" />
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="230.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab text="Knots">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="153.0">
                            <children>
-                              <VBox prefHeight="140.0" prefWidth="200.0" spacing="15.0">
+                              <VBox prefHeight="115.0" prefWidth="200.0" spacing="15.0">
                                  <children>
                                     <JFXComboBox fx:id="knot" promptText="\% Discount" />
-                                    <Label fx:id="totalPriceLabelK" prefHeight="18.0" prefWidth="137.0" text="Total Price :" />
                                     <StackPane fx:id="knotsStack">
                                        <children>
-                                          <JFXButton fx:id="buyBtnK" text="Purchase Wallet" />
+                                          <JFXButton fx:id="buyBtnK" onAction="#Knots" text="Purchase Wallet" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -52,15 +51,14 @@
                   </Tab>
                   <Tab text="Space">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="153.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="140.0" prefWidth="200.0" spacing="15.0">
+                              <VBox prefHeight="115.0" prefWidth="200.0" spacing="15.0">
                                  <children>
                                     <JFXComboBox fx:id="space" promptText="Wallet Size" />
-                                    <Label fx:id="totalPriceLabelS" prefHeight="18.0" prefWidth="137.0" text="Total Price :" />
                                     <StackPane fx:id="spaceStack">
                                        <children>
-                                          <JFXButton fx:id="buyBtnS" text="Purchase Wallet" />
+                                          <JFXButton fx:id="buyBtnS" onAction="#Space" text="Purchase Wallet" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -76,5 +74,6 @@
             </TabPane>
          </children>
       </HBox>
+      <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="230.0" textFill="RED" />
    </children>
 </VBox>

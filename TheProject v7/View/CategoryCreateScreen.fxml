@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.categoryCreateController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.categoryCreateController">
    <children>
       <JFXTextField fx:id="nameT" promptText="Category Name" />
-      <JFXTextArea fx:id="descT" prefHeight="140.0" prefWidth="280.0" promptText="Category Description" />
+      <Label text="Auto Generated Category Number:" />
+      <JFXTextField fx:id="catNum" disable="true" prefWidth="147.0" />
       <StackPane fx:id="createStack">
          <children>
             <JFXButton fx:id="createBtn" onAction="#createCategory" text="Create" />

@@ -2,13 +2,17 @@ package View;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
 import Controller.Sys;
 import Controller.UserLogic;
+import Model.BitcoinKnots;
+import Model.BitcoinSpace;
 import Model.Wallet;
+import Model.WalletType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,34 +37,34 @@ public class WalletController implements Initializable
     private JFXButton back;
 
     @FXML
-    private TableView<Wallet> walletTable;
+    private TableView<WalletType> walletTable;
     
     @FXML
-    private TableColumn<Wallet, String> addressC;
+    private TableColumn<WalletType, String> addressC;
 
     @FXML
-    private TableColumn<Wallet, String> typeC;
+    private TableColumn<WalletType, String> typeC;
 
     @FXML
-    private TableColumn<Wallet, Double> fundsC;
+    private TableColumn<WalletType, Double> fundsC;
 
     @FXML
-    private TableColumn<Wallet, Double> ffundsC;
+    private TableColumn<WalletType, Double> ffundsC;
 
     @FXML
-    private TableColumn<Wallet, Boolean> pcC;
+    private TableColumn<WalletType, Boolean> pcC;
 
     @FXML
-    private TableColumn<Wallet, Boolean> tabletC;
+    private TableColumn<WalletType, Boolean> tabletC;
 
     @FXML
-    private TableColumn<Wallet, Boolean> mobileC;
+    private TableColumn<WalletType, Boolean> mobileC;
 
     @FXML
-    private TableColumn<Wallet, Double> discountC;
+    private TableColumn<WalletType, Double> discountC;
 
     @FXML
-    private TableColumn<Wallet, Double> spaceC;
+    private TableColumn<WalletType, Double> spaceC;
 
 	public void initialize(URL location, ResourceBundle resources) {
 		addressC.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -70,10 +74,35 @@ public class WalletController implements Initializable
 		pcC.setCellValueFactory(new PropertyValueFactory<>("PC"));
 		tabletC.setCellValueFactory(new PropertyValueFactory<>("Tablet"));
 		mobileC.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+		typeC.setCellValueFactory(new PropertyValueFactory<>("type"));
 		discountC.setCellValueFactory(new PropertyValueFactory<>("discount"));
 		spaceC.setCellValueFactory(new PropertyValueFactory<>("maxTransSize"));
 		System.out.println("1" + UserLogic.getUserWallets(Sys.currentUser));
-		walletTable.setItems(FXCollections.observableArrayList(UserLogic.getUserWallets(Sys.currentUser)));
+		ArrayList<BitcoinKnots> knotsAL = UserLogic.getKnots();
+		ArrayList<BitcoinSpace> spaceAL = UserLogic.getSpace();
+		ArrayList<Wallet> wallets = UserLogic.getUserWallets(Sys.currentUser);
+		ArrayList<WalletType> walletList = new ArrayList<WalletType>();
+		HashMap<String, BitcoinKnots> hmK = new HashMap<String, BitcoinKnots>();
+		for(BitcoinKnots bck : knotsAL) {
+			hmK.put(bck.getAddress(), bck);
+		}
+		HashMap<String, BitcoinSpace> hmS = new HashMap<String, BitcoinSpace>();
+		for(BitcoinSpace bks : spaceAL) {
+			hmS.put(bks.getAddress(), bks);
+		}
+		for(Wallet w : wallets) {
+			if(hmK.get(w.getAddress())!=null) {
+				walletList.add(new WalletType(w.getAddress(), w.getFunds(),w.getFutureValue(), w.getPC(), w.getTablet(), w.getPhone(),"Knots",hmK.get(w.getAddress()).getDiscount(),Sys.defualtWalletSize));
+			}
+			if(hmS.get(w.getAddress())!=null) {
+				walletList.add(new WalletType(w.getAddress(), w.getFunds(),w.getFutureValue(), w.getPC(), w.getTablet(), w.getPhone(),"Space", 0,hmS.get(w.getAddress()).getMaxTransSize()));
+
+			}
+			else {
+				walletList.add(new WalletType(w.getAddress(), w.getFunds(), w.getFutureValue(), w.getPC(),w.getTablet(),w.getPhone(), "Default", 0, Sys.defualtWalletSize));
+			}
+		}
+		walletTable.setItems(FXCollections.observableArrayList(walletList));
 	}
     
 
@@ -81,6 +110,10 @@ public class WalletController implements Initializable
 	void buyWallet(ActionEvent event) {
 		ViewLogic.buyWallet();
 	}
+    @FXML 
+    void upgradeWallet(ActionEvent event){
+    ViewLogic.upgradeWallet();
+    }
 	@FXML
 	void addFunds(ActionEvent event){
 		int first =(int)(Math.random() *15);
@@ -101,4 +134,31 @@ public class WalletController implements Initializable
 		}
 		}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((addressC == null) ? 0 : addressC.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WalletController other = (WalletController) obj;
+		if (addressC == null) {
+			if (other.addressC != null)
+				return false;
+		} else if (!addressC.equals(other.addressC))
+			return false;
+		return true;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package View;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,9 +9,11 @@ import com.jfoenix.controls.JFXTextField;
 
 import Controller.Sys;
 import Controller.UserLogic;
+import Controller.WorkerLogic;
 import Model.Category;
 import Model.Product;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -23,7 +26,13 @@ public class productScreenController implements Initializable{
 
     @FXML
     private JFXComboBox<Category> catCombo;
+    
+    @FXML
+    private JFXTextField min;
 
+    @FXML
+    private JFXTextField max;
+    
     @FXML
     private JFXButton searchBtn;
 
@@ -63,7 +72,86 @@ public class productScreenController implements Initializable{
 		descriptionC.setCellValueFactory(new PropertyValueFactory<>("description"));
 		pictureC.setCellValueFactory(new PropertyValueFactory<>("image"));
 		productTbl.setItems(FXCollections.observableArrayList(UserLogic.getProducts()));
+		catCombo.getItems().addAll(WorkerLogic.getCategories());
+		
 	}
+	
+	@FXML
+    public void SearchProduct(ActionEvent event) {
+	productTbl.getItems().clear();
+	ArrayList<Product> products = new ArrayList<Product>();
+		products =UserLogic.getProducts();
+		ArrayList<Product> remove = new ArrayList<Product>();
 
-    
+	if(searchBy.getText()!=null) {
+		String s = searchBy.getText();
+		for(Product p : products) {
+			if(!p.getName().contains(s)){
+				System.out.println(p.getName() + " " + s);
+				remove.add(p);
+			}
+		}
+	}
+	System.out.println(products);
+	System.out.println(remove);
+	products.removeAll(remove);
+	if(catCombo.getSelectionModel().getSelectedItem()!=null) {
+		Category c = catCombo.getSelectionModel().getSelectedItem();
+		for(Product p : products) {
+			if(!p.getCategory().equals(c)) {
+				remove.add(p);
+			}
+		}
+	}
+	System.out.println(products);
+	System.out.println(remove);
+	products.removeAll(remove);
+		double maxPrice = 0;
+		double minPrice = 0;
+	if(max.getText()!=null || min.getText()!=null) {
+		if(min.getText()!=null) {
+	    	try {
+	    		minPrice = Double.parseDouble(min.getText());
+	    	}catch (NumberFormatException e) {
+	    		minPrice = 0;
+	    	}
+	}
+		if(max.getText()!=null) {
+	    	try {
+	    		maxPrice = Double.parseDouble(max.getText());
+	    	}catch (NumberFormatException e) {
+	    		maxPrice = Double.MAX_VALUE;
+		}
+	    	
+	}
+	}
+	for(Product p : products) {
+		if(maxPrice < minPrice) {
+			double m = maxPrice;
+			maxPrice = minPrice;
+			minPrice = m;
+			max.setText(Double.toString(maxPrice));
+			min.setText(Double.toString(minPrice));
+		}
+		if(maxPrice > minPrice && minPrice >= 0) {
+			if(p.getPrice() < minPrice || p.getPrice()> maxPrice)
+			remove.add(p);
+	}
+	}
+	System.out.println(products);
+	System.out.println(remove);
+	products.removeAll(remove);
+	productTbl.setItems(FXCollections.observableArrayList(products));
+	productTbl.refresh();
+}
+	
+	@FXML 
+	public void buyProduct(ActionEvent event) {
+		if(productTbl.getSelectionModel().getSelectedItem()==null) {
+			return;
+		}
+		Sys.chosenProduct = productTbl.getSelectionModel().getSelectedItem();
+		System.out.println(Sys.chosenProduct);
+		ViewLogic.buyProduct();
+	}
 }

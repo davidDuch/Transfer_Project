@@ -80,6 +80,16 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("BuyWalletScreen.fxml"), stage, false, "Buy Wallets", false);
 
 	}
+	protected static void upgradeWallet() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("UpgradeWallet.fxml"), stage, false, "Upgrade Wallet", false);
+	}
+
+	protected static void buyProduct() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("BuyProductTransactionPay.fxml"), stage, false, "Buy Product", false);
+
+	}
 
 	/**
 	 * this method manages the window properties

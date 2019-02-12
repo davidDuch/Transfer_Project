@@ -9,6 +9,8 @@ public class Product {
 	private double price;
 	private Category category;
 	private int AmountAvailable;
+	private String sellerAddress;
+	private String sellerSignature;
 
 	public Product(String id) {
 		super();
@@ -16,7 +18,7 @@ public class Product {
 	}
 
 	public Product(String id, String name, String description, String image, double price, Category category,
-			int amountAvailable) {
+			int amountAvailable, String sellerAddress, String sellerSignature) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,6 +26,8 @@ public class Product {
 		this.image = image;
 		this.price = price;
 		this.category = category;
+		this.sellerAddress = sellerAddress;
+		this.sellerSignature = sellerSignature;
 		AmountAvailable = amountAvailable;
 	}
 
@@ -82,7 +86,22 @@ public class Product {
 	public void setAmountAvailable(int amountAvailable) {
 		AmountAvailable = amountAvailable;
 	}
+	
+	public String getSellerAddress() {
+		return sellerAddress;
+	}
 
+	public void setSellerAddress(String sellerAddress) {
+		this.sellerAddress = sellerAddress;
+	}
+
+	public String getSellerSignature() {
+		return sellerSignature;
+	}
+
+	public void setSellerSignature(String sellerSignature) {
+		this.sellerSignature = sellerSignature;
+	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + "]";
@@ -112,5 +131,7 @@ public class Product {
 			return false;
 		return true;
 	}
+
+
 
 }

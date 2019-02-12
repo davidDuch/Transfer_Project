@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Model.Category;
+import Model.User;
 import Utils.Consts;
 
 public class WorkerLogic {
@@ -43,15 +45,35 @@ public class WorkerLogic {
 		return null;
 		
 	}
-	
-	public static boolean addCategory(String id , String name) {
+	public static ArrayList<Category> getCategories() {
+		ArrayList<Category> results = new ArrayList<Category>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_CATEGORIES);
+					ResultSet rs = stmt.executeQuery()) {
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new Category(rs.getString(i++), rs.getString(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	public static boolean addCategory(int id , String name) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_CATEGORY)) {
 				int i = 1;
 
-				stmt.setString(i++, id);
+				stmt.setInt(i++, id);
 				stmt.setString(i++, name);
 			
 

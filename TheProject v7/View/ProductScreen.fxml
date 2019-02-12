@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.productScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.productScreenController">
    <top>
       <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -17,8 +17,10 @@
               <buttons>
                   <JFXTextField fx:id="searchBy" promptText="Search By" />
                   <JFXComboBox fx:id="catCombo" promptText="Category" />
-                  <JFXButton fx:id="searchBtn" text="Search" />
-                  <JFXButton fx:id="buyProductBtn" text="Buy Product" />
+                  <JFXTextField fx:id="min" promptText="Starting Price" />
+                  <JFXTextField fx:id="max" promptText="Maximum Price" />
+                  <JFXButton fx:id="searchBtn" onAction="#SearchProduct" text="Search" />
+                  <JFXButton fx:id="buyProductBtn" onAction="#buyProduct" text="Buy Product" />
                   <JFXButton fx:id="backBtn" text="Back" />
               </buttons>
             </ButtonBar>
@@ -33,8 +35,8 @@
             <TableColumn fx:id="quantityC" prefWidth="91.0" text="Quantity" />
 
             <TableColumn fx:id="categoryC" prefWidth="101.0" text="Category" />
-            <TableColumn fx:id="descriptionC" minWidth="0.0" prefWidth="174.0" text="Description" />
-            <TableColumn fx:id="pictureC" prefWidth="143.0" text="Picture" />
+            <TableColumn fx:id="descriptionC" minWidth="0.0" prefWidth="233.0" text="Description" />
+            <TableColumn fx:id="pictureC" prefWidth="212.0" text="Picture" />
 
         </columns>
       </TableView>

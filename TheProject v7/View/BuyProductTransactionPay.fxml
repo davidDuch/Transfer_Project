@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="310.0" spacing="10.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField fx:id="transId" promptText="Transaction Id" />
+      <JFXTextArea fx:id="desc" prefHeight="80.0" prefWidth="210.0" promptText="Description" />
+      <JFXComboBox fx:id="walletCombo" promptText="Paying Wallet" />
+      <JFXComboBox promptText="Choose Amount" />
+      <JFXTextField fx:id="transSize" promptText="Transaction Size" />
+      <JFXTextField fx:id="commisionT" promptText="Commission" />
+      <Label text="Your Details" />
+      <JFXTextField fx:id="yAddress" />
+      <JFXTextField fx:id="ySign" />
+      <Label text="Seller Details" />
+      <JFXTextField fx:id="sAddress" />
+      <JFXTextField fx:id="sSign" />
+      <Label text="Creation Date" />
+      <JFXTextField fx:id="createDate" disable="true" />
+      <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="200.0" textFill="RED" />
+      <JFXButton fx:id="Create" text="Create Transaction" />
+   </children>
+   <padding>
+      <Insets left="50.0" right="50.0" top="10.0" />
+   </padding>
+</VBox>

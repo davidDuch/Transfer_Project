@@ -17,6 +17,7 @@ import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import Model.Product;
 import Model.Transaction;
 import Model.User;
 import Model.Wallet;
@@ -34,27 +35,34 @@ public class Sys {
 	public static double maxPossibleExpansionSize;
 	public static double maxPossibleDiscount = 50;
 	public static User currentUser; 
+	public static Product chosenProduct;
 	/**
 	 * 
 	 * @param transaction
 	 */
+//	public Product getChosenProduct() {
+//		return chosenProduct;
+//	}
+//	public void setChosenProduct(Product product) {
+//		Sys.chosenProduct = product;
+//	}
 	public void setUser(User user) {
 	Sys.currentUser = user;
 	}
-	public static ArrayList<Double> getListSpace(){
-	ArrayList<Double> al = new ArrayList<Double>();
+	public static ArrayList<String> getListSpace(){
+	ArrayList<String> al = new ArrayList<String>();
 	double i = defualtWalletSize;
 	while(i < maxPossibleExpansionSize) {
-		al.add(i);
+		al.add(Double.toString(i) + " Price :" + Double.toString(i*sizeExpandPrice));
 		i = i+expendWalletSize;
 	}
 	return al;
 	}
-	public static ArrayList<Double> getListKnots(){
-	ArrayList<Double> al = new ArrayList<Double>();
-	double i = 0;
+	public static ArrayList<String> getListKnots(){
+	ArrayList<String> al = new ArrayList<String>();
+	double i = 1;
 	while(i < maxPossibleDiscount) {
-		al.add(i);
+		al.add(Double.toString(i) + " Price :" + Double.toString(i*discountExpandPrice));
 		i = i+expendDiscountSize;
 	}
 	return al;

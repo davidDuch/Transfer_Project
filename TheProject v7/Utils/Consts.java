@@ -46,6 +46,9 @@ public class Consts {
 	public static final String SQL_GET_USERS_PAY = "{ call getUsersPay(?,?) };";
 	public static final String SQL_GET_USERS_CONFIRM = "{ call getUsersConfirm(?,?) };";
 	public static final String SQL_UPDATE_QUANTITY = "{ call updateProduct(?,?) };";
+	public static final String SQL_ADD_PRODUCT = "{call addProduct(?,?,?,?,?,?,?,?,?) };";
+	public static final String SQL_GET_KNOTS = "SELECT * FROM tblWalletKnots";
+	public static final String SQL_GET_SPACE = "SELECT * FROM tblWalletSpace";
 
 
 
@@ -56,6 +59,7 @@ public class Consts {
 	public static final String SQL_INS_NEWADVICE = "{ call addAdvice(?,?,?,?) }";
 	public static final String SQL_GET_USERSADVICECOMMIT = "{ call getCommitmentPerUserPerAdvice(?,?,?) }";
 	public static final String SQL_GET_ADVICE_PER_USER = "{ call advicePerUser(?,?) }";
+	public static final String SQL_SEL_CATEGORIES = "SELECT * FROM tblCategory";
 
 	
 	
