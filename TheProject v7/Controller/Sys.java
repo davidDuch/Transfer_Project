@@ -17,6 +17,7 @@ import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import Model.Pay;
 import Model.Product;
 import Model.Transaction;
 import Model.User;
@@ -37,6 +38,7 @@ public class Sys {
 	public static User currentUser; 
 	public static Product chosenProduct;
 	public static Product myProduct; 
+	public static Pay currentPay;
 	/**
 	 * 
 	 * @param transaction
@@ -73,7 +75,8 @@ public class Sys {
 	double price = Sys.chosenProduct.getPrice();
 	int i=1;
 	while(i<=Sys.chosenProduct.getAmountAvailable()) {
-		al.add(i + "Price: " + i*price);
+		al.add(i + " Price: " + i*price);
+		i++;
 	}
 	return al;
 	}

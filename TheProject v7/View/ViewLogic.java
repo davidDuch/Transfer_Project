@@ -109,6 +109,10 @@ public class ViewLogic {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("UpdateQuantityScreen.fxml"), stage, false, "Update Quantity", false);
 	}
+	protected static void confirm() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("ConfrimScreen.fxml"), stage, false, "Confirm Transaction", false);
+	}
 
 
 	/**

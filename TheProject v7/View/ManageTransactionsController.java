@@ -13,6 +13,7 @@ import Model.Pay;
 import Model.Transaction;
 import Model.Wallet;
 import Utils.Status;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -211,7 +212,7 @@ public class ManageTransactionsController implements Initializable{
 			      for(Pay p : pay) {
 			    	  System.out.println(p);
 			    	  if(p.getCreatorAddress().equals(Sys.currentUser.getPublicAddress()))
-			    		  payIncomeT.getItems().add(p);
+			    		  myPayT.getItems().add(p);
 			      }
 		}
 //		     TableView> outgoingConfimT	
@@ -253,5 +254,32 @@ public class ManageTransactionsController implements Initializable{
 			      }
 			    }
 
+		}
+		
+		@FXML
+		public void confirmTransaction(ActionEvent event) {
+			if(payIncomeT.getSelectionModel().getSelectedItem()==null)
+				return;
+			Sys.currentPay = payIncomeT.getSelectionModel().getSelectedItem();
+			ViewLogic.confirm();
+		}
+		@FXML
+		public void rejectTransaction(ActionEvent event) {
+			if(payIncomeT.getSelectionModel().getSelectedItem()!=null) {
+				Pay p = payIncomeT.getSelectionModel().getSelectedItem();
+				if(p.getStatus()==(Status.waiting)) {
+				TransactionLogic.updateTransactionStatus(p, Status.irelevant);
+				payIncomeT.refresh();
+			}
+			}
+			if(outgoingConfimT.getSelectionModel().getSelectedItem()!=null) {
+				Confirm c = outgoingConfimT.getSelectionModel().getSelectedItem();
+				System.out.println("a");
+				if(c.getStatus()==(Status.waiting)) {
+				TransactionLogic.updateTransactionStatus(c, Status.irelevant);
+				System.out.println("b");
+				outgoingConfimT.refresh();
+				}
+			}
 		}
 }

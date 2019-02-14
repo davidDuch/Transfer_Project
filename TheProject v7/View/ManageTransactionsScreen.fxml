@@ -13,8 +13,8 @@
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
-            <JFXButton fx:id="acceptTransaction" text="Accept Transaction" />
-            <JFXButton fx:id="cancelTransaction" text="Cancel Transaction" />
+            <JFXButton fx:id="acceptTransaction" onAction="#confirmTransaction" text="Accept Transaction" />
+            <JFXButton fx:id="cancelTransaction" onAction="#rejectTransaction" text="Reject Transaction" />
             <JFXButton fx:id="backBtn" text="Back" />
          </buttons>
       </ButtonBar>

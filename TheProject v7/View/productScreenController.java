@@ -71,7 +71,12 @@ public class productScreenController implements Initializable{
 		categoryC.setCellValueFactory(new PropertyValueFactory<>("category"));
 		descriptionC.setCellValueFactory(new PropertyValueFactory<>("description"));
 		pictureC.setCellValueFactory(new PropertyValueFactory<>("image"));
-		productTbl.setItems(FXCollections.observableArrayList(UserLogic.getProducts()));
+		ArrayList<Product> al = UserLogic.getProducts();
+		for(Product p : al) {
+			if(!p.getSellerAddress().equals(Sys.currentUser.getPublicAddress()) && p.getAmountAvailable() > 0)
+				productTbl.getItems().add(p);
+			//(FXCollections.observableArrayList(UserLogic.getProducts()));
+		}
 		catCombo.getItems().addAll(WorkerLogic.getCategories());
 		
 	}

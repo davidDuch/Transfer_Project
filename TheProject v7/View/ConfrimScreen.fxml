@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="310.0" spacing="10.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BuyProductTransactionPayController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="310.0" spacing="10.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.createConfirmController">
    <children>
       <JFXTextField fx:id="transId" disable="true" promptText="Transaction Id" />
       <JFXTextArea fx:id="desc" prefHeight="80.0" prefWidth="210.0" promptText="Description" />
       <JFXComboBox fx:id="walletCombo" promptText="Paying Wallet" />
-      <JFXComboBox fx:id="amountCombo" promptText="Choose Amount" />
-      <JFXTextField fx:id="transSize" promptText="Transaction Size" />
+      <JFXTextField fx:id="transSize" disable="true" promptText="Transaction Size" />
       <JFXTextField fx:id="commisionT" promptText="Commission" />
       <Label text="Your Details" />
       <JFXTextField fx:id="yAddress" disable="true" />
       <JFXTextField fx:id="ySign" disable="true" />
-      <Label text="Seller Details" />
-      <JFXTextField fx:id="sAddress" disable="true" />
-      <JFXTextField fx:id="sSign" disable="true" />
+      <Label text="Buyer Details" />
+      <JFXTextField fx:id="bAddress" disable="true" />
+      <JFXTextField fx:id="bSign" disable="true" />
       <Label text="Creation Date" />
       <JFXTextField fx:id="createDate" disable="true" />
+      <JFXCheckBox fx:id="approveBox" text="Approved?" />
+      <JFXDatePicker fx:id="supplyDate" promptText="Supply Date" />
       <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="200.0" textFill="RED" />
-      <JFXButton fx:id="Create" onAction="#addPay" text="Create Transaction" />
+      <JFXButton fx:id="Create" onAction="#createConfirm" text="Create Transaction" />
    </children>
    <padding>
       <Insets left="50.0" right="50.0" top="10.0" />
