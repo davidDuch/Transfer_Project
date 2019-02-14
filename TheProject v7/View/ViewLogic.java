@@ -73,8 +73,18 @@ public class ViewLogic {
 	protected static void buyProducts() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("ProductScreen.fxml"), stage, false, "Buy Products", false);
+	}
+	protected static void myProducts() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("MyProductsScreen.fxml"), stage, false, "My Products", false);
 
 	}
+	protected static void myTransactions() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("ManageTransactionsScreen.fxml"), stage, false, "My Transactions", false);
+
+	}
+
 	protected static void buyWallet() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("BuyWalletScreen.fxml"), stage, false, "Buy Wallets", false);
@@ -90,6 +100,16 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("BuyProductTransactionPay.fxml"), stage, false, "Buy Product", false);
 
 	}
+	protected static void addProduct() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("AddProductScreen.fxml"), stage, false, "Add Product", false);
+
+	}
+	protected static void updateQuantity() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("UpdateQuantityScreen.fxml"), stage, false, "Update Quantity", false);
+	}
+
 
 	/**
 	 * this method manages the window properties

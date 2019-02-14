@@ -165,7 +165,7 @@ public class TransactionLogic {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_CONFIRMTRANSACTIONS);
+					PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblTransactionConfirm");
 					ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {
@@ -194,7 +194,7 @@ public class TransactionLogic {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PAYTRANSACTIONS);
+					PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tblTransactionPay");
 					ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {

@@ -195,7 +195,7 @@ public class UserLogic {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_PRODUCT)) {
+					CallableStatement stmt = conn.prepareCall("INSERT INTO tblProduct VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
 				stmt.setInt(1, productNumber);
 				stmt.setString(2, name);
@@ -642,14 +642,14 @@ public class UserLogic {
 	
 	
 
-	public static void updateProductAmount(Product product) {
+	public static void updateProductAmount(Product product, int q) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPDATE_QUANTITY)) {
 
 				stmt.setString(2, product.getId());
-				stmt.setInt(1, product.getAmountAvailable());
+				stmt.setInt(1, q);
 
 				stmt.executeUpdate();
 			} catch (SQLException e) {

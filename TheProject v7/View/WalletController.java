@@ -119,7 +119,7 @@ public class WalletController implements Initializable
 		int first =(int)(Math.random() *15);
 		double random = 0;
 		if(first == 1) {
-		random = Math.random() * 25;
+		random = Math.random() * 40;
 		}
 		else { 
 		random = 0;

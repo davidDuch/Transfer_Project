@@ -1,37 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ManageTransactionsController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
-            <JFXButton text="Accept Transaction" />
-            <JFXButton text="Cancel Transaction" />
-            <JFXButton text="Back" />
+            <JFXButton fx:id="acceptTransaction" text="Accept Transaction" />
+            <JFXButton fx:id="cancelTransaction" text="Cancel Transaction" />
+            <JFXButton fx:id="backBtn" text="Back" />
          </buttons>
       </ButtonBar>
    </top>
-   <left>
-      <TableView prefHeight="360.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <columns>
-            <TableColumn prefWidth="85.0" text="Transaction Id" />
-            <TableColumn prefWidth="84.0" text="Date" />
-            <TableColumn prefWidth="87.0" text="Commision" />
-            <TableColumn prefWidth="84.0" text="Preference " />
-         </columns>
-      </TableView>
-   </left>
-   <bottom>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-   </bottom>
+   <center>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Incoming Pay Transactions" />
+            <TableView fx:id="payIncomeT" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="id1" prefWidth="93.0" text="Transaction Id" />
+                <TableColumn fx:id="desc1" prefWidth="89.0" text="Description" />
+                  <TableColumn fx:id="size1" prefWidth="59.0" text="Size" />
+                  <TableColumn fx:id="cDate1" prefWidth="109.0" text="Creation Date" />
+                  <TableColumn fx:id="aDate1" prefWidth="114.0" text="Approved Date" />
+                  <TableColumn fx:id="status1" prefWidth="98.0" text="Status" />
+                  <TableColumn fx:id="commission1" prefWidth="98.0" text="Commission" />
+                  <TableColumn fx:id="bitcoin1" prefWidth="87.0" text="Bitcoin " />
+                  <TableColumn fx:id="ba1" prefWidth="122.0" text="Buyer Address" />
+                  <TableColumn fx:id="bs1" prefWidth="120.0" text="Buyer Signature" />
+              </columns>
+            </TableView>
+            <Label text="My Pay Transactions" />
+            <TableView fx:id="myPayT" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="id2" prefWidth="99.0" text="Transaction Id" />
+                  <TableColumn fx:id="desc2" prefWidth="90.0" text="Description" />
+                  <TableColumn fx:id="size2" prefWidth="55.0" text="Size" />
+                  <TableColumn fx:id="cDate2" prefWidth="110.0" text="Creation Date" />
+                  <TableColumn fx:id="aDate2" prefWidth="107.0" text="Approved Date" />
+                  <TableColumn fx:id="status2" prefWidth="57.0" text="Status" />
+                  <TableColumn fx:id="commission2" prefWidth="81.0" text="Commission" />
+                  <TableColumn fx:id="bitcoin2" prefWidth="75.0" text="Bitcoin " />
+                  <TableColumn fx:id="sa2" prefWidth="112.0" text="Seller Address" />
+                  <TableColumn fx:id="ss2" prefWidth="133.0" text="Seller Signature" />
+                  <TableColumn fx:id="w2" prefWidth="70.0" text="Wallet" />
+               </columns>
+            </TableView>
+            <Label text="Outgoing Confirm Transactions" />
+            <TableView fx:id="outgoingConfimT" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="id3" prefWidth="93.0" text="Transaction Id" />
+                  <TableColumn fx:id="desc3" prefWidth="84.0" text="Description" />
+                  <TableColumn fx:id="size3" prefWidth="65.0" text="Size" />
+                  <TableColumn fx:id="cDate3" prefWidth="121.0" text="Creation Date" />
+                  <TableColumn fx:id="aDate3" prefWidth="106.0" text="Approved Date" />
+                  <TableColumn fx:id="status3" prefWidth="49.0" text="Status" />
+                  <TableColumn fx:id="commision3" prefWidth="83.0" text="Commission" />
+                  <TableColumn fx:id="app3" prefWidth="60.0" text="Approved" />
+                  <TableColumn fx:id="ba3" prefWidth="87.0" text="Buyer Address" />
+                  <TableColumn fx:id="bs3" prefWidth="96.0" text="Buyer Signature" />
+                  <TableColumn fx:id="w3" prefWidth="56.0" text="Wallet" />
+                  <TableColumn fx:id="sd3" prefWidth="89.0" text="Supply Date" />
+               </columns>
+            </TableView>
+            <Label prefHeight="18.0" prefWidth="198.0" text="Incoming Confirm Transactions" />
+            <TableView fx:id="incomingConfirmT" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="id4" prefWidth="91.0" text="Transaction Id" />
+                  <TableColumn fx:id="desc4" prefWidth="87.0" text="Description" />
+                  <TableColumn fx:id="size4" prefWidth="38.0" text="Size" />
+                  <TableColumn fx:id="cDate4" prefWidth="114.0" text="Creation Date" />
+                  <TableColumn fx:id="aDate4" prefWidth="113.0" text="Approved Date" />
+                  <TableColumn fx:id="status4" prefWidth="62.0" text="Status" />
+                  <TableColumn fx:id="commssion4" prefWidth="91.0" text="Commission" />
+                  <TableColumn fx:id="app4" prefWidth="66.0" text="Approved" />
+                  <TableColumn fx:id="sa4" prefWidth="97.0" text="Seller Address" />
+                  <TableColumn fx:id="ss4" prefWidth="103.0" text="Seller Signature" />
+                  <TableColumn fx:id="sd4" prefWidth="74.0" text="Supply Date" />
+                  <TableColumn fx:id="w4" prefWidth="53.0" text="Wallet" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" />
+   </padding>
 </BorderPane>

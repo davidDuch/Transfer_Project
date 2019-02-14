@@ -36,6 +36,7 @@ public class Sys {
 	public static double maxPossibleDiscount = 50;
 	public static User currentUser; 
 	public static Product chosenProduct;
+	public static Product myProduct; 
 	/**
 	 * 
 	 * @param transaction
@@ -67,7 +68,15 @@ public class Sys {
 	}
 	return al;
 	}
-
+	public static ArrayList<String> getListProduct(){
+	ArrayList<String> al = new ArrayList<String>();
+	double price = Sys.chosenProduct.getPrice();
+	int i=1;
+	while(i<=Sys.chosenProduct.getAmountAvailable()) {
+		al.add(i + "Price: " + i*price);
+	}
+	return al;
+	}
 	public User getUser() {
 		return Sys.currentUser;
 	}

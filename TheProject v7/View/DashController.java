@@ -102,7 +102,14 @@ public class DashController implements Initializable{
 		ViewLogic.buyProducts();
 	}
 
-
+	@FXML
+	void myProducts(ActionEvent event) {
+		ViewLogic.myProducts();
+	}
+	@FXML
+	void myTransactions(ActionEvent event) {
+		ViewLogic.myTransactions();
+	}
 	@FXML
 	void Logout(ActionEvent event) {
 		Stage stage = (Stage) Logout.getScene().getWindow();

@@ -12,8 +12,8 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
             <JFXButton fx:id="pBtn" onAction="#buyProducts" text="Buy Products" />
-            <JFXButton fx:id="myPBtn" text="My Products" />
-            <JFXButton fx:id="transBtn" text="Transactions" />
+            <JFXButton fx:id="myPBtn" onAction="#myProducts" text="My Products" />
+            <JFXButton fx:id="transBtn" onAction="#myTransactions" text="Transactions" />
             <JFXButton fx:id="walletBtn" onAction="#myWallets" text="My Wallets" />
             <JFXButton fx:id="Logout" onAction="#Logout" text="Logout" />
          </buttons>
