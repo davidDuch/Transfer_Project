@@ -157,6 +157,7 @@ public class upgradeWalletController implements Initializable{
         }
         });
         dialog.show();
+        WalletController.instance.initialize(null, null);
         return true;
         }
 	
@@ -208,6 +209,7 @@ public class upgradeWalletController implements Initializable{
         }
         });
         dialog.show();
+        WalletController.instance.initialize(null, null);
         return true;
         }
 	

@@ -69,6 +69,10 @@ public class buyWalletController implements Initializable{
 
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
+			paymentCombo.getItems().clear();
+			knot.getItems().clear();
+			space.getItems().clear();
+			autoAddress.setText("");
 			autoAddress.setText("W"+Wallet.walletsCount);
 			knot.getItems().addAll(Sys.getListKnots());
 			space.getItems().addAll(Sys.getListSpace());
@@ -123,6 +127,8 @@ public class buyWalletController implements Initializable{
         }
         });
         dialog.show();
+        initialize(null, null);
+        WalletController.instance.initialize(null, null);
         return true;
         }
 	
@@ -171,6 +177,8 @@ public class buyWalletController implements Initializable{
     }
     });
     dialog.show();
+    WalletController.instance.initialize(null, null);
+    initialize(null, null);
     return true;
     }
     

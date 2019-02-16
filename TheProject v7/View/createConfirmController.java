@@ -115,6 +115,8 @@ public class createConfirmController implements Initializable{
     	TransactionLogic.addConfirm(id, description, size, sqlDate, sqlDate, Status.waiting, commission, supplySql, approve, sellerAddress, sellerSignature, creatorAddress, creatorSignature, w.getAddress());
     	UserLogic.updateFVoFWallet(w, -commission);
     	UserLogic.updateWalletFunds(w);
+    	errorLabel.setText("Confirm Created!");
+    	ManageTransactionsController.instance.initialize(null, null);
     	return true;
     	}
     	errorLabel.setText("Not Enoungh Funds");

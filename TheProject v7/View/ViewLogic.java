@@ -64,6 +64,12 @@ public class ViewLogic {
 		newWindow(ViewLogic.class.getResource("CreateAdviceScreen.fxml"), stage, false, "Create Advise", false);
 
 	}
+	protected static void UserReport() {
+		Stage stage = new Stage();
+		newWindow(ViewLogic.class.getResource("UsersReport.fxml"), stage, false, "User Report", false);
+
+	}
+
 	protected static void walletMenuScreen() {
 		Stage stage = new Stage();
 		newWindow(ViewLogic.class.getResource("walletMenu.fxml"), stage, false, "My Wallets", false);

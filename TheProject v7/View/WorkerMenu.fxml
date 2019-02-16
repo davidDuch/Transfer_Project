@@ -82,7 +82,8 @@
       <VBox alignment="CENTER" prefHeight="369.0" prefWidth="154.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="transReportBtn" onAction="#generateTransactionReport" text="Transaction Report" />
-            <JFXButton fx:id="userReportBtn" text="Users Report" />
+            <JFXButton fx:id="userReportBtn" onAction="#generateUserReport" text="Users Report" />
+            <JFXButton fx:id="jasperBtn" onAction="#jasperUser" text="JASPER Users Report" />
          </children>
       </VBox>
    </right>

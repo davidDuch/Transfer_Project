@@ -66,8 +66,11 @@ public class WalletController implements Initializable
 
     @FXML
     private TableColumn<WalletType, Double> spaceC;
+    
+    public static WalletController instance;
 
 	public void initialize(URL location, ResourceBundle resources) {
+		walletTable.getItems().clear();
 		addressC.setCellValueFactory(new PropertyValueFactory<>("address"));
 		typeC.setCellValueFactory(new PropertyValueFactory<>("type"));
 		fundsC.setCellValueFactory(new PropertyValueFactory<>("funds"));
@@ -104,6 +107,7 @@ public class WalletController implements Initializable
 			}
 		}
 		walletTable.setItems(FXCollections.observableArrayList(walletList));
+		instance = this;
 	}
     
 
@@ -117,23 +121,20 @@ public class WalletController implements Initializable
     }
 	@FXML
 	void addFunds(ActionEvent event){
-		int first =(int)(Math.random() *15);
-		double random = 0;
-		if(first == 1) {
-		random = Math.random() * 40;
-		}
-		else { 
-		random = 0;
-		}
-		System.out.println(random);
+		double random = Math.random() * 20;
 		ArrayList<Wallet> wallets = UserLogic.getUserWallets(Sys.currentUser);
 		if(wallets!=null) {
 			for(Wallet w : wallets) {
+				random = Math.random() * 20;
+				System.out.println(random);
 				w.setFunds(w.getFunds() + random);
 				UserLogic.updateWalletFunds(w);
 			}
 		}
-		}
+		initialize(null, null);
+	}
+	
+	
 	@FXML
 	public void back(ActionEvent event) {
 		Stage stage = (Stage) back.getScene().getWindow();

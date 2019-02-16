@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.upgradeWalletController">
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="340.0" spacing="20.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.upgradeWalletController">
    <children>
-      <Label text="Choose Wallet to upgrade" />
+      <Label text="Choose Paying Wallet:" />
       <JFXComboBox fx:id="paymentCombo" promptText="Wallet Used For Payment" />
       <Label text="Choose Platforms" />
       <HBox spacing="10.0">
@@ -27,7 +27,7 @@
       <HBox prefHeight="40.0" prefWidth="260.0">
          <children>
             <JFXComboBox fx:id="walletBox" promptText="Upgrade Wallet" />
-            <JFXButton fx:id="selectWallet" onAction="#SelectWallet" text="Select" />
+            <JFXButton fx:id="selectWallet" onAction="#SelectWallet" prefHeight="32.0" prefWidth="100.0" text="Select" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="210.0" prefWidth="200.0" spacing="20.0">

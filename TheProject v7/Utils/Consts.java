@@ -60,8 +60,11 @@ public class Consts {
 	public static final String SQL_ADD_PRODUCT = "{call addProduct(?,?,?,?,?,?,?,?,?) };";
 	public static final String SQL_GET_KNOTS = "SELECT * FROM tblWalletKnots";
 	public static final String SQL_GET_SPACE = "SELECT * FROM tblWalletSpace";
-
-
+	public static final String SQL_USERS_REPORT = "SELECT * FROM UsersReport";
+	public static final String SQL_USERS_REPORT_WORKED = "SELECT unionTransactions.Address, Count(unionTransactions.transactionId), Avg(unionTransactions.commission), Sum(IIf(unionTransactions.status='executed',1,0))/Count(unionTransactions.transactionId)\r\n" + 
+			"FROM unionTransactions, Statistics \r\n" + 
+			"GROUP BY unionTransactions.Address; \r\n" + 
+			"";
 
 
 //==================================== Advise logic ==============================	

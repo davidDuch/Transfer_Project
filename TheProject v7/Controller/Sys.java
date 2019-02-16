@@ -120,6 +120,43 @@ public class Sys {
 			e.printStackTrace();
 		}
 	}
+	public static void RecieveTransactions() {
+
+		try {
+
+			File fXmlFile = new File("file.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			// optional, but recommended
+			// read this -
+			// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+		doc.getDocumentElement().normalize();
+
+
+			NodeList nList = doc.getDocumentElement().getChildNodes();
+
+			
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+				
+//				System.out.println("k");
+				
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					TransactionLogic.updateTransaction(eElement.getElementsByTagName("transId").item(0).getTextContent(), eElement.getElementsByTagName("type").item(0).getTextContent());
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public Sys() {
 		Wallet.walletsCount = (int) UserLogic.counts_All_Wallets() + 15;
 		ArrayList<Double> parameters = WorkerLogic.getParameters();
@@ -200,42 +237,6 @@ public class Sys {
 		this.maxPossibleExpansionSize = maxPossibleExpansionSize;
 	}
 
-	public void RecieveTransactions() {
-
-		try {
-
-			File fXmlFile = new File("file.xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-
-			// optional, but recommended
-			// read this -
-			// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-		doc.getDocumentElement().normalize();
-
-
-			NodeList nList = doc.getDocumentElement().getChildNodes();
-
-			
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
-				
-//				System.out.println("k");
-				
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					TransactionLogic.updateTransaction(eElement.getElementsByTagName("transId").item(0).getTextContent(), eElement.getElementsByTagName("type").item(0).getTextContent());
-
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public void sendEmail() {
 		// TODO - implement System.sendEmail

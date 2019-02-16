@@ -37,11 +37,12 @@ public class updateQuantityController implements Initializable{
 	    		return;
 	    	}
         	int q = Integer.parseInt(quantityUpdate.getText());
-        	if(q<=0) {
+        	if(q<0) {
 	    		errorLabel.setText("Quantity Error");
 	    		return;
 		}
         	UserLogic.updateProductAmount(Sys.myProduct, q);
+        	myProductController.instance.initialize(null, null);
         	errorLabel.setText("Quantity Updated");
         	return;
 	}

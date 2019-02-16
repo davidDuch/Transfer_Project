@@ -18,6 +18,7 @@ import Model.Confirm;
 import Model.Pay;
 import Model.Product;
 import Model.User;
+import Model.UserReport;
 import Model.Wallet;
 import Model.Transaction;
 import Utils.Consts;
@@ -88,7 +89,27 @@ public class UserLogic {
 		return results;
 	}
 
-	
+	public static ArrayList<UserReport> getUserReport() {
+		ArrayList<UserReport> results = new ArrayList<UserReport>();
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					PreparedStatement stmt = conn.prepareStatement(Consts.SQL_USERS_REPORT);
+					ResultSet rs = stmt.executeQuery()) {
+
+				while (rs.next()) {
+					int i = 1;
+					results.add(new UserReport(rs.getString(i++), rs.getInt(i++), rs.getDouble(i++), rs.getDouble(i++)));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
 	
 	
 	public static boolean upgradeWalletToSpace(Wallet wallet , double increase) {

@@ -111,6 +111,8 @@ public class BuyProductTransactionPayController implements Initializable{
 	    	UserLogic.updateProductAmount(Sys.chosenProduct, Sys.chosenProduct.getAmountAvailable()-amount);
 	    	UserLogic.updateFVoFWallet(w, -(btcAmount+commission));
 	    	UserLogic.updateWalletFunds(w);
+	    	productScreenController.instance.initialize(null, null);
+	    	errorLabel.setText("Purchase Complete!");
 	    	return true;
 	    	}
 	    	errorLabel.setText("Not Enoungh Funds");

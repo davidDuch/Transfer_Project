@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.jar.JarException;
 
+import javax.swing.JFrame;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -67,8 +69,11 @@ public class workerMenuController implements Initializable{
 
     @FXML
     private JFXButton userReportBtn;
-
-	@Override
+    
+    @FXML
+    private JFXButton jasperBtn;
+	
+    @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		discountExpandPriceF.setText(Double.toString(Sys.discountExpandPrice));
 		sizeExpandPriceF.setText(Double.toString(Sys.sizeExpandPrice));
@@ -145,9 +150,22 @@ public class workerMenuController implements Initializable{
 		ViewLogic.newCreateAdviseScreen();
 	}
 	@FXML
-	void generateTransactionReport() throws JarException, ClassNotFoundException, SQLException, JRException {
-		TransactionLogic.getInstance().createReport();
+	private void generateTransactionReport() throws JarException, ClassNotFoundException, SQLException, JRException {
+		JFrame report = new JFrame();
+		report = TransactionLogic.getInstance().createReport();
+		report.setVisible(true);
 	}
+	@FXML
+	public void generateUserReport(ActionEvent event) {
+		ViewLogic.UserReport();
+	}
+	@FXML
+	private void jasperUser() throws JarException, ClassNotFoundException, SQLException, JRException {
+		JFrame report = new JFrame();
+		report = TransactionLogic.getInstance().createUsersReport();
+		report.setVisible(true);
+	}
+
 	@FXML
 	void Logout(ActionEvent event) {
 		Stage stage = (Stage) Logout.getScene().getWindow();

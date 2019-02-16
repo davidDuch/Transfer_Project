@@ -1,151 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37532e5a-da20-41a3-9a69-2cd950f42bc4">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e80326f-0982-4f65-b68b-b6cbbec0e6f9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Model\DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="UCA"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="634"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="352"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT * FROM tblUserReport]]>
+	<queryString>
+		<![CDATA[SELECT * FROM UsersReport]]>
 	</queryString>
 	<field name="Address" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="Address"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UsersReport"/>
 	</field>
-	<field name="Signature" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="Signature"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	<field name="TransCount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="TransCount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UsersReport"/>
 	</field>
-	<field name="Amount" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="Amount"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	<field name="ComAvg" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ComAvg"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UsersReport"/>
 	</field>
-	<field name="Average" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="Average"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
+	<field name="C4" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="C4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="UsersReport"/>
 	</field>
-	<field name="Precent" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="Precent"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tblUserReport"/>
-	</field>
-	<variable name="Precent_SUM" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{Precent}]]></variableExpression>
-	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="115" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-20" y="-10" width="595" height="40" forecolor="rgba(6, 15, 15, 0.69803923)" backcolor="rgba(14, 28, 31, 0.7254902)" uuid="32e0a8d0-db80-485e-8b6e-50bbeb240386"/>
+				<reportElement x="-20" y="0" width="595" height="40" forecolor="rgba(6, 15, 15, 0.69803923)" backcolor="rgba(14, 28, 31, 0.7254902)" uuid="92c804e5-7c60-4230-bdf9-935d3f4618fd"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="-9" width="330" height="39" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0ede24a0-bd87-498d-84e2-c18e43ff60aa"/>
+				<reportElement x="0" y="6" width="280" height="30" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="6973970b-276a-48fe-ae2e-ba7c57c649d0"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial Narrow" size="26" isUnderline="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<text><![CDATA[User Report]]></text>
+				<text><![CDATA[Transactions Report]]></text>
 			</staticText>
 			<textField pattern="M/d/yy h:mm a">
-				<reportElement x="390" y="0" width="178" height="19" forecolor="#FFFFFF" uuid="7225a418-a096-40a2-bb2b-49c2f062fedd"/>
+				<reportElement x="422" y="6" width="138" height="30" forecolor="#FFFFFF" uuid="946c28d1-ef9c-4afa-a129-9d80f351f584"/>
 				<textElement textAlignment="Center">
 					<font fontName="Monospaced" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="-15" y="80" width="70" height="30" uuid="584a9d8c-db3f-45cb-97cd-47a0ec67f3b7"/>
+				<reportElement x="110" y="10" width="139" height="30" uuid="12ed3efe-fa1b-4d18-8d70-06b1053a06e7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Transaction Count]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="10" width="120" height="30" uuid="12d0ad73-54b6-487f-9b27-5fc70011cab0"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Commission Avg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="10" width="130" height="30" uuid="dac7572d-0f82-4e28-b0c9-66e298674527"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Percentage ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="70" height="30" uuid="eede589d-7b1f-4942-903f-39b9d41d3f7c"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Address]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="93" y="80" width="134" height="30" uuid="556454e3-48bc-413d-bcc4-afa377549aa6"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Digital Signature]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="242" y="80" width="85" height="30" uuid="b6ae84da-4fb3-49f0-9d87-9b5d12700ee8"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Amount]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="340" y="85" width="100" height="30" uuid="8913eb8c-bc03-4ec4-90d6-80bd979e40f8"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Average]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="85" width="100" height="30" uuid="267f9b54-5e8c-419c-a06f-43628a3ee943"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Percent]]></text>
-			</staticText>
 		</band>
-	</title>
-	<pageHeader>
-		<band height="40" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="67" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="-15" y="13" width="80" height="26" uuid="d8719726-34d5-4934-906e-8636a010e83a"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-					<paragraph tabStopWidth="20"/>
-				</textElement>
+				<reportElement x="6" y="13" width="100" height="30" uuid="0c802fde-933f-4270-b46d-8b5786b477e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ae13b4dd-2bdb-4aed-8205-ba3aeb82d8b8"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$F{Address}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="11" width="100" height="30" uuid="7598eac8-d272-4649-b210-72342aaec0f8"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-					<paragraph tabStopWidth="20"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Signature}]]></textFieldExpression>
+				<reportElement x="120" y="10" width="100" height="30" uuid="76b9b363-7349-4ca6-8115-bd3a52830695">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6dce752c-d76b-4105-9ca6-e73b47c93c18"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{TransCount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="234" y="11" width="100" height="30" uuid="02c2823b-ba84-4dba-9f52-e472ae14cc1f"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-					<paragraph tabStopWidth="20"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+				<reportElement x="300" y="10" width="100" height="30" uuid="9f2198d6-4826-4501-b3c0-c13a85b88886">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc1c0538-01c9-4899-a1c6-0b9ce91afb64"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ComAvg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="350" y="13" width="100" height="30" uuid="97c211a2-a960-48c1-8aff-7b5eccace6f2"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Average}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Auto" pattern="#,##0.00%">
-				<reportElement x="450" y="11" width="100" height="30" uuid="7ab5e473-62cd-4e3c-b3f2-49104506a34b"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Precent}]]></textFieldExpression>
+				<reportElement x="454" y="3" width="100" height="30" uuid="576a175b-9ede-4fa8-9ad3-49c07711f948">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="918b798d-5535-4c39-a92c-5753123308fe"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{C4}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

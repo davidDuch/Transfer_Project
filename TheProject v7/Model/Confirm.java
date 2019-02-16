@@ -11,7 +11,7 @@ public class Confirm extends Transaction {
 	private String buyerAddress;
 	private String buyerSignature;
 	private Boolean approved;
-	private Calendar DateOfSupply;
+	private Date DateOfSupply;
 
 	public Confirm(String id, String description, double size, Date dateCreated, Date dateApproved, Status status,
 			double commission, Date dateOfSupply, Boolean approved, String buyerAddress, String buyerSignature,
@@ -22,7 +22,7 @@ public class Confirm extends Transaction {
 		this.buyerAddress = buyerAddress;
 		this.buyerSignature = buyerSignature;
 		this.approved = approved;
-		this.DateOfSupply = (dateOfSupply != null ? Sys.toCalendar(dateOfSupply) : null);
+		this.DateOfSupply = (dateOfSupply != null ? dateOfSupply : null);
 	}
 
 
@@ -47,11 +47,11 @@ public class Confirm extends Transaction {
 		this.approved = approved;
 	}
 
-	public Calendar getDateOfSupply() {
+	public Date getDateOfSupply() {
 		return DateOfSupply;
 	}
 
-	public void setDateOfSupply(Calendar dateOfSupply) {
+	public void setDateOfSupply(Date dateOfSupply) {
 		DateOfSupply = dateOfSupply;
 	}
 

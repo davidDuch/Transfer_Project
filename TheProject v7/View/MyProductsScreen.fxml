@@ -26,7 +26,6 @@
                <buttons>
                   <JFXButton fx:id="addProductBtn" onAction="#addProduct" text="Add Product" />
                   <JFXButton fx:id="updateQBtn" onAction="#updateQuantity" text="Update Quantity" />
-                  <JFXButton fx:id="deleteProductBtn" text="Delete Product" />
                   <JFXButton fx:id="backBtn" onAction="#back" text="Back" />
                </buttons>
             </ButtonBar>

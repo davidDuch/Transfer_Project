@@ -64,8 +64,12 @@ public class productScreenController implements Initializable{
     @FXML
     private TableColumn<Product, String> pictureC;
 
+    public static productScreenController instance;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		productTbl.getItems().clear();
+		catCombo.getItems().clear();
 		nameC.setCellValueFactory(new PropertyValueFactory<>("name"));
 		priceC.setCellValueFactory(new PropertyValueFactory<>("price"));
 		quantityC.setCellValueFactory(new PropertyValueFactory<>("AmountAvailable"));
@@ -79,7 +83,7 @@ public class productScreenController implements Initializable{
 			//(FXCollections.observableArrayList(UserLogic.getProducts()));
 		}
 		catCombo.getItems().addAll(WorkerLogic.getCategories());
-		
+		instance = this;
 	}
 	
 	@FXML

@@ -177,8 +177,15 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Confirm, java.sql.Date> sd4;
 	    @FXML
 	    private TableColumn<Confirm, Wallet> w4;
+	    
+	    public static ManageTransactionsController instance;
+	    
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
+			payIncomeT.getItems().clear();
+			myPayT.getItems().clear();
+			outgoingConfimT.getItems().clear();
+			incomingConfirmT.getItems().clear();
 			ArrayList<Pay> pay = TransactionLogic.getPayTransactions();
 			ArrayList<Confirm> confirm = TransactionLogic.getConfirmTransactions();
 //			TableView> payIncomeT
@@ -254,7 +261,7 @@ public class ManageTransactionsController implements Initializable{
 			    		  incomingConfirmT.getItems().add(m);
 			      }
 			    }
-
+			    instance = this;
 		}
 		
 		@FXML
@@ -282,6 +289,7 @@ public class ManageTransactionsController implements Initializable{
 				outgoingConfimT.refresh();
 				}
 			}
+			initialize(null, null);
 		}
 		@FXML
 		public void back(ActionEvent event) {

@@ -50,9 +50,6 @@ public class myProductController implements Initializable{
     private JFXButton updateQBtn;
 
     @FXML
-    private JFXButton deleteProductBtn;
-
-    @FXML
     private JFXButton backBtn;
     
     public static myProductController instance;

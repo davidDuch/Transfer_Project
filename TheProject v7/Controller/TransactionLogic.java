@@ -102,6 +102,18 @@ public class TransactionLogic {
 			return frame;
 		}
 	}
+	public JFrame createUsersReport() throws SQLException, JarException, ClassNotFoundException, JRException {
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		try (Connection conn = DriverManager.getConnection(Consts.CONN_STR)) {
+			JasperPrint print = JasperFillManager
+					.fillReport(getClass().getResourceAsStream("/Model/UserReport.jasper"), null, conn);
+			JFrame frame = new JFrame("User Report");
+			frame.getContentPane().add(new JRViewer(print));
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.pack();
+			return frame;
+		}
+	}
 
 	/**
 	 * add Pay Transaction to DB
@@ -271,7 +283,7 @@ public class TransactionLogic {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-
+			
 		}
 
 	}
