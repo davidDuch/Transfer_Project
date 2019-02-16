@@ -21,7 +21,7 @@
                   <JFXTextField fx:id="max" promptText="Maximum Price" />
                   <JFXButton fx:id="searchBtn" onAction="#SearchProduct" text="Search" />
                   <JFXButton fx:id="buyProductBtn" onAction="#buyProduct" text="Buy Product" />
-                  <JFXButton fx:id="backBtn" text="Back" />
+                  <JFXButton fx:id="backBtn" onAction="#back" text="Back" />
               </buttons>
             </ButtonBar>
          </children>

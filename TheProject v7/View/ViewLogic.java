@@ -3,7 +3,6 @@ package View;
 import java.io.IOException;
 import java.net.URL;
 
-import com.guigarage.flatterfx.FlatterFX;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

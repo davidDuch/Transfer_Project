@@ -19,7 +19,18 @@ public class Consts {
 	public static final String SQL_COUNT_WALLETS = "SELECT Count(tblWallet.address) AS CountOfaddress\r\n" + 
 			"FROM tblWallet;\r\n" + 
 			"";
-	public static final String SQL_ADD_WALLETKNOTS = "{ call addKnots(?,?) };";
+	public static final String SQL_ADD_WALLETKNOTS = "INSERT INTO tblWalletKnots ( address, discount )\r\n" + 
+			"VALUES (?, ?);\r\n" + 
+			";";
+	public static final String SQL_ADD_WALLETSPACE = "INSERT INTO tblWalletSpace ( address, maxTransactionSize )\r\n" + 
+			"VALUES (?, ?);\r\n" + 
+			"";
+	public static final String SQL_UPGRADE_KNOTS = "UPDATE tblWalletKnots SET tblWalletKnots.discount = ?\r\n" + 
+			"WHERE (((tblWalletKnots.address)= ?));\r\n" + 
+			"";
+	public static final String SQL_UPGRADE_SPACE = "UPDATE tblWalletSpace SET tblWalletSpace.maxTransactionSize = ?\r\n" + 
+			"WHERE (((tblWalletSpace.address)= ?));\r\n" + 
+			"";
 
 
 
@@ -84,6 +95,9 @@ public class Consts {
 			"";
 	public static final String WORKER_UPDATE_maxPossibleExpansionSize = "UPDATE tblSystem SET tblSystem.maxPossibleExpansionSize = ?\r\n" + 
 			"WHERE (((tblSystem.id)='111'));\r\n" + 
+			"";
+	public static final String WORKER_UPDATE_DATE = "UPDATE tblSystem SET tblSystem.currentTime = ?\r\n" +
+			"WHERE (((tblSystem.id)='111'));\r\n" +
 			"";
 	public static final String SQL_ADD_CATEGORY = "{ call  addCategory(?,?) }";
 

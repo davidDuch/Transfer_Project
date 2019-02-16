@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Model.Category;
 import Model.User;
@@ -113,7 +114,27 @@ public class WorkerLogic {
 		}
 		return false;
 	}
-	
+	public static boolean setDate(Date date) {
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try {
+				int i=1;
+				Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+				PreparedStatement stmt = conn.prepareStatement(Consts.WORKER_UPDATE_DATE);
+				
+				stmt.setDate(i++, new java.sql.Date(date.getTime()));
+				stmt.executeUpdate();
+				return true;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public static boolean setExpandPrice(double set) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

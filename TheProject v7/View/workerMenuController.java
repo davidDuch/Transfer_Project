@@ -2,6 +2,7 @@ package View;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.jar.JarException;
 
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
 public class workerMenuController implements Initializable{
@@ -115,6 +117,8 @@ public class workerMenuController implements Initializable{
     	WorkerLogic.setExpandWalletSize(EWS);
     	WorkerLogic.setExpandDiscountSize(EDS);
     	WorkerLogic.setMaxPossibleExpansionSize(PES);
+    	Date date = new Date();
+    	WorkerLogic.setDate(date);
     	
     JFXDialogLayout content = new JFXDialogLayout();
     content.setHeading(new Text("Updated Successfully."));
@@ -136,10 +140,19 @@ public class workerMenuController implements Initializable{
 	}
 	@FXML
 	void createAdvice(ActionEvent event) {
+		Stage stage = (Stage) Logout.getScene().getWindow();
+		stage.close();
 		ViewLogic.newCreateAdviseScreen();
 	}
 	@FXML
 	void generateTransactionReport() throws JarException, ClassNotFoundException, SQLException, JRException {
 		TransactionLogic.getInstance().createReport();
+	}
+	@FXML
+	void Logout(ActionEvent event) {
+		Stage stage = (Stage) Logout.getScene().getWindow();
+		stage.close();
+		ViewLogic.newLogin();
+
 	}
 }

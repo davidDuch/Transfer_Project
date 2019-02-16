@@ -109,6 +109,13 @@ public class addProductController implements Initializable{
     	UserLogic.addProduct(num, name, desc, image, price, Integer.parseInt(c.getId()), quantity, u.getPublicAddress(), u.getDigitalSignature());
     	errorLabel.setText("Product is up for sale!");
     	initialize(null, null);
+    	myProductController.instance.initialize(null, null);
+    	nameF.setText("");
+    	descF.setText("");
+    	imageF.setText("");
+    	priceF.setText("");
+    	quantityF.setText("");
+    	catCombo.getSelectionModel().clearSelection();
     	return true;
     }
 }

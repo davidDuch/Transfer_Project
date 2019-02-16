@@ -48,7 +48,7 @@ public class DashController implements Initializable{
     private TableColumn<Advice, String> adviceIdCol;
 
     @FXML
-    private TableColumn<Advice, Date> dateCol;
+    private TableColumn<Advice, java.sql.Date> dateCol;
 
     @FXML
     private TableColumn<Advice, Double> commisionCol;
@@ -95,26 +95,34 @@ public class DashController implements Initializable{
    // getUsersAdvice
 	@FXML
 	void myWallets(ActionEvent event) {
+		Stage stage = (Stage) pBtn.getScene().getWindow();
+		stage.close();
 		ViewLogic.walletMenuScreen();
 	}
 	@FXML
 	void buyProducts(ActionEvent event) {
+		Stage stage = (Stage) pBtn.getScene().getWindow();
+		stage.close();
 		ViewLogic.buyProducts();
 	}
 
 	@FXML
 	void myProducts(ActionEvent event) {
+		Stage stage = (Stage) pBtn.getScene().getWindow();
+		stage.close();
 		ViewLogic.myProducts();
 	}
 	@FXML
 	void myTransactions(ActionEvent event) {
+		Stage stage = (Stage) pBtn.getScene().getWindow();
+		stage.close();
 		ViewLogic.myTransactions();
 	}
 	@FXML
 	void Logout(ActionEvent event) {
 		Stage stage = (Stage) Logout.getScene().getWindow();
 		stage.close();
-
+		ViewLogic.newLogin();
 	}
 
 

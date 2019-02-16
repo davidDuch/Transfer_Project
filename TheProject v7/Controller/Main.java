@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.jar.JarException;
@@ -19,9 +20,9 @@ import net.sf.jasperreports.engine.JRException;
 public class Main extends Application {
 	
 	
-	public static void main(String[] args) throws JarException, ClassNotFoundException, SQLException, JRException {
+	public static void main(String[] args) throws JarException, ClassNotFoundException, SQLException, JRException, UnsupportedEncodingException {
 		Sys.system = new Sys();
-		
+		Sys.SendTransactions(TransactionLogic.getAllWaitingTrans());
 		launch(args);
 //		TransactionLogic.getInstance().UserReport();		
 

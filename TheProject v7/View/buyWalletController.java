@@ -106,7 +106,7 @@ public class buyWalletController implements Initializable{
     	}
     	UserLogic.add_wallet(pcToggle.isSelected(), tabletToggle.isSelected(), mobileToggle.isSelected(), 0, 0, Sys.currentUser.getPublicAddress(),Sys.currentUser.getDigitalSignature());
         Wallet wallet = new Wallet (autoAddress.getText());
-    	UserLogic.upgradeWalletToSpace(wallet, size);
+    	UserLogic.addWalletSpace(wallet, size);
     	UserLogic.updateFVoFWallet(w, -fund);
     	UserLogic.updateWalletFunds(w);
     	JFXDialogLayout content = new JFXDialogLayout();
@@ -154,7 +154,7 @@ public class buyWalletController implements Initializable{
     	}
     	UserLogic.add_wallet(pcToggle.isSelected(), tabletToggle.isSelected(), mobileToggle.isSelected(), 0, 0, Sys.currentUser.getPublicAddress(),Sys.currentUser.getDigitalSignature());
         Wallet wallet = new Wallet (autoAddress.getText());
-    	UserLogic.upgradeWalletToKnots(wallet, discount);
+    	UserLogic.addWalletKnots(wallet, discount);
     	UserLogic.updateFVoFWallet(w, -fund);
     	UserLogic.updateWalletFunds(w);
     JFXDialogLayout content = new JFXDialogLayout();

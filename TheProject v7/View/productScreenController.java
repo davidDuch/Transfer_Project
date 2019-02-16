@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 public class productScreenController implements Initializable{
 
     @FXML
@@ -87,12 +88,16 @@ public class productScreenController implements Initializable{
 	ArrayList<Product> products = new ArrayList<Product>();
 		products =UserLogic.getProducts();
 		ArrayList<Product> remove = new ArrayList<Product>();
-
+	for(Product p : products) {
+		if(p.getSellerAddress().equals(Sys.currentUser.getPublicAddress()) || p.getAmountAvailable() < 1)
+			remove.add(p);
+	}
+	products.removeAll(remove);
+	remove.clear();
 	if(searchBy.getText()!=null) {
 		String s = searchBy.getText();
 		for(Product p : products) {
 			if(!p.getName().contains(s)){
-				System.out.println(p.getName() + " " + s);
 				remove.add(p);
 			}
 		}
@@ -158,5 +163,11 @@ public class productScreenController implements Initializable{
 		Sys.chosenProduct = productTbl.getSelectionModel().getSelectedItem();
 		System.out.println(Sys.chosenProduct);
 		ViewLogic.buyProduct();
+	}
+	@FXML
+	public void back(ActionEvent event) {
+		Stage stage = (Stage) productTbl.getScene().getWindow();
+		stage.close();
+		ViewLogic.newDashBoard();
 	}
 }

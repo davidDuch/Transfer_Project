@@ -18,11 +18,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class myProductController implements Initializable{
 
     @FXML
-    private TableView<Product> productTbl;
+    public TableView<Product> productTbl;
 
     @FXML
     private TableColumn<Product, String> nameC;
@@ -53,9 +54,13 @@ public class myProductController implements Initializable{
 
     @FXML
     private JFXButton backBtn;
-
+    
+    public static myProductController instance;
+    
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		productTbl.getItems().clear();
 		nameC.setCellValueFactory(new PropertyValueFactory<>("name"));
 		priceC.setCellValueFactory(new PropertyValueFactory<>("price"));
 		quantityC.setCellValueFactory(new PropertyValueFactory<>("AmountAvailable"));
@@ -67,7 +72,7 @@ public class myProductController implements Initializable{
 			if(p.getSellerAddress().equals(Sys.currentUser.getPublicAddress()))
 				productTbl.getItems().add(p);
 		}
-		
+		instance = this;
 	}
     
     @FXML
@@ -81,4 +86,10 @@ public class myProductController implements Initializable{
     	Sys.myProduct = productTbl.getSelectionModel().getSelectedItem();
     	ViewLogic.updateQuantity();
     }
+	@FXML
+	public void back(ActionEvent event) {
+		Stage stage = (Stage) productTbl.getScene().getWindow();
+		stage.close();
+		ViewLogic.newDashBoard();
+	}
 }

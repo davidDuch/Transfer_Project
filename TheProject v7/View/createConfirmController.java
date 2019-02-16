@@ -106,11 +106,13 @@ public class createConfirmController implements Initializable{
     	String sellerAddress = bAddress.getText();
     	String sellerSignature = bSign.getText();
     	Date date = new Date();
+    	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
     	LocalDate supply = supplyDate.getValue();
     	Date sDate = Date.from(supply.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    	java.sql.Date supplySql = new java.sql.Date(sDate.getTime());
     	boolean approve = approveBox.isSelected();
     	if(w.getFunds() >= commission) {
-    	TransactionLogic.addConfirm(id, description, size, date, date, Status.waiting, commission, sDate, approve, sellerAddress, sellerSignature, creatorAddress, creatorSignature, w.getAddress());
+    	TransactionLogic.addConfirm(id, description, size, sqlDate, sqlDate, Status.waiting, commission, supplySql, approve, sellerAddress, sellerSignature, creatorAddress, creatorSignature, w.getAddress());
     	UserLogic.updateFVoFWallet(w, -commission);
     	UserLogic.updateWalletFunds(w);
     	return true;

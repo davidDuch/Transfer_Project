@@ -133,7 +133,7 @@ public class TransactionLogic {
 				stmt.setString(i++, id);
 				stmt.setString(i++, description);
 				stmt.setDouble(i++, size);
-				stmt.setDate(i++, new java.sql.Date(dateCreated.getDate()));
+				stmt.setDate(i++, new java.sql.Date(dateCreated.getTime()));
 				stmt.setDate(i++, new java.sql.Date(dateApproved.getTime()));
 				stmt.setString(i++, status.toString());
 				stmt.setDouble(i++, btcAmount);
@@ -334,8 +334,8 @@ public class TransactionLogic {
 
 					
 					// close the transaction
-					stmt.setString(1, trans.getId());
-					stmt.setString(2, status.toString());
+					stmt.setString(2, trans.getId());
+					stmt.setString(1, status.toString());
 					stmt.executeUpdate();
 
 				} catch (SQLException e) {
@@ -354,8 +354,8 @@ public class TransactionLogic {
 					CallableStatement stmt = conn.prepareCall("{ call updateStatusConfirm(?,?) };");
 
 					// close the transaction
-					stmt.setString(1, trans.getId());
-					stmt.setString(2, status.toString());
+					stmt.setString(2, trans.getId());
+					stmt.setString(1, status.toString());
 					stmt.executeUpdate();
 
 				} catch (SQLException e) {

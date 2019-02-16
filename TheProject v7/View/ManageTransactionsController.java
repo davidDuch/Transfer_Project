@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ManageTransactionsController implements Initializable{
 
@@ -44,10 +45,10 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Pay,Double> size1;
 
 	    @FXML
-	    private TableColumn<Pay,Date> cDate1;
+	    private TableColumn<Pay,java.sql.Date> cDate1;
 
 	    @FXML
-	    private TableColumn<Pay,Date> aDate1;
+	    private TableColumn<Pay,java.sql.Date> aDate1;
 
 	    @FXML
 	    private TableColumn<Pay, Status> status1;
@@ -77,16 +78,16 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Pay, Double> size2;
 
 	    @FXML
-	    private TableColumn<Pay, Date> cDate2;
+	    private TableColumn<Pay, java.sql.Date> cDate2;
 
 	    @FXML
-	    private TableColumn<Pay, Date> aDate2;
+	    private TableColumn<Pay, java.sql.Date> aDate2;
 
 	    @FXML
 	    private TableColumn<Pay, Status> status2;
 
 	    @FXML
-	    private TableColumn<Pay, Date> commission2;
+	    private TableColumn<Pay, Double> commission2;
 
 	    @FXML
 	    private TableColumn<Pay, Double> bitcoin2;
@@ -113,10 +114,10 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Confirm, Double> size3;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> cDate3;
+	    private TableColumn<Confirm, java.sql.Date> cDate3;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> aDate3;
+	    private TableColumn<Confirm, java.sql.Date> aDate3;
 
 	    @FXML
 	    private TableColumn<Confirm, Status> status3;
@@ -137,7 +138,7 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Confirm, Wallet> w3;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> sd3;
+	    private TableColumn<Confirm, java.sql.Date> sd3;
 	    
 	    @FXML
 	    private TableView<Confirm> incomingConfirmT;
@@ -152,10 +153,10 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Confirm, Double> size4;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> cDate4;
+	    private TableColumn<Confirm, java.sql.Date> cDate4;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> aDate4;
+	    private TableColumn<Confirm, java.sql.Date> aDate4;
 
 	    @FXML
 	    private TableColumn<Confirm, Status> status4;
@@ -173,7 +174,7 @@ public class ManageTransactionsController implements Initializable{
 	    private TableColumn<Confirm, String> ss4;
 
 	    @FXML
-	    private TableColumn<Confirm, Date> sd4;
+	    private TableColumn<Confirm, java.sql.Date> sd4;
 	    @FXML
 	    private TableColumn<Confirm, Wallet> w4;
 		@Override
@@ -281,5 +282,11 @@ public class ManageTransactionsController implements Initializable{
 				outgoingConfimT.refresh();
 				}
 			}
+		}
+		@FXML
+		public void back(ActionEvent event) {
+			Stage stage = (Stage) backBtn.getScene().getWindow();
+			stage.close();
+			ViewLogic.newDashBoard();
 		}
 }

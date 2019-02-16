@@ -19,7 +19,7 @@
             <JFXButton fx:id="newWorkerBtn" text="New Worker" />
             <JFXButton fx:id="createAdviceBtn" onAction="#createAdvice" text="Create Advice" />
             <JFXButton fx:id="categoryBtn" onAction="#createCategory" text="New Category" />
-            <JFXButton fx:id="Logout" text="Logout" />
+            <JFXButton fx:id="Logout" onAction="#Logout" text="Logout" />
         </buttons>
       </ButtonBar>
    </top>

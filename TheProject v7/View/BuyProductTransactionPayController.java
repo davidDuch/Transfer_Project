@@ -1,6 +1,5 @@
 package View;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -105,8 +104,10 @@ public class BuyProductTransactionPayController implements Initializable{
 	    	String sellerAddress = sAddress.getText();
 	    	String sellerSignature = sSign.getText();
 	    	Date date = new Date();
+	    	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	    	System.out.println(date);
 	    	if(w.getFunds() >= btcAmount+commission) {
-	    	TransactionLogic.addPay(id, description, size, date, date, Status.waiting, btcAmount, commission, sellerAddress, sellerSignature, creatorAddress, creatorSignature, w.getAddress());
+	    	TransactionLogic.addPay(id, description, size, sqlDate, sqlDate, Status.waiting, btcAmount, commission, sellerAddress, sellerSignature, creatorAddress, creatorSignature, w.getAddress());
 	    	UserLogic.updateProductAmount(Sys.chosenProduct, Sys.chosenProduct.getAmountAvailable()-amount);
 	    	UserLogic.updateFVoFWallet(w, -(btcAmount+commission));
 	    	UserLogic.updateWalletFunds(w);

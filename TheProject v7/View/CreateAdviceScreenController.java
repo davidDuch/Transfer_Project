@@ -61,7 +61,7 @@ public class CreateAdviceScreenController implements Initializable {
 	private TableColumn<Advice, Double> prefPer;
 
 	@FXML
-	private TableColumn<Advice, Calendar> creationDateC;
+	private TableColumn<Advice, java.sql.Date> creationDateC;
 
 	@FXML
 	private TableView<User> usersTable;
@@ -264,14 +264,7 @@ public class CreateAdviceScreenController implements Initializable {
 	private void goBack(ActionEvent event) {
 		Stage stage = (Stage) backButton.getScene().getWindow();
 		stage.close();
-
-		if (ViewLogic.GenerateReportController != null) {
-			ViewLogic.newReportGenerator();
-		} else {
-			ViewLogic.newDashBoard();
-
-		}
-
+		ViewLogic.workerMenu();
 	}
 
 }

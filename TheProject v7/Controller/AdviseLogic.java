@@ -30,7 +30,7 @@ public class AdviseLogic {
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+					results.add(new Advice(rs.getInt(i++), (rs.getDate(i++)), rs.getDouble(i++),
 							rs.getDouble(i++)));
 				}
 
@@ -93,7 +93,7 @@ public class AdviseLogic {
 					ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+					results.add(new Advice(rs.getInt(i++), (rs.getDate(i++)), rs.getDouble(i++),
 							rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {

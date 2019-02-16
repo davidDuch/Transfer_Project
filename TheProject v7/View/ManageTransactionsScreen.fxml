@@ -15,7 +15,7 @@
          <buttons>
             <JFXButton fx:id="acceptTransaction" onAction="#confirmTransaction" text="Accept Transaction" />
             <JFXButton fx:id="cancelTransaction" onAction="#rejectTransaction" text="Reject Transaction" />
-            <JFXButton fx:id="backBtn" text="Back" />
+            <JFXButton fx:id="backBtn" onAction="#back" text="Back" />
          </buttons>
       </ButtonBar>
    </top>

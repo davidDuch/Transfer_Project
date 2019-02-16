@@ -1,11 +1,12 @@
 package Model;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 public class Advice {
 
 	private int adviceId;
-	private Calendar date;
+	private Date date;
 	private Double adviceComission;
 	private Double prefPercent;
 
@@ -15,7 +16,7 @@ public class Advice {
 
 	}
 
-	public Advice(int adviceId, Calendar date, Double adviceComission, double prefPercent) {
+	public Advice(int adviceId, Date date, Double adviceComission, double prefPercent) {
 		super();
 		this.adviceId = adviceId;
 		this.date = date;
@@ -31,11 +32,11 @@ public class Advice {
 		this.adviceId = adviceId;
 	}
 
-	public Calendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

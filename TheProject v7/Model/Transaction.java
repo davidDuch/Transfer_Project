@@ -20,8 +20,8 @@ public  class Transaction implements Comparable<Transaction> {
 	private String id;
 	private String description;
 	private double size;
-	private Calendar dateCreated;
-	private Calendar dateApproved;
+	private Date dateCreated;
+	private Date dateApproved;
 	private double commission;
 	private Status status;
 	private String creatorAddress;
@@ -55,8 +55,8 @@ public  class Transaction implements Comparable<Transaction> {
 		this.creatorAddress = creatorAddress;
 		this.creatorSignature = creatorSignature;
 		this.wallet = wallet;
-		this.dateCreated = Sys.toCalendar(dateCreated);
-		this.dateApproved = (dateApproved != null ? Sys.toCalendar(dateApproved) : null);
+		this.dateCreated = (dateCreated);
+		this.dateApproved = (dateApproved != null ? (dateApproved) : null);
 
 	}
 
@@ -135,19 +135,19 @@ public  class Transaction implements Comparable<Transaction> {
 		this.size = size;
 	}
 
-	public Calendar getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Calendar dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public Calendar getDateApproved() {
+	public Date getDateApproved() {
 		return dateApproved;
 	}
 
-	public void setDateApproved(Calendar dateApproved) {
+	public void setDateApproved(Date dateApproved) {
 		this.dateApproved = dateApproved;
 	}
 

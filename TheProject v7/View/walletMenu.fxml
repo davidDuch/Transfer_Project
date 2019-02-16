@@ -16,7 +16,7 @@
                   <JFXButton fx:id="update" onAction="#addFunds" prefHeight="34.0" prefWidth="134.0" text="Update Funds " />
                   <JFXButton fx:id="upgrade" onAction="#upgradeWallet" prefHeight="33.0" text="Upgrade" />
                   <JFXButton fx:id="buy" onAction="#buyWallet" prefHeight="33.0" text="Buy Wallet" />
-                  <JFXButton fx:id="back" text="Back" />
+                  <JFXButton fx:id="back" onAction="#back" text="Back" />
                </buttons>
             </ButtonBar>
          </children>

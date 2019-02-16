@@ -96,14 +96,37 @@ public class UserLogic {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-					CallableStatement stmt = conn.prepareCall("{ call addSpace(?,?)  };")) {
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPGRADE_SPACE)) {
+				stmt.setDouble(1, increase);
+
+				stmt.setString(2, wallet.getAddress());
+		
+
+				stmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	public static boolean addWalletSpace(Wallet wallet , double increase) {
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_WALLETSPACE)) {
+
+
+
 
 				stmt.setString(1, wallet.getAddress());
-
-
-
 				stmt.setDouble(2, increase);
-			
+
 
 				stmt.executeUpdate();
 				return true;
@@ -119,8 +142,30 @@ public class UserLogic {
 
 	
 	
-	
 	public static boolean  upgradeWalletToKnots(Wallet wallet, double increase) {
+		
+
+		try {
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+					CallableStatement stmt = conn.prepareCall(Consts.SQL_UPGRADE_KNOTS)) {
+
+
+				stmt.setDouble(1, increase);
+				stmt.setString(2, wallet.getAddress());
+
+				stmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	public static boolean  addWalletKnots(Wallet wallet, double increase) {
 		
 
 		try {
@@ -354,7 +399,7 @@ public class UserLogic {
 
 				while (rs.next()) {
 					int i = 1;
-					results.add(new Advice(rs.getInt(i++), Sys.toCalendar(rs.getDate(i++)), rs.getDouble(i++),
+					results.add(new Advice(rs.getInt(i++), (rs.getDate(i++)), rs.getDouble(i++),
 							rs.getDouble(i++)));
 				}
 			} catch (SQLException e) {

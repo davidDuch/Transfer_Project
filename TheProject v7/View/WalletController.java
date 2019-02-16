@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class WalletController implements Initializable
 {
@@ -133,6 +134,12 @@ public class WalletController implements Initializable
 			}
 		}
 		}
+	@FXML
+	public void back(ActionEvent event) {
+		Stage stage = (Stage) back.getScene().getWindow();
+		stage.close();
+		ViewLogic.newDashBoard();
+	}
 
 
 	@Override

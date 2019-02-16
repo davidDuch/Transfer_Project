@@ -1,6 +1,7 @@
 package Controller;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -10,6 +11,8 @@ import java.io.File;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,6 +25,7 @@ import Model.Product;
 import Model.Transaction;
 import Model.User;
 import Model.Wallet;
+import Utils.Consts;
 
 public class Sys {
 
@@ -84,7 +88,7 @@ public class Sys {
 		return Sys.currentUser;
 	}
 	@SuppressWarnings("unchecked")
-	public void SendTransactions(ArrayList<Transaction> transactions) {
+	public static void SendTransactions(ArrayList<Transaction> transactions) throws UnsupportedEncodingException {
 
 		JSONArray transcationsToSend = new JSONArray();
 
@@ -96,10 +100,20 @@ public class Sys {
 			trans.put("Comission", temp.getCommission());
 			transcationsToSend.add(trans);
 		}
+		String path = Consts.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		String decoded = URLDecoder.decode(path, "UTF-8");
+		if (decoded.contains(".jar"))
+			decoded = decoded.substring(0, decoded.lastIndexOf("/"));
+		else {
+			System.out.println("1 " + decoded);
+			decoded = decoded.substring(0, decoded.indexOf("/TheProject v7"));
+			System.out.println("2 "+ decoded);
+
+		}
 
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter(
-				"C:\\Users\\Gabi Malin\\Desktop\\Transfer_Project\\TheProject v7\\JSON.txt")) {
+				decoded + "\\FlipCoin-Mining-after-gabi\\JSON.txt")) {
 			file.write(transcationsToSend.toJSONString());
 
 		} catch (IOException e) {

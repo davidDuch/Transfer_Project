@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Transcation>
-	<Transaction>
-		<transId>CON113</transId>
-		<size>5.0</size>
-		<type>Confirm</type>
-		<comission>3.0</comission>
-		<blockAddress>block5</blockAddress>
-	</Transaction>
-	<Transaction>
-		<transId>PAY346</transId>
-		<size>2.0</size>
-		<type>Pay</type>
-		<comission>8.0</comission>
-		<blockAddress>block5</blockAddress>
-	</Transaction>
-</Transcation>
+<?xml version="1.0" encoding="UTF-8"?><Transcation><Transaction><transId>PAY789</transId><size>4.0</size><type>Pay</type><comission>5.0</comission><blockAddress>block3</blockAddress></Transaction><Transaction><transId>CON113</transId><size>10.0</size><type>Confirm</type><comission>0.0</comission><blockAddress>block3</blockAddress></Transaction></Transcation>

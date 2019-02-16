@@ -160,6 +160,8 @@ public class SignUpLoginController {
 			if(workerRadio.isSelected()) {
 				if(workerLogin(fromDB)) {
 					ViewLogic.workerMenu();
+				    Stage stage = (Stage) loginError.getScene().getWindow();
+				    stage.close();
 					return true;
 				}
 				loginError.setText("Wrong Details");
